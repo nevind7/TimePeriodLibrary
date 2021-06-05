@@ -4,6 +4,7 @@
 Forked from https://github.com/Giannoudis/TimePeriodLibrary
 
 Ported over to dotnet6
+
 Updated tests
 
 Extensive time period calculations and individual calendar periods.
