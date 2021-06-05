@@ -6,12 +6,13 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Globalization;
-using Itenso.TimePeriod;
+using TimePeriod;
 using Xunit;
 
-namespace Itenso.TimePeriodTests
+namespace TimePeriodTests.Core
 {
 
 	// ------------------------------------------------------------------------
@@ -39,14 +40,14 @@ namespace Itenso.TimePeriodTests
         // ----------------------------------------------------------------------
         [Trait("Category", "Duration")]
         [Fact]
-		public void HalfyearTest()
+		public void HalfYearTest()
 		{
 			int currentYear = ClockProxy.Clock.Now.Year;
 			Calendar calendar = DateDiff.SafeCurrentInfo.Calendar;
 
-			foreach ( YearHalfyear yearHalfyear in Enum.GetValues( typeof( YearHalfyear ) ) )
+			foreach ( YearHalfYear yearHalfYear in Enum.GetValues( typeof( YearHalfYear ) ) )
 			{
-				YearMonth[] halfyearMonths = TimeTool.GetMonthsOfHalfyear( yearHalfyear );
+				YearMonth[] halfyearMonths = TimeTool.GetMonthsOfHalfYear( yearHalfYear );
 				TimeSpan duration = TimeSpan.Zero;
 				foreach ( YearMonth halfyearMonth in halfyearMonths )
 				{
@@ -54,10 +55,10 @@ namespace Itenso.TimePeriodTests
 					duration = duration.Add( new TimeSpan( monthDays, 0, 0, 0 ) );
 				}
 
-				Assert.Equal( Duration.Halfyear( currentYear, yearHalfyear ), duration );
-				Assert.Equal( Duration.Halfyear( calendar, currentYear, yearHalfyear ), duration );
+				Assert.Equal( Duration.HalfYear( currentYear, yearHalfYear ), duration );
+				Assert.Equal( Duration.HalfYear( calendar, currentYear, yearHalfYear ), duration );
 			}
-		} // HalfyearTest
+		} // HalfYearTest
 
         // ----------------------------------------------------------------------
         [Trait("Category", "Duration")]

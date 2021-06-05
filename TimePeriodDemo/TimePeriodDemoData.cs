@@ -6,12 +6,12 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Globalization;
-using System.Threading;
-using Itenso.TimePeriod;
+using TimePeriod;
 
-namespace Itenso.TimePeriodDemo
+namespace TimePeriodDemo
 {
 
 	// ------------------------------------------------------------------------
@@ -25,18 +25,13 @@ namespace Itenso.TimePeriodDemo
 		} // TimePeriodDemoData
 
 		// ----------------------------------------------------------------------
-		public TimeCalendarConfig CalendarConfig
-		{
-			get
-			{
-				return new TimeCalendarConfig
-				       	{
-				       		Culture = culture,
-									YearBaseMonth = YearBaseMonth,
-									YearWeekType = YearWeekType
-				       	};
-			}
-		} // CalendarConfig
+		public TimeCalendarConfig CalendarConfig =>
+            new TimeCalendarConfig
+            {
+                Culture = culture,
+                YearBaseMonth = YearBaseMonth,
+                YearWeekType = YearWeekType
+            }; // CalendarConfig
 
 		// ----------------------------------------------------------------------
 		public DateTime SetupDate { get; private set; }
@@ -48,7 +43,7 @@ namespace Itenso.TimePeriodDemo
 		public int Year { get; private set; }
 
 		// ----------------------------------------------------------------------
-		public YearHalfyear Halfyear { get; private set; }
+		public YearHalfYear HalfYear { get; private set; }
 
 		// ----------------------------------------------------------------------
 		public YearQuarter Quarter { get; private set; }
@@ -130,17 +125,17 @@ namespace Itenso.TimePeriodDemo
 		} // QueryYearBaseMonth
 
 		// ----------------------------------------------------------------------
-		public bool QueryYearHalfyear()
+		public bool QueryYearHalfYear()
 		{
-			int? halfyear = ConsoleTool.QueryNumber( "Halfyear (1..2) [enter=" + (int)Halfyear + "/" + Halfyear + "]: ",
-				(int)Halfyear, 1, TimeSpec.HalfyearsPerYear );
+			int? halfyear = ConsoleTool.QueryNumber( "HalfYear (1..2) [enter=" + (int)HalfYear + "/" + HalfYear + "]: ",
+				(int)HalfYear, 1, TimeSpec.HalfYearsPerYear );
 			if ( !halfyear.HasValue )
 			{
 				return false;
 			}
-			Halfyear = (YearHalfyear)halfyear.Value;
+			HalfYear = (YearHalfYear)halfyear.Value;
 			return true;
-		} // QueryYearHalfyear
+		} // QueryYearHalfYear
 
 		// ----------------------------------------------------------------------
 		public bool QueryYearQuarter()
@@ -248,7 +243,7 @@ namespace Itenso.TimePeriodDemo
 			PeriodCount = 1;
 			SetupDate = ClockProxy.Clock.Now;
 			Year = SetupDate.Year;
-			Halfyear = TimeTool.GetHalfyearOfMonth( YearBaseMonth );
+			HalfYear = TimeTool.GetHalfYearOfMonth( YearBaseMonth );
 			Quarter = TimeTool.GetQuarterOfMonth( YearBaseMonth );
 			Month = (YearMonth)SetupDate.Month;
 

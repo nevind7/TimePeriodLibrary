@@ -8,95 +8,65 @@
 // --------------------------------------------------------------------------
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
-	public abstract class HalfyearTimeRange : CalendarTimeRange
+	public abstract class HalfYearTimeRange : CalendarTimeRange
 	{
 
 		// ----------------------------------------------------------------------
-		protected HalfyearTimeRange( int startYear, YearHalfyear startHalfyear, int halfyearCount, ITimeCalendar calendar ) :
-			base( GetPeriodOf( calendar, startYear, startHalfyear, halfyearCount ), calendar )
+		protected HalfYearTimeRange( int startYear, YearHalfYear startHalfYear, int halfYearCount, ITimeCalendar calendar ) :
+			base( GetPeriodOf( calendar, startYear, startHalfYear, halfYearCount ), calendar )
 		{
 			this.startYear = startYear;
-			this.startHalfyear = startHalfyear;
-			this.halfyearCount = halfyearCount;
-			TimeTool.AddHalfyear( startYear, startHalfyear, halfyearCount - 1, out endYear, out endHalfyear );
+			this.startHalfYear = startHalfYear;
+			this.halfYearCount = halfYearCount;
+			TimeTool.AddHalfYear( startYear, startHalfYear, halfYearCount - 1, out endYear, out endHalfYear );
 		} // HalfyearTimeRange
 
 		// ----------------------------------------------------------------------
-		public override int BaseYear
-		{
-			get { return startYear; }
-		} // BaseYear
+		public override int BaseYear => startYear; // BaseYear
 
 		// ----------------------------------------------------------------------
-		public int StartYear
-		{
-			get { return Calendar.GetYear( startYear, (int)Calendar.YearBaseMonth ); }
-		} // StartYear
+		public int StartYear => Calendar.GetYear( startYear, (int)Calendar.YearBaseMonth ); // StartYear
 
 		// ----------------------------------------------------------------------
-		public int EndYear
-		{
-			get { return Calendar.GetYear( endYear, (int)Calendar.YearBaseMonth ); }
-		} // EndYear
+		public int EndYear => Calendar.GetYear( endYear, (int)Calendar.YearBaseMonth ); // EndYear
 
 		// ----------------------------------------------------------------------
-		public YearHalfyear StartHalfyear
-		{
-			get { return startHalfyear; }
-		} // StartHalfyear
+		public YearHalfYear StartHalfYear => startHalfYear; // StartHalfYear
 
 		// ----------------------------------------------------------------------
-		public YearHalfyear EndHalfyear
-		{
-			get { return endHalfyear; }
-		} // EndHalfyear
+		public YearHalfYear EndHalfYear => endHalfYear; // EndHalfYear
 
 		// ----------------------------------------------------------------------
-		public int HalfyearCount
-		{
-			get { return halfyearCount; }
-		} // HalfyearCount
+		public int HalfYearCount => halfYearCount; // HalfYearCount
 
 		// ----------------------------------------------------------------------
-		public string StartHalfyearName
-		{
-			get { return Calendar.GetHalfyearName( StartHalfyear ); }
-		} // StartHalfyearName
+		public string StartHalfYearName => Calendar.GetHalfYearName( StartHalfYear ); // StartHalfyearName
 
 		// ----------------------------------------------------------------------
-		public string StartHalfyearOfYearName
-		{
-			get { return Calendar.GetHalfyearOfYearName( StartYear, StartHalfyear ); }
-		} // StartHalfyearOfYearName
+		public string StartHalfYearOfYearName => Calendar.GetHalfYearOfYearName( StartYear, StartHalfYear ); // StartHalfyearOfYearName
 
 		// ----------------------------------------------------------------------
-		public string EndHalfyearName
-		{
-			get { return Calendar.GetHalfyearName( EndHalfyear ); }
-		} // EndHalfyearName
+		public string EndHalfYearName => Calendar.GetHalfYearName( EndHalfYear ); // EndHalfyearName
 
 		// ----------------------------------------------------------------------
-		public string EndHalfyearOfYearName
-		{
-			get { return Calendar.GetHalfyearOfYearName( EndYear, EndHalfyear ); }
-		} // EndHalfyearOfYearName
+		public string EndHalfYearOfYearName => Calendar.GetHalfYearOfYearName( EndYear, EndHalfYear ); // EndHalfyearOfYearName
 
 		// ----------------------------------------------------------------------
 		public ITimePeriodCollection GetQuarters()
 		{
 			TimePeriodCollection quarters = new TimePeriodCollection();
-			YearQuarter startQuarter = StartHalfyear == YearHalfyear.First ? YearQuarter.First : YearQuarter.Third;
-			for ( int i = 0; i < halfyearCount; i++ )
+			YearQuarter startQuarter = StartHalfYear == YearHalfYear.First ? YearQuarter.First : YearQuarter.Third;
+			for ( int i = 0; i < halfYearCount; i++ )
 			{
-				for ( int quarter = 0; quarter < TimeSpec.QuartersPerHalfyear; quarter++ )
+				for ( int quarter = 0; quarter < TimeSpec.QuartersPerHalfYear; quarter++ )
 				{
 					int year;
 					YearQuarter yearQuarter;
-					TimeTool.AddQuarter( startYear, startQuarter, ( i * TimeSpec.QuartersPerHalfyear ) + quarter, out year, out yearQuarter );
+					TimeTool.AddQuarter( startYear, startQuarter, ( i * TimeSpec.QuartersPerHalfYear ) + quarter, out year, out yearQuarter );
 					quarters.Add( new Quarter( year, yearQuarter, Calendar ) );
 				}
 			}
@@ -108,18 +78,18 @@ namespace Itenso.TimePeriod
 		{
 			TimePeriodCollection months = new TimePeriodCollection();
             YearMonth startMonth = YearBaseMonth;
-            if ( StartHalfyear == YearHalfyear.Second )
+            if ( StartHalfYear == YearHalfYear.Second )
             {
                 int year;
-                TimeTool.AddMonth( startYear, startMonth, TimeSpec.MonthsPerHalfyear, out year, out startMonth );
+                TimeTool.AddMonth( startYear, startMonth, TimeSpec.MonthsPerHalfYear, out year, out startMonth );
             }
-			for ( int i = 0; i < halfyearCount; i++ )
+			for ( int i = 0; i < halfYearCount; i++ )
 			{
-				for ( int month = 0; month < TimeSpec.MonthsPerHalfyear; month++ )
+				for ( int month = 0; month < TimeSpec.MonthsPerHalfYear; month++ )
 				{
 					int year;
 					YearMonth yearMonth;
-					TimeTool.AddMonth( startYear, startMonth, ( i * TimeSpec.MonthsPerHalfyear ) + month, out year, out yearMonth );
+					TimeTool.AddMonth( startYear, startMonth, ( i * TimeSpec.MonthsPerHalfYear ) + month, out year, out yearMonth );
 					months.Add( new Month( year, yearMonth, Calendar ) );
 				}
 			}
@@ -129,58 +99,58 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		protected override bool IsEqual( object obj )
 		{
-			return base.IsEqual( obj ) && HasSameData( obj as HalfyearTimeRange );
+			return base.IsEqual( obj ) && HasSameData( obj as HalfYearTimeRange );
 		} // IsEqual
 
 		// ----------------------------------------------------------------------
-		private bool HasSameData( HalfyearTimeRange comp )
+		private bool HasSameData( HalfYearTimeRange comp )
 		{
 			return
 				startYear == comp.startYear &&
-				startHalfyear == comp.startHalfyear &&
-				halfyearCount == comp.halfyearCount &&
+                startHalfYear == comp.startHalfYear &&
+				halfYearCount == comp.halfYearCount &&
 				endYear == comp.endYear &&
-				endHalfyear == comp.endHalfyear;
+				endHalfYear == comp.endHalfYear;
 		} // HasSameData
 
 		// ----------------------------------------------------------------------
 		protected override int ComputeHashCode()
 		{
-			return HashTool.ComputeHashCode( base.ComputeHashCode(), startYear, startHalfyear, halfyearCount, endYear, endHalfyear );
+			return HashTool.ComputeHashCode( base.ComputeHashCode(), startYear, startHalfYear, halfYearCount, endYear, endHalfYear );
 		} // ComputeHashCode
 
 		// ----------------------------------------------------------------------
-		private static DateTime GetStartOfHalfyear( ITimeCalendar calendar, int year, YearHalfyear halfyear )
+		private static DateTime GetStartOfHalfYear( ITimeCalendar calendar, int year, YearHalfYear halfyear )
 		{
 			DateTime startOfHalfyear;
 
 			switch ( calendar.YearType )
 			{
 				case YearType.FiscalYear:
-					startOfHalfyear = FiscalCalendarTool.GetStartOfHalfyear( year, halfyear,
+					startOfHalfyear = FiscalCalendarTool.GetStartOfHalfYear( year, halfyear,
 						calendar.YearBaseMonth, calendar.FiscalFirstDayOfYear, calendar.FiscalYearAlignment );
 					break;
 				default:
 					DateTime yearStart = new DateTime( year, (int)calendar.YearBaseMonth, 1 );
-					startOfHalfyear = yearStart.AddMonths( ( (int)halfyear - 1 ) * TimeSpec.MonthsPerHalfyear );
+					startOfHalfyear = yearStart.AddMonths( ( (int)halfyear - 1 ) * TimeSpec.MonthsPerHalfYear );
 					break;
 			}
 			return startOfHalfyear;
-		} // GetStartOfHalfyear
+		} // GetStartOfHalfYear
 
 		// ----------------------------------------------------------------------
-		private static TimeRange GetPeriodOf( ITimeCalendar calendar, int startYear, YearHalfyear startHalfyear, int halfyearCount )
+		private static TimeRange GetPeriodOf( ITimeCalendar calendar, int startYear, YearHalfYear startHalfyear, int halfyearCount )
 		{
 			if ( halfyearCount < 1 )
 			{
 				throw new ArgumentOutOfRangeException( "halfyearCount" );
 			}
 
-			DateTime start = GetStartOfHalfyear( calendar, startYear, startHalfyear );
+			DateTime start = GetStartOfHalfYear( calendar, startYear, startHalfyear );
 			int endYear;
-			YearHalfyear endHalfyear;
-			TimeTool.AddHalfyear( startYear, startHalfyear, halfyearCount, out endYear, out endHalfyear );
-			DateTime end = GetStartOfHalfyear( calendar, endYear, endHalfyear );
+			YearHalfYear endHalfyear;
+			TimeTool.AddHalfYear( startYear, startHalfyear, halfyearCount, out endYear, out endHalfyear );
+			DateTime end = GetStartOfHalfYear( calendar, endYear, endHalfyear );
 
 			return new TimeRange( start, end );
 		} // GetPeriodOf
@@ -188,10 +158,10 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		// members
 		private readonly int startYear;
-		private readonly YearHalfyear startHalfyear;
-		private readonly int halfyearCount;
+		private readonly YearHalfYear startHalfYear;
+		private readonly int halfYearCount;
 		private readonly int endYear; // cache
-		private readonly YearHalfyear endHalfyear; // cache
+		private readonly YearHalfYear endHalfYear; // cache
 
 	} // class HalfyearTimeRange
 

@@ -6,10 +6,11 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
-using System;
-using Itenso.TimePeriod;
 
-namespace Itenso.TimePeriodDemo
+using System;
+using TimePeriod;
+
+namespace TimePeriodDemo
 {
 
 	// ------------------------------------------------------------------------
@@ -38,8 +39,8 @@ namespace Itenso.TimePeriodDemo
 		// ----------------------------------------------------------------------
 		public int Month
 		{
-			get { return month; }
-			set
+			get => month;
+            set
 			{
 				if ( value < 1 || value > TimeSpec.MonthsPerYear )
 				{
@@ -52,8 +53,8 @@ namespace Itenso.TimePeriodDemo
 		// ----------------------------------------------------------------------
 		public int Day
 		{
-			get { return day; }
-			set
+			get => day;
+            set
 			{
 				if ( value < 1 || value > TimeSpec.MaxDaysPerMonth )
 				{

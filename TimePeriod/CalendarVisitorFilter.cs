@@ -6,10 +6,11 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Collections.Generic;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -27,40 +28,22 @@ namespace Itenso.TimePeriod
 		} // Clear
 
 		// ----------------------------------------------------------------------
-		public ITimePeriodCollection ExcludePeriods
-		{
-			get { return excludePeriods; }
-		} // ExcludePeriods
+		public ITimePeriodCollection ExcludePeriods => excludePeriods; // ExcludePeriods
 
 		// ----------------------------------------------------------------------
-		public IList<int> Years
-		{
-			get { return years; }
-		} // Years
+		public IList<int> Years => years; // Years
 
 		// ----------------------------------------------------------------------
-		public IList<YearMonth> Months
-		{
-			get { return months; }
-		} // Months
+		public IList<YearMonth> Months => months; // Months
 
 		// ----------------------------------------------------------------------
-		public IList<int> Days
-		{
-			get { return days; }
-		} // Days
+		public IList<int> Days => days; // Days
 
 		// ----------------------------------------------------------------------
-		public IList<DayOfWeek> WeekDays
-		{
-			get { return weekDays; }
-		} // WeekDays
+		public IList<DayOfWeek> WeekDays => weekDays; // WeekDays
 
 		// ----------------------------------------------------------------------
-		public IList<int> Hours
-		{
-			get { return hours; }
-		} // Hours
+		public IList<int> Hours => hours; // Hours
 
 		// ----------------------------------------------------------------------
 		public void AddWorkingWeekDays()

@@ -6,11 +6,12 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Globalization;
-using Itenso.TimePeriod;
+using TimePeriod;
 
-namespace Itenso.TimePeriodDemo
+namespace TimePeriodDemo
 {
 
 	// ------------------------------------------------------------------------
@@ -54,10 +55,7 @@ namespace Itenso.TimePeriodDemo
 		} // CustomWeek
 
 		// ----------------------------------------------------------------------
-		public DayOfWeek FirstDayOfWeek
-		{
-			get { return Start.DayOfWeek; }
-		} // FirstDayOfWeek
+		public DayOfWeek FirstDayOfWeek => Start.DayOfWeek; // FirstDayOfWeek
 
 		// ----------------------------------------------------------------------
 		public ITimePeriodCollection GetDays()

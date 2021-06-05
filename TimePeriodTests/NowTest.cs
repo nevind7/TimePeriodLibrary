@@ -6,11 +6,12 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
-using Itenso.TimePeriod;
+using TimePeriod;
 using Xunit;
 
-namespace Itenso.TimePeriodTests
+namespace TimePeriodTests.Core
 {
 
 	// ------------------------------------------------------------------------
@@ -37,20 +38,20 @@ namespace Itenso.TimePeriodTests
         // ----------------------------------------------------------------------
         [Trait("Category", "Now")]
         [Fact]
-		public void CalendarHalfyearTest()
+		public void CalendarHalfYearTest()
 		{
 			DateTime now = ClockProxy.Clock.Now;
-			DateTime calendarHalfyear = Now.CalendarHalfyear;
-			int halfyear = ( ( now.Month - 1 ) / TimeSpec.MonthsPerHalfyear ) + 1;
-			int halfyearMonth = ( ( halfyear - 1 ) * TimeSpec.MonthsPerHalfyear ) + 1;
-			Assert.Equal( calendarHalfyear.Year, now.Year );
-			Assert.Equal( calendarHalfyear.Month, halfyearMonth );
-			Assert.Equal(1, calendarHalfyear.Day);
-			Assert.Equal(0, calendarHalfyear.Hour);
-			Assert.Equal(0, calendarHalfyear.Minute);
-			Assert.Equal(0, calendarHalfyear.Second);
-			Assert.Equal(0, calendarHalfyear.Millisecond);
-		} // CalendarHalfyearTest
+			DateTime calendarHalfYear = Now.CalendarHalfYear;
+			int halfyear = ( ( now.Month - 1 ) / TimeSpec.MonthsPerHalfYear ) + 1;
+			int halfyearMonth = ( ( halfyear - 1 ) * TimeSpec.MonthsPerHalfYear ) + 1;
+			Assert.Equal( calendarHalfYear.Year, now.Year );
+			Assert.Equal( calendarHalfYear.Month, halfyearMonth );
+			Assert.Equal(1, calendarHalfYear.Day);
+			Assert.Equal(0, calendarHalfYear.Hour);
+			Assert.Equal(0, calendarHalfYear.Minute);
+			Assert.Equal(0, calendarHalfYear.Second);
+			Assert.Equal(0, calendarHalfYear.Millisecond);
+		} // CalendarHalfYearTest
 
         // ----------------------------------------------------------------------
         [Trait("Category", "Now")]
@@ -191,11 +192,11 @@ namespace Itenso.TimePeriodTests
         // ----------------------------------------------------------------------
         [Trait("Category", "Now")]
         [Fact]
-		public void HalfyearTest()
+		public void HalfYearTest()
 		{
 			DateTime now = ClockProxy.Clock.Now;
 
-			DateTime halfyear = Now.Halfyear( (YearMonth)now.Month );
+			DateTime halfyear = Now.HalfYear( (YearMonth)now.Month );
 			Assert.Equal( halfyear.Year, now.Year );
 			Assert.Equal( halfyear.Month, now.Month );
 			Assert.Equal(1, halfyear.Day);
@@ -207,15 +208,15 @@ namespace Itenso.TimePeriodTests
 			int testYear;
 			YearMonth previousMonth;
 			TimeTool.PreviousMonth( (YearMonth)now.Month, out testYear, out previousMonth );
-			DateTime previousHalfyear = Now.Halfyear( previousMonth );
-			Assert.Equal( previousHalfyear.Year, now.AddMonths( -1 ).Year );
-			Assert.Equal( previousHalfyear.Month, now.AddMonths( -1 ).Month );
-			Assert.Equal(1, previousHalfyear.Day);
-			Assert.Equal(0, previousHalfyear.Hour);
-			Assert.Equal(0, previousHalfyear.Minute);
-			Assert.Equal(0, previousHalfyear.Second);
-			Assert.Equal(0, previousHalfyear.Millisecond);
-		} // HalfyearTest
+			DateTime previousHalfYear = Now.HalfYear( previousMonth );
+			Assert.Equal( previousHalfYear.Year, now.AddMonths( -1 ).Year );
+			Assert.Equal( previousHalfYear.Month, now.AddMonths( -1 ).Month );
+			Assert.Equal(1, previousHalfYear.Day);
+			Assert.Equal(0, previousHalfYear.Hour);
+			Assert.Equal(0, previousHalfYear.Minute);
+			Assert.Equal(0, previousHalfYear.Second);
+			Assert.Equal(0, previousHalfYear.Millisecond);
+		} // HalfYearTest
 
         // ----------------------------------------------------------------------
         [Trait("Category", "Now")]

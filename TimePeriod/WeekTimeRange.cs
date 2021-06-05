@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -16,17 +17,17 @@ namespace Itenso.TimePeriod
 	{
 
 		// ----------------------------------------------------------------------
-		protected WeekTimeRange( int year, int startWeek, int weekCount ) :
-			this( year, startWeek, weekCount, new TimeCalendar() )
+		protected WeekTimeRange( int year, int week, int weekCount ) :
+			this( year, week, weekCount, new TimeCalendar() )
 		{
 		} // WeekTimeRange
 
 		// ----------------------------------------------------------------------
-		protected WeekTimeRange( int year, int startWeek, int weekCount, ITimeCalendar calendar ) :
-			base( GetPeriodOf( year, startWeek, weekCount, calendar ), calendar )
+		protected WeekTimeRange( int year, int week, int weekCount, ITimeCalendar calendar ) :
+			base( GetPeriodOf( year, week, weekCount, calendar ), calendar )
 		{
 			this.year = year;
-			this.startWeek = startWeek;
+			this.week = week;
 			this.weekCount = weekCount;
 		} // WeekTimeRange
 
@@ -40,45 +41,27 @@ namespace Itenso.TimePeriod
 		protected WeekTimeRange( DateTime moment, int weekCount, ITimeCalendar calendar ) :
 			base( GetPeriodOf( moment, weekCount, calendar ), calendar )
 		{
-			TimeTool.GetWeekOfYear( moment, calendar.Culture, calendar.YearWeekType, out year, out startWeek );
+			TimeTool.GetWeekOfYear( moment, calendar.Culture, calendar.YearWeekType, out year, out week );
 			this.weekCount = weekCount;
 		} // WeekTimeRange
 
 		// ----------------------------------------------------------------------
-		public int Year
-		{
-			get { return year; }
-		} // Year
+		public int Year => year; // Year
 
 		// ----------------------------------------------------------------------
-		public int WeekCount
-		{
-			get { return weekCount; }
-		} // WeekCount
+		public int WeekCount => weekCount; // WeekCount
 
 		// ----------------------------------------------------------------------
-		public int StartWeek
-		{
-			get { return startWeek; }
-		} // StartWeek
+		public int StartWeek => week; // StartWeek
 
 		// ----------------------------------------------------------------------
-		public int EndWeek
-		{
-			get { return startWeek + weekCount - 1; }
-		} // EndWeek
+		public int EndWeek => week + weekCount - 1; // EndWeek
 
 		// ----------------------------------------------------------------------
-		public string StartWeekOfYearName
-		{
-			get { return Calendar.GetWeekOfYearName( Year, StartWeek ); }
-		} // StartWeekOfYearName
+		public string StartWeekOfYearName => Calendar.GetWeekOfYearName( Year, StartWeek ); // StartWeekOfYearName
 
 		// ----------------------------------------------------------------------
-		public string EndWeekOfYearName
-		{
-			get { return Calendar.GetWeekOfYearName( Year, EndWeek ); }
-		} // EndWeekOfYearName
+		public string EndWeekOfYearName => Calendar.GetWeekOfYearName( Year, EndWeek ); // EndWeekOfYearName
 
 		// ----------------------------------------------------------------------
 		public DateTime GetStartOfWeek( int weekIndex )
@@ -88,19 +71,19 @@ namespace Itenso.TimePeriod
 				throw new ArgumentOutOfRangeException( "weekIndex" );
 			}
 
-			DateTime startDate = TimeTool.GetStartOfYearWeek( year, startWeek, Calendar.Culture, Calendar.YearWeekType );
-			return startDate.AddDays( weekIndex * TimeSpec.DaysPerWeek );
+			DateTime date = TimeTool.GetStartOfYearWeek( year, week, Calendar.Culture, Calendar.YearWeekType );
+			return date.AddDays( weekIndex * TimeSpec.DaysPerWeek );
 		} // GetStartOfWeek
 
 		// ----------------------------------------------------------------------
 		public ITimePeriodCollection GetDays()
 		{
 			TimePeriodCollection days = new TimePeriodCollection();
-			DateTime startDate = TimeTool.GetStartOfYearWeek( year, startWeek, Calendar.Culture, Calendar.YearWeekType );
+			DateTime date = TimeTool.GetStartOfYearWeek( year, week, Calendar.Culture, Calendar.YearWeekType );
 			int dayCount = weekCount * TimeSpec.DaysPerWeek;
 			for ( int i = 0; i < dayCount; i++ )
 			{
-				days.Add( new Day( startDate.AddDays( i ), Calendar ) );
+				days.Add( new Day( date.AddDays( i ), Calendar ) );
 			}
 			return days;
 		} // GetDays
@@ -114,21 +97,19 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		private bool HasSameData( WeekTimeRange comp )
 		{
-			return year == comp.year && startWeek == comp.startWeek && weekCount == comp.weekCount;
+			return year == comp.year && week == comp.week && weekCount == comp.weekCount;
 		} // HasSameData
 
 		// ----------------------------------------------------------------------
 		protected override int ComputeHashCode()
 		{
-			return HashTool.ComputeHashCode( base.ComputeHashCode(), year, startWeek, weekCount );
+			return HashTool.ComputeHashCode( base.ComputeHashCode(), year, week, weekCount );
 		} // ComputeHashCode
 
 		// ----------------------------------------------------------------------
 		private static TimeRange GetPeriodOf( DateTime moment, int weekCount, ITimeCalendar calendar )
 		{
-			int year;
-			int weekOfYear;
-			TimeTool.GetWeekOfYear( moment, calendar.Culture, calendar.YearWeekType, out year, out weekOfYear );
+            TimeTool.GetWeekOfYear( moment, calendar.Culture, calendar.YearWeekType, out var year, out var weekOfYear );
 			return GetPeriodOf( year, weekOfYear, weekCount, calendar );
 		} // GetPeriodOf
 
@@ -148,7 +129,7 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		// members
 		private readonly int year;
-		private readonly int startWeek;
+		private readonly int week;
 		private readonly int weekCount;
 
 	} // class WeekTimeRange

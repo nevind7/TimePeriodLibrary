@@ -6,11 +6,12 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -33,34 +34,22 @@ namespace Itenso.TimePeriod
 		} // TimePeriodChain
 
 		// ----------------------------------------------------------------------
-		public bool IsReadOnly
-		{
-			get { return false; }
-		} // IsReadOnly
+		public bool IsReadOnly => false; // IsReadOnly
 
 		// ----------------------------------------------------------------------
-		public ITimePeriod First
-		{
-			get { return periods.Count > 0 ? periods[ 0 ] : null; }
-		} // First
+		public ITimePeriod First => periods.Count > 0 ? periods[ 0 ] : null; // First
 
 		// ----------------------------------------------------------------------
-		public ITimePeriod Last
-		{
-			get { return periods.Count > 0 ? periods[ periods.Count - 1 ] : null; }
-		} // Last
+		public ITimePeriod Last => periods.Count > 0 ? periods[ periods.Count - 1 ] : null; // Last
 
 		// ----------------------------------------------------------------------
-		public int Count
-		{
-			get { return periods.Count; }
-		} // Count
+		public int Count => periods.Count; // Count
 
 		// ----------------------------------------------------------------------
 		public ITimePeriod this[ int index ]
 		{
-			get { return periods[ index ]; }
-			set
+			get => periods[ index ];
+            set
 			{
 				RemoveAt( index );
 				Insert( index, value );
@@ -68,28 +57,19 @@ namespace Itenso.TimePeriod
 		} // this[]
 
 		// ----------------------------------------------------------------------
-		public bool IsAnytime
-		{
-			get { return !HasStart && !HasEnd; }
-		} // IsAnytime
+		public bool IsAnytime => !HasStart && !HasEnd; // IsAnytime
 
 		// ----------------------------------------------------------------------
-		public bool IsMoment
-		{
-			get { return Count != 0 && First.Start.Equals( Last.End ); }
-		} // IsMoment
+		public bool IsMoment => Count != 0 && First.Start.Equals( Last.End ); // IsMoment
 
 		// ----------------------------------------------------------------------
-		public bool HasStart
-		{
-			get { return Start != TimeSpec.MinPeriodDate; }
-		} // HasStart
+		public bool HasStart => Start != TimeSpec.MinPeriodDate; // HasStart
 
 		// ----------------------------------------------------------------------
 		public DateTime Start
 		{
-			get { return Count > 0 ? First.Start : TimeSpec.MinPeriodDate; }
-			set
+			get => Count > 0 ? First.Start : TimeSpec.MinPeriodDate;
+            set
 			{
 				if ( Count == 0 )
 				{
@@ -100,16 +80,13 @@ namespace Itenso.TimePeriod
 		} // Start
 
 		// ----------------------------------------------------------------------
-		public bool HasEnd
-		{
-			get { return End != TimeSpec.MaxPeriodDate; }
-		} // HasEnd
+		public bool HasEnd => End != TimeSpec.MaxPeriodDate; // HasEnd
 
 		// ----------------------------------------------------------------------
 		public DateTime End
 		{
-			get { return Count > 0 ? Last.End : TimeSpec.MaxPeriodDate; }
-			set
+			get => Count > 0 ? Last.End : TimeSpec.MaxPeriodDate;
+            set
 			{
 				if ( Count == 0 )
 				{
@@ -120,16 +97,10 @@ namespace Itenso.TimePeriod
 		} // End
 
 		// ----------------------------------------------------------------------
-		public TimeSpan Duration
-		{
-			get { return End - Start; }
-		} // Duration
+		public TimeSpan Duration => End - Start; // Duration
 
 		// ----------------------------------------------------------------------
-		public string DurationDescription
-		{
-			get { return TimeFormatter.Instance.GetDuration( Duration, DurationFormatType.Detailed ); }
-		} // DurationDescription
+		public string DurationDescription => TimeFormatter.Instance.GetDuration( Duration, DurationFormatType.Detailed ); // DurationDescription
 
 		// ----------------------------------------------------------------------
 		public virtual TimeSpan GetDuration( IDurationProvider provider )

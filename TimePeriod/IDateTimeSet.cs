@@ -6,10 +6,11 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Collections.Generic;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -47,7 +48,7 @@ namespace Itenso.TimePeriod
 		void AddAll( IEnumerable<DateTime> moments );
 
 		// ----------------------------------------------------------------------
-		IList<TimeSpan> GetDurations( int startIndex, int count );
+		IList<TimeSpan> GetDurations( int index, int count );
 
 		// ----------------------------------------------------------------------
 		DateTime? FindPrevious( DateTime moment );

@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -29,14 +30,14 @@ namespace Itenso.TimePeriod
 		} // Minutes
 
 		// ----------------------------------------------------------------------
-		public Minutes( int startYear, int startMonth, int startDay, int startHour, int startMinute, int minuteCount ) :
-			this( startYear, startMonth, startDay, startHour, startMinute, minuteCount, new TimeCalendar() )
+		public Minutes( int year, int month, int day, int hour, int minute, int minuteCount ) :
+			this( year, month, day, hour, minute, minuteCount, new TimeCalendar() )
 		{
 		} // Minutes
 
 		// ----------------------------------------------------------------------
-		public Minutes( int startYear, int startMonth, int startDay, int startHour, int startMinute, int minuteCount, ITimeCalendar calendar ) :
-			base( startYear, startMonth, startDay, startHour, startMinute, minuteCount, calendar )
+		public Minutes( int year, int month, int day, int hour, int minute, int minuteCount, ITimeCalendar calendar ) :
+			base( year, month, day, hour, minute, minuteCount, calendar )
 		{
 		} // Minutes
 
@@ -44,10 +45,10 @@ namespace Itenso.TimePeriod
 		public ITimePeriodCollection GetMinutes()
 		{
 			TimePeriodCollection minutes = new TimePeriodCollection();
-			DateTime startMinute = new DateTime( StartYear, StartMonth, StartDay, StartHour, StartMinute, 0 );
+			DateTime minute = new DateTime( StartYear, StartMonth, StartDay, StartHour, StartMinute, 0 );
 			for ( int i = 0; i < MinuteCount; i++ )
 			{
-				minutes.Add( new Minute( startMinute.AddMinutes( i ), Calendar ) );
+				minutes.Add( new Minute( minute.AddMinutes( i ), Calendar ) );
 			}
 			return minutes;
 		} // GetMinutes

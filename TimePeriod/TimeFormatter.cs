@@ -6,11 +6,12 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Globalization;
 using System.Text;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -25,7 +26,7 @@ namespace Itenso.TimePeriod
 
 		// ----------------------------------------------------------------------
 		public TimeFormatter( CultureInfo culture = null,
-			string contextSeparator = "; ", string startEndSeparator = " - ",
+			string contextSeparator = "; ", string endSeparator = " - ",
 			string durationSeparator = " | ",
 			string dateTimeFormat = null,
 			string shortDateFormat = null,
@@ -51,7 +52,7 @@ namespace Itenso.TimePeriod
 			this.culture = culture;
 			listSeparator = culture.TextInfo.ListSeparator;
 			this.contextSeparator = contextSeparator;
-			this.startEndSeparator = startEndSeparator;
+			this.endSeparator = endSeparator;
 			this.durationSeparator = durationSeparator;
 			this.durationItemSeparator = durationItemSeparator;
 			this.durationLastItemSeparator = durationLastItemSeparator;
@@ -76,17 +77,17 @@ namespace Itenso.TimePeriod
 		{
 			get
 			{
-				if ( instance == null )
+				if ( _instance == null )
 				{
-					lock ( mutex )
+					lock ( Mutex )
 					{
-						if ( instance == null )
+						if ( _instance == null )
 						{
-							instance = new TimeFormatter();
+							_instance = new TimeFormatter();
 						}
 					}
 				}
-				return instance;
+				return _instance;
 			}
 			set
 			{
@@ -94,138 +95,75 @@ namespace Itenso.TimePeriod
 				{
 					throw new ArgumentNullException( "value" );
 				}
-				lock ( mutex )
+				lock ( Mutex )
 				{
-					instance = value;
+					_instance = value;
 				}
 			}
 		} // Instance
 
 		// ----------------------------------------------------------------------
-		public CultureInfo Culture
-		{
-			get { return culture; }
-		} // Culture
+		public CultureInfo Culture => culture; // Culture
 
 		// ----------------------------------------------------------------------
-		public string ListSeparator
-		{
-			get { return listSeparator; }
-		} // ListSeparator
+		public string ListSeparator => listSeparator; // ListSeparator
 
 		// ----------------------------------------------------------------------
-		public string ContextSeparator
-		{
-			get { return contextSeparator; }
-		} // ContextSeparator
+		public string ContextSeparator => contextSeparator; // ContextSeparator
 
 		// ----------------------------------------------------------------------
-		public string StartEndSeparator
-		{
-			get { return startEndSeparator; }
-		} // StartEndSeparator
+		public string StartEndSeparator => endSeparator; // StartEndSeparator
 
 		// ----------------------------------------------------------------------
-		public string DurationSeparator
-		{
-			get { return durationSeparator; }
-		} // DurationSeparator
+		public string DurationSeparator => durationSeparator; // DurationSeparator
 
 		// ----------------------------------------------------------------------
-		public string DurationItemSeparator
-		{
-			get { return durationItemSeparator; }
-		} // DurationItemSeparator
+		public string DurationItemSeparator => durationItemSeparator; // DurationItemSeparator
 
 		// ----------------------------------------------------------------------
-		public string DurationLastItemSeparator
-		{
-			get { return durationLastItemSeparator; }
-		} // DurationLastItemSeparator
+		public string DurationLastItemSeparator => durationLastItemSeparator; // DurationLastItemSeparator
 
 		// ----------------------------------------------------------------------
-		public string DurationValueSeparator
-		{
-			get { return durationValueSeparator; }
-		} // DurationValueSeparator
+		public string DurationValueSeparator => durationValueSeparator; // DurationValueSeparator
 
 		// ----------------------------------------------------------------------
-		public string IntervalStartClosed
-		{
-			get { return intervalStartClosed; }
-		} // IntervalStartClosed
+		public string IntervalStartClosed => intervalStartClosed; // IntervalStartClosed
 
 		// ----------------------------------------------------------------------
-		public string IntervalStartOpen
-		{
-			get { return intervalStartOpen; }
-		} // IntervalStartOpen
+		public string IntervalStartOpen => intervalStartOpen; // IntervalStartOpen
 
 		// ----------------------------------------------------------------------
-		public string IntervalStartOpenIso
-		{
-			get { return intervalStartOpenIso; }
-		} // IntervalStartOpenIso
+		public string IntervalStartOpenIso => intervalStartOpenIso; // IntervalStartOpenIso
 
 		// ----------------------------------------------------------------------
-		public string IntervalEndClosed
-		{
-			get { return intervalEndClosed; }
-		} // IntervalEndClosed
+		public string IntervalEndClosed => intervalEndClosed; // IntervalEndClosed
 
 		// ----------------------------------------------------------------------
-		public string IntervalEndOpen
-		{
-			get { return intervalEndOpen; }
-		} // IntervalEndOpen
+		public string IntervalEndOpen => intervalEndOpen; // IntervalEndOpen
 
 		// ----------------------------------------------------------------------
-		public string IntervalEndOpenIso
-		{
-			get { return intervalEndOpenIso; }
-		} // IntervalEndOpenIso
+		public string IntervalEndOpenIso => intervalEndOpenIso; // IntervalEndOpenIso
 
 		// ----------------------------------------------------------------------
-		public string DateTimeFormat
-		{
-			get { return dateTimeFormat; }
-		} // DateTimeFormat
+		public string DateTimeFormat => dateTimeFormat; // DateTimeFormat
 
 		// ----------------------------------------------------------------------
-		public string ShortDateFormat
-		{
-			get { return shortDateFormat; }
-		} // ShortDateFormat
+		public string ShortDateFormat => shortDateFormat; // ShortDateFormat
 
 		// ----------------------------------------------------------------------
-		public string LongTimeFormat
-		{
-			get { return longTimeFormat; }
-		} // LongTimeFormat
+		public string LongTimeFormat => longTimeFormat; // LongTimeFormat
 
 		// ----------------------------------------------------------------------
-		public string ShortTimeFormat
-		{
-			get { return shortTimeFormat; }
-		} // ShortTimeFormat
+		public string ShortTimeFormat => shortTimeFormat; // ShortTimeFormat
 
 		// ----------------------------------------------------------------------
-		public DurationFormatType DurationType
-		{
-			get { return durationType; }
-		} // DurationType
+		public DurationFormatType DurationType => durationType; // DurationType
 
 		// ----------------------------------------------------------------------
-		public bool UseDurationSeconds
-		{
-			get { return useDurationSeconds; }
-		} // UseDurationSeconds
+		public bool UseDurationSeconds => useDurationSeconds; // UseDurationSeconds
 
 		// ----------------------------------------------------------------------
-		public bool UseIsoIntervalNotation
-		{
-			get { return useIsoIntervalNotation; }
-		} // UseIsoIntervalNotation
+		public bool UseIsoIntervalNotation => useIsoIntervalNotation; // UseIsoIntervalNotation
 
 		#region Collection
 
@@ -391,47 +329,47 @@ namespace Itenso.TimePeriod
 				throw new ArgumentOutOfRangeException( "end" );
 			}
 
-			bool startHasTimeOfDay = TimeTool.HasTimeOfDay( start );
+			bool hasTimeOfDay = TimeTool.HasTimeOfDay( start );
 
 			// no duration - schow start date (optionally with the time part)
 			if ( duration == TimeSpec.MinPeriodDuration )
 			{
-				return startHasTimeOfDay ? GetDateTime( start ) : GetShortDate( start );
+				return hasTimeOfDay ? GetDateTime( start ) : GetShortDate( start );
 			}
 
 			// within one day: show full start, end time and suration
 			if ( TimeCompare.IsSameDay( start, end ) )
 			{
-				return GetDateTime( start ) + startEndSeparator + GetLongTime( end ) + durationSeparator + GetDuration( duration );
+				return GetDateTime( start ) + endSeparator + GetLongTime( end ) + durationSeparator + GetDuration( duration );
 			}
 
 			// show start date, end date and duration (optionally with the time part)
 			bool endHasTimeOfDay = TimeTool.HasTimeOfDay( end );
-			bool hasTimeOfDays = startHasTimeOfDay || endHasTimeOfDay;
-			string startPart = hasTimeOfDays ? GetDateTime( start ) : GetShortDate( start );
+			bool hasTimeOfDays = hasTimeOfDay || endHasTimeOfDay;
+			string part = hasTimeOfDays ? GetDateTime( start ) : GetShortDate( start );
 			string endPart = hasTimeOfDays ? GetDateTime( end ) : GetShortDate( end );
-			return startPart + startEndSeparator + endPart + durationSeparator + GetDuration( duration );
+			return part + endSeparator + endPart + durationSeparator + GetDuration( duration );
 		} // GetPeriod
 
 		// ----------------------------------------------------------------------
 		public string GetCalendarPeriod( string start, string end, TimeSpan duration )
 		{
-			string timePeriod = start.Equals( end ) ? start : start + startEndSeparator + end;
+			string timePeriod = start.Equals( end ) ? start : start + endSeparator + end;
 			return timePeriod + durationSeparator + GetDuration( duration );
 		} // GetCalendarPeriod
 
 		// ----------------------------------------------------------------------
 		public string GetCalendarPeriod( string context, string start, string end, TimeSpan duration )
 		{
-			string timePeriod = start.Equals( end ) ? start : start + startEndSeparator + end;
+			string timePeriod = start.Equals( end ) ? start : start + endSeparator + end;
 			return context + contextSeparator + timePeriod + durationSeparator + GetDuration( duration );
 		} // GetCalendarPeriod
 
 		// ----------------------------------------------------------------------
-		public string GetCalendarPeriod( string startContext, string endContext, string start, string end, TimeSpan duration )
+		public string GetCalendarPeriod( string context, string endContext, string start, string end, TimeSpan duration )
 		{
-			string contextPeriod = startContext.Equals( endContext ) ? startContext : startContext + startEndSeparator + endContext;
-			string timePeriod = start.Equals( end ) ? start : start + startEndSeparator + end;
+			string contextPeriod = context.Equals( endContext ) ? context : context + endSeparator + endContext;
+			string timePeriod = start.Equals( end ) ? start : start + endSeparator + end;
 			return contextPeriod + contextSeparator + timePeriod + durationSeparator + GetDuration( duration );
 		} // GetCalendarPeriod
 
@@ -441,7 +379,7 @@ namespace Itenso.TimePeriod
 
 		// ----------------------------------------------------------------------
 		public string GetInterval( DateTime start, DateTime end,
-			IntervalEdge startEdge, IntervalEdge endEdge, TimeSpan duration )
+			IntervalEdge edge, IntervalEdge endEdge, TimeSpan duration )
 		{
 			if ( end < start )
 			{
@@ -451,7 +389,7 @@ namespace Itenso.TimePeriod
 			StringBuilder sb = new StringBuilder();
 
 			// interval start
-			switch ( startEdge )
+			switch ( edge )
 			{
 				case IntervalEdge.Closed:
 					sb.Append( IntervalStartClosed );
@@ -462,35 +400,35 @@ namespace Itenso.TimePeriod
 			}
 
 			bool addDuration = true;
-			bool startHasTimeOfDay = TimeTool.HasTimeOfDay( start );
+			bool hasTimeOfDay = TimeTool.HasTimeOfDay( start );
 
 			// no duration - schow start date (optionally with the time part)
 			if ( duration == TimeSpec.MinPeriodDuration )
 			{
-				sb.Append( startHasTimeOfDay ? GetDateTime( start ) : GetShortDate( start ) );
+				sb.Append( hasTimeOfDay ? GetDateTime( start ) : GetShortDate( start ) );
 				addDuration = false;
 			}
 			// within one day: show full start, end time and suration
 			else if ( TimeCompare.IsSameDay( start, end ) )
 			{
 				sb.Append( GetDateTime( start ) );
-				sb.Append( startEndSeparator );
+				sb.Append( endSeparator );
 				sb.Append( GetLongTime( end ) );
 			}
 			else
 			{
 				bool endHasTimeOfDay = TimeTool.HasTimeOfDay( start );
-				bool hasTimeOfDays = startHasTimeOfDay || endHasTimeOfDay;
+				bool hasTimeOfDays = hasTimeOfDay || endHasTimeOfDay;
 				if ( hasTimeOfDays )
 				{
 					sb.Append( GetDateTime( start ) );
-					sb.Append( startEndSeparator );
+					sb.Append( endSeparator );
 					sb.Append( GetDateTime( end ) );
 				}
 				else
 				{
 					sb.Append( GetShortDate( start ) );
-					sb.Append( startEndSeparator );
+					sb.Append( endSeparator );
 					sb.Append( GetShortDate( end ) );
 				}
 			}
@@ -523,7 +461,7 @@ namespace Itenso.TimePeriod
 		private readonly CultureInfo culture;
 		private readonly string listSeparator;
 		private readonly string contextSeparator;
-		private readonly string startEndSeparator;
+		private readonly string endSeparator;
 		private readonly string durationSeparator;
 		private readonly string durationItemSeparator;
 		private readonly string durationLastItemSeparator;
@@ -542,8 +480,8 @@ namespace Itenso.TimePeriod
 		private readonly bool useDurationSeconds;
 		private readonly bool useIsoIntervalNotation;
 
-		private static readonly object mutex = new object();
-		private static volatile TimeFormatter instance;
+		private static readonly object Mutex = new object();
+		private static volatile TimeFormatter _instance;
 
 	} // class TimeFormatter
 

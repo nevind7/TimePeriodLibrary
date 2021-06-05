@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -57,10 +58,8 @@ namespace Itenso.TimePeriod
 		{
 			get
 			{
-				int year;
-				YearMonth month;
-				int monthCount = ( (int)StartQuarter - 1 ) * TimeSpec.MonthsPerQuarter;
-				TimeTool.AddMonth( BaseYear, Calendar.YearBaseMonth, monthCount, out year, out month );
+                int monthCount = ( (int)StartQuarter - 1 ) * TimeSpec.MonthsPerQuarter;
+				TimeTool.AddMonth( BaseYear, Calendar.YearBaseMonth, monthCount, out var year, out var month );
 				return Calendar.GetYear( year, (int)month );
 			}
 		} // Year
@@ -70,37 +69,23 @@ namespace Itenso.TimePeriod
 		{
 			get
 			{
-				int year;
-				YearMonth month;
-				int monthCount = ( (int)StartQuarter - 1 ) * TimeSpec.MonthsPerQuarter;
-				TimeTool.AddMonth( BaseYear, Calendar.YearBaseMonth, monthCount, out year, out month );
+                int monthCount = ( (int)StartQuarter - 1 ) * TimeSpec.MonthsPerQuarter;
+				TimeTool.AddMonth( BaseYear, Calendar.YearBaseMonth, monthCount, out var year, out var month );
 				return month;
 			}
-		} // YearHalfyear
+		} // YearHalfYear
 
 		// ----------------------------------------------------------------------
-		public YearQuarter YearQuarter
-		{
-			get { return StartQuarter; }
-		} // YearQuarter
+		public YearQuarter YearQuarter => StartQuarter; // YearQuarter
 
 		// ----------------------------------------------------------------------
-		public string QuarterName
-		{
-			get { return StartQuarterName; }
-		} // QuarterName
+		public string QuarterName => StartQuarterName; // QuarterName
 
 		// ----------------------------------------------------------------------
-		public string QuarterOfYearName
-		{
-			get { return StartQuarterOfYearName; }
-		} // QuarterOfYearName
+		public string QuarterOfYearName => StartQuarterOfYearName; // QuarterOfYearName
 
 		// ----------------------------------------------------------------------
-		public bool IsCalendarQuarter
-		{
-			get { return ( (int)YearBaseMonth - 1 ) % TimeSpec.MonthsPerQuarter == 0; }
-		} // IsCalendarQuarter
+		public bool IsCalendarQuarter => ( (int)YearBaseMonth - 1 ) % TimeSpec.MonthsPerQuarter == 0; // IsCalendarQuarter
 
 		// ----------------------------------------------------------------------
 		public bool MultipleCalendarYears
@@ -111,17 +96,15 @@ namespace Itenso.TimePeriod
 				{
 					return false;
 				}
-				int startYear;
-				YearMonth month;
-				int monthCount = ( (int)StartQuarter - 1 ) * TimeSpec.MonthsPerQuarter;
-				TimeTool.AddMonth( BaseYear, YearBaseMonth, monthCount, out startYear, out month );
 
-				int endYear;
-				monthCount += TimeSpec.MonthsPerQuarter;
-				TimeTool.AddMonth( BaseYear, YearBaseMonth, monthCount, out endYear, out month );
-				return startYear != endYear;
+                int monthCount = ( (int)StartQuarter - 1 ) * TimeSpec.MonthsPerQuarter;
+				TimeTool.AddMonth( BaseYear, YearBaseMonth, monthCount, out var year, out var month );
+
+                monthCount += TimeSpec.MonthsPerQuarter;
+				TimeTool.AddMonth( BaseYear, YearBaseMonth, monthCount, out var endYear, out month );
+				return year != endYear;
 			}
-		} // IsCalendarHalfyear
+		} // IsCalendarHalfYear
 
 		// ----------------------------------------------------------------------
 		public Quarter GetPreviousQuarter()
@@ -138,9 +121,7 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		public Quarter AddQuarters( int count )
 		{
-			int year;
-			YearQuarter quarter;
-			TimeTool.AddQuarter( BaseYear, StartQuarter, count, out year, out quarter );
+            TimeTool.AddQuarter( BaseYear, StartQuarter, count, out var year, out var quarter );
 			return new Quarter( year, quarter, Calendar );
 		} // AddQuarters
 

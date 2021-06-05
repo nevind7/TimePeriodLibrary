@@ -6,13 +6,14 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
-	public struct DayRange
+	public readonly struct DayRange
 	{
 
 		// ----------------------------------------------------------------------
@@ -24,7 +25,7 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		public DayRange( int min, int max )
 		{
-			if ( min < 1 || min > TimeSpec.MaxDaysPerMonth )
+			if ( min is < 1 or > TimeSpec.MaxDaysPerMonth )
 			{
 				throw new ArgumentOutOfRangeException( "min" );
 			}
@@ -37,22 +38,13 @@ namespace Itenso.TimePeriod
 		} // DayRange
 
 		// ----------------------------------------------------------------------
-		public int Min
-		{
-			get { return min; }
-		} // Min
+		public int Min => min; // Min
 
 		// ----------------------------------------------------------------------
-		public int Max
-		{
-			get { return max; }
-		} // Max
+		public int Max => max; // Max
 
 		// ----------------------------------------------------------------------
-		public bool IsSingleDay
-		{
-			get { return min == max; }
-		} // IsSingleDay
+		public bool IsSingleDay => min == max; // IsSingleDay
 
 		// ----------------------------------------------------------------------
 		public bool HasInside( int test )

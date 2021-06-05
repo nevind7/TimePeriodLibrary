@@ -6,11 +6,12 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
-using Itenso.TimePeriod;
+using TimePeriod;
 using Xunit;
 
-namespace Itenso.TimePeriodTests
+namespace TimePeriodTests.Core
 {
 
 	// ------------------------------------------------------------------------
@@ -118,27 +119,27 @@ namespace Itenso.TimePeriodTests
         // ----------------------------------------------------------------------
         [Trait("Category", "Years")]
         [Fact]
-		public void GetHalfyearsTest()
+		public void GetHalfYearsTest()
 		{
 			const int startYear = 2004;
 			const int yearCount = 10;
 			const YearMonth startMonth = YearMonth.October;
 			Years years = new Years( startYear, yearCount, TimeCalendar.New( startMonth ) );
 
-			ITimePeriodCollection halfyears = years.GetHalfyears();
+			ITimePeriodCollection halfyears = years.GetHalfYears();
 			Assert.NotNull(halfyears);
 
 			int index = 0;
-			foreach ( Halfyear halfyear in halfyears )
+			foreach ( HalfYear halfyear in halfyears )
 			{
-				int halfyearYear = startYear + ( index / TimeSpec.HalfyearsPerYear );
+				int halfyearYear = startYear + ( index / TimeSpec.HalfYearsPerYear );
 				Assert.Equal( halfyear.Year, halfyearYear );
-				Assert.Equal( halfyear.Start, years.Start.AddMonths( index * TimeSpec.MonthsPerHalfyear ) );
-				Assert.Equal( halfyear.End, halfyear.Calendar.MapEnd( halfyear.Start.AddMonths( TimeSpec.MonthsPerHalfyear ) ) );
+				Assert.Equal( halfyear.Start, years.Start.AddMonths( index * TimeSpec.MonthsPerHalfYear ) );
+				Assert.Equal( halfyear.End, halfyear.Calendar.MapEnd( halfyear.Start.AddMonths( TimeSpec.MonthsPerHalfYear ) ) );
 				index++;
 			}
-			Assert.Equal( index, yearCount * TimeSpec.HalfyearsPerYear );
-		} // GetHalfyearsTest
+			Assert.Equal( index, yearCount * TimeSpec.HalfYearsPerYear );
+		} // GetHalfYearsTest
 
         // ----------------------------------------------------------------------
         [Trait("Category", "Years")]
@@ -184,7 +185,7 @@ namespace Itenso.TimePeriodTests
         // http://en.wikipedia.org/wiki/4-4-5_Calendar
         [Trait("Category", "Years")]
         [Fact]
-		public void FiscalYearsTest()
+		public void YearsTestEqual()
 		{
 			Years years1 = new Years( 2006, 13, GetFiscalYearCalendar( FiscalYearAlignment.LastDay ) );
 			Assert.Equal(13, years1.YearCount);
@@ -200,66 +201,66 @@ namespace Itenso.TimePeriodTests
         // ----------------------------------------------------------------------
         [Trait("Category", "Years")]
         [Fact]
-		public void FiscalYearsLastDayGetHalfyearsTest()
+		public void YearsLastDayGetHalfYearsTest()
 		{
 			const int yearCount = 13;
 			Years years = new Years( 2006, yearCount, GetFiscalYearCalendar( FiscalYearAlignment.LastDay ) );
-			ITimePeriodCollection halfyears = years.GetHalfyears();
+			ITimePeriodCollection halfyears = years.GetHalfYears();
 			Assert.NotNull(halfyears);
-			Assert.Equal( halfyears.Count, yearCount * TimeSpec.HalfyearsPerYear );
+			Assert.Equal( halfyears.Count, yearCount * TimeSpec.HalfYearsPerYear );
 
 			Assert.Equal( halfyears[ 0 ].Start, new DateTime( 2006, 8, 27 ) );
-			foreach ( Halfyear halfyear in halfyears )
+			foreach ( HalfYear halfyear in halfyears )
 			{
 				// last halfyear of a leap year
 				// http://en.wikipedia.org/wiki/4-4-5_Calendar
-				if ( ( halfyear.YearHalfyear == YearHalfyear.Second ) && ( halfyear.Year == 2008 || halfyear.Year == 2013 || halfyear.Year == 2019 ) )
+				if ( ( halfyear.YearHalfYear == YearHalfYear.Second ) && ( halfyear.Year == 2008 || halfyear.Year == 2013 || halfyear.Year == 2019 ) )
 				{
-					if ( halfyear.Duration.Subtract( TimeCalendar.DefaultEndOffset ).Days != TimeSpec.FiscalDaysPerLeapHalfyear )
+					if ( halfyear.Duration.Subtract( TimeCalendar.DefaultEndOffset ).Days != TimeSpec.FiscalDaysPerLeapHalfYear )
 					{
 						Console.WriteLine();
 					}
 
-					Assert.Equal( halfyear.Duration.Subtract( TimeCalendar.DefaultEndOffset ).Days, TimeSpec.FiscalDaysPerLeapHalfyear );
+					Assert.Equal( halfyear.Duration.Subtract( TimeCalendar.DefaultEndOffset ).Days, TimeSpec.FiscalDaysPerLeapHalfYear );
 				}
 				else
 				{
-					Assert.Equal( halfyear.Duration.Subtract( TimeCalendar.DefaultEndOffset ).Days, TimeSpec.FiscalDaysPerHalfyear );
+					Assert.Equal( halfyear.Duration.Subtract( TimeCalendar.DefaultEndOffset ).Days, TimeSpec.FiscalDaysPerHalfYear );
 				}
 			}
-		} // FiscalYearsLastDayGetHalfyearsTest
+		} // FiscalYearsLastDayGetHalfYearsTest
 
 		// ----------------------------------------------------------------------
         [Trait("Category", "Years")]
 		[Fact]
-        public void FiscalYearsNearestDayGetHalfyearsTest()
+        public void YearsNearestDayGetHalfYearsTest()
 		{
 			const int yearCount = 13;
 			Years years = new Years( 2006, yearCount, GetFiscalYearCalendar( FiscalYearAlignment.NearestDay ) );
-			ITimePeriodCollection halfyears = years.GetHalfyears();
+			ITimePeriodCollection halfyears = years.GetHalfYears();
 			Assert.NotNull(halfyears);
-			Assert.Equal( halfyears.Count, yearCount * TimeSpec.HalfyearsPerYear );
+			Assert.Equal( halfyears.Count, yearCount * TimeSpec.HalfYearsPerYear );
 
 			Assert.Equal( halfyears[ 0 ].Start, new DateTime( 2006, 9, 3 ) );
-			foreach ( Halfyear halfyear in halfyears )
+			foreach ( HalfYear halfyear in halfyears )
 			{
 				// last halfyear of a leap year
 				// http://en.wikipedia.org/wiki/4-4-5_Calendar
-				if ( ( halfyear.YearHalfyear == YearHalfyear.Second ) && ( halfyear.Year == 2011 || halfyear.Year == 2016 ) )
+				if ( ( halfyear.YearHalfYear == YearHalfYear.Second ) && ( halfyear.Year == 2011 || halfyear.Year == 2016 ) )
 				{
-					Assert.Equal( halfyear.Duration.Subtract( TimeCalendar.DefaultEndOffset ).Days, TimeSpec.FiscalDaysPerLeapHalfyear );
+					Assert.Equal( halfyear.Duration.Subtract( TimeCalendar.DefaultEndOffset ).Days, TimeSpec.FiscalDaysPerLeapHalfYear );
 				}
 				else
 				{
-					Assert.Equal( halfyear.Duration.Subtract( TimeCalendar.DefaultEndOffset ).Days, TimeSpec.FiscalDaysPerHalfyear );
+					Assert.Equal( halfyear.Duration.Subtract( TimeCalendar.DefaultEndOffset ).Days, TimeSpec.FiscalDaysPerHalfYear );
 				}
 			}
-		} // FiscalYearsNearestDayGetHalfyearsTest
+		} // FiscalYearsNearestDayGetHalfYearsTest
 
 		// ----------------------------------------------------------------------
         [Trait("Category", "Years")]
 		[Fact]
-        public void FiscalYearsLastDayGetQuartersTest()
+        public void YearsLastDayGetQuartersTest()
 		{
 			const int yearCount = 13;
 			Years years = new Years( 2006, yearCount, GetFiscalYearCalendar( FiscalYearAlignment.LastDay ) );
@@ -286,7 +287,7 @@ namespace Itenso.TimePeriodTests
         // ----------------------------------------------------------------------
         [Trait("Category", "Years")]
         [Fact]
-		public void FiscalYearsNearestDayGetQuartersTest()
+		public void YearsNearestDayGetQuartersTest()
 		{
 			const int yearCount = 13;
 			Years years = new Years( 2006, yearCount, GetFiscalYearCalendar( FiscalYearAlignment.NearestDay ) );
@@ -313,7 +314,7 @@ namespace Itenso.TimePeriodTests
         // ----------------------------------------------------------------------
         [Trait("Category", "Years")]
         [Fact]
-		public void FiscalYearsLastDayGetMonthsTest()
+		public void YearsLastDayGetMonthsTest()
 		{
 			const int yearCount = 13;
 			Years years = new Years( 2006, yearCount, GetFiscalYearCalendar( FiscalYearAlignment.LastDay ) );
@@ -347,7 +348,7 @@ namespace Itenso.TimePeriodTests
         // ----------------------------------------------------------------------
         [Trait("Category", "Years")]
         [Fact]
-		public void FiscalYearsNearestDayGetMonthsTest()
+		public void YearsNearestDayGetMonthsTest()
 		{
 			const int yearCount = 13;
 			Years years = new Years( 2006, yearCount, GetFiscalYearCalendar( FiscalYearAlignment.NearestDay ) );

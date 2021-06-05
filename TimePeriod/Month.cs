@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -52,40 +53,22 @@ namespace Itenso.TimePeriod
 		} // Month
 
 		// ----------------------------------------------------------------------
-		public int Year
-		{
-			get { return StartYear; }
-		} // Year
+		public int Year => StartYear; // Year
 
 		// ----------------------------------------------------------------------
-		public YearMonth YearMonth
-		{
-			get { return StartMonth; }
-		} // YearMonth
+		public YearMonth YearMonth => StartMonth; // YearMonth
 
 		// ----------------------------------------------------------------------
-		public int MonthValue
-		{
-			get { return (int)StartMonth; }
-		} // MonthValue
+		public int MonthValue => (int)StartMonth; // MonthValue
 
 		// ----------------------------------------------------------------------
-		public string MonthName
-		{
-			get { return StartMonthName; }
-		} // MonthName
+		public string MonthName => StartMonthName; // MonthName
 
 		// ----------------------------------------------------------------------
-		public string MonthOfYearName
-		{
-			get { return StartMonthOfYearName; }
-		} // MonthOfYearName
+		public string MonthOfYearName => StartMonthOfYearName; // MonthOfYearName
 
 		// ----------------------------------------------------------------------
-		public int DaysInMonth
-		{
-			get { return TimeTool.GetDaysInMonth( StartYear, (int)StartMonth ); }
-		} // DaysInMonth
+		public int DaysInMonth => TimeTool.GetDaysInMonth( StartYear, (int)StartMonth ); // DaysInMonth
 
 		// ----------------------------------------------------------------------
 		public Month GetPreviousMonth()
@@ -102,8 +85,8 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		public Month AddMonths( int months )
 		{
-			DateTime startDate = new DateTime( StartYear, (int)StartMonth, 1 );
-			return new Month( startDate.AddMonths( months ), Calendar );
+			DateTime date = new DateTime( StartYear, (int)StartMonth, 1 );
+			return new Month( date.AddMonths( months ), Calendar );
 		} // AddMonths
 
 		// ----------------------------------------------------------------------

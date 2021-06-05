@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2014 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -38,7 +39,7 @@ namespace Itenso.TimePeriod
 
 		// ----------------------------------------------------------------------
 		public static DateTime GetStartOfMonth( int year, YearMonth month, YearMonth yearBaseMonth, DayOfWeek yearStartDay,
-			FiscalYearAlignment yearAlignment, FiscalQuarterGrouping quarterGrouping )
+            FiscalYearAlignment yearAlignment, FiscalQuarterGrouping quarterGrouping )
 		{
 			int diffMonthCount = month - yearBaseMonth;
 			if ( diffMonthCount < 0 )
@@ -46,9 +47,9 @@ namespace Itenso.TimePeriod
 				year--;
 				diffMonthCount = TimeSpec.MonthsPerYear + diffMonthCount;
 			}
-			DateTime startOfYear = GetStartOfYear( year, yearBaseMonth, yearStartDay, yearAlignment );
+			DateTime ofYear = GetStartOfYear( year, yearBaseMonth, yearStartDay, yearAlignment );
 			int fiveWeekMonthCount = ( diffMonthCount + (int)quarterGrouping ) / TimeSpec.MonthsPerQuarter;
-			return startOfYear.AddDays(
+			return ofYear.AddDays(
 				( diffMonthCount * TimeSpec.FiscalDaysPerShortMonth ) + ( fiveWeekMonthCount * TimeSpec.DaysPerWeek ) );
 		} // GetStartOfMonth
 
@@ -58,49 +59,49 @@ namespace Itenso.TimePeriod
 
 		// ----------------------------------------------------------------------
 		public static DateTime GetStartOfQuarter( int year, YearQuarter quarter, YearMonth yearBaseMonth, DayOfWeek yearStartDay,
-			FiscalYearAlignment yearAlignment )
+            FiscalYearAlignment yearAlignment )
 		{
-			DateTime startOfYear = GetStartOfYear( year, yearBaseMonth, yearStartDay, yearAlignment );
-			DateTime startOfQuarter;
+			DateTime ofYear = GetStartOfYear( year, yearBaseMonth, yearStartDay, yearAlignment );
+			DateTime ofQuarter;
 			switch ( yearAlignment )
 			{
 				case FiscalYearAlignment.None:
-					startOfQuarter = startOfYear.AddMonths( ( (int)( quarter ) - 1 ) * TimeSpec.MonthsPerQuarter );
+					ofQuarter = ofYear.AddMonths( ( (int)( quarter ) - 1 ) * TimeSpec.MonthsPerQuarter );
 					break;
 				case FiscalYearAlignment.LastDay:
 				case FiscalYearAlignment.NearestDay:
-					startOfQuarter = startOfYear.AddDays( ( (int)( quarter ) - 1 ) * TimeSpec.FiscalWeeksPerQuarter * TimeSpec.DaysPerWeek );
+					ofQuarter = ofYear.AddDays( ( (int)( quarter ) - 1 ) * TimeSpec.FiscalWeeksPerQuarter * TimeSpec.DaysPerWeek );
 					break;
 				default:
 					throw new InvalidOperationException( string.Format( "unknown year alignment {0}", yearAlignment ) );
 			}
-			return startOfQuarter;
+			return ofQuarter;
 		} // GetStartOfQuarter
 
 		#endregion
 
-		#region Halfyear
+		#region HalfYear
 
 		// ----------------------------------------------------------------------
-		public static DateTime GetStartOfHalfyear( int year, YearHalfyear halfyear, YearMonth yearBaseMonth, DayOfWeek yearStartDay,
-			FiscalYearAlignment yearAlignment )
+		public static DateTime GetStartOfHalfYear( int year, YearHalfYear halfYear, YearMonth yearBaseMonth, DayOfWeek yearStartDay,
+            FiscalYearAlignment yearAlignment )
 		{
-			DateTime startOfYear = GetStartOfYear( year, yearBaseMonth, yearStartDay, yearAlignment );
-			DateTime startOfHalfyear;
+			DateTime ofYear = GetStartOfYear( year, yearBaseMonth, yearStartDay, yearAlignment );
+			DateTime ofHalfYear;
 			switch ( yearAlignment )
 			{
 				case FiscalYearAlignment.None:
-					startOfHalfyear = startOfYear.AddMonths( ( (int)halfyear - 1 ) * TimeSpec.MonthsPerHalfyear );
+					ofHalfYear = ofYear.AddMonths( ( (int)halfYear - 1 ) * TimeSpec.MonthsPerHalfYear );
 					break;
 				case FiscalYearAlignment.LastDay:
 				case FiscalYearAlignment.NearestDay:
-					startOfHalfyear = startOfYear.AddDays( ( (int)halfyear - 1 ) * TimeSpec.FiscalWeeksPerHalfyear * TimeSpec.DaysPerWeek );
+					ofHalfYear = ofYear.AddDays( ( (int)halfYear - 1 ) * TimeSpec.FiscalWeeksPerHalfYear * TimeSpec.DaysPerWeek );
 					break;
 				default:
 					throw new InvalidOperationException( string.Format( "unknown year alignment {0}", yearAlignment ) );
 			}
-			return startOfHalfyear;
-		} // GetStartOfHalfyear
+			return ofHalfYear;
+		} // GetStartOfHalfYear
 
 		#endregion
 
@@ -115,27 +116,27 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		public static DateTime GetStartOfYear( int year, YearMonth yearBaseMonth, DayOfWeek yearStartDay, FiscalYearAlignment yearAlignment )
 		{
-			DateTime startOfYear = new DateTime( year, (int)yearBaseMonth, 1 );
+			DateTime ofYear = new DateTime( year, (int)yearBaseMonth, 1 );
 
 			switch ( yearAlignment )
 			{
 				case FiscalYearAlignment.None:
 					break;
 				case FiscalYearAlignment.LastDay:
-					while ( startOfYear.DayOfWeek != yearStartDay )
+					while ( ofYear.DayOfWeek != yearStartDay )
 					{
-						startOfYear = startOfYear.AddDays( -1 );
+						ofYear = ofYear.AddDays( -1 );
 					}
 					break;
 				case FiscalYearAlignment.NearestDay:
-					int diffDayCount = Math.Abs( (int)startOfYear.DayOfWeek - (int)yearStartDay );
-					startOfYear = startOfYear.AddDays( diffDayCount > 3 ? TimeSpec.DaysPerWeek - diffDayCount : -diffDayCount );
+					int diffDayCount = Math.Abs( (int)ofYear.DayOfWeek - (int)yearStartDay );
+					ofYear = ofYear.AddDays( diffDayCount > 3 ? TimeSpec.DaysPerWeek - diffDayCount : -diffDayCount );
 					break;
 				default:
 					throw new InvalidOperationException( string.Format( "unknown year alignment {0}", yearAlignment ) );
 			}
 
-			return startOfYear;
+			return ofYear;
 		} // GetStartOfYear
 
 		#endregion

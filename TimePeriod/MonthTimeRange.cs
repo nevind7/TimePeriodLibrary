@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -16,83 +17,56 @@ namespace Itenso.TimePeriod
 	{
 
 		// ----------------------------------------------------------------------
-		protected MonthTimeRange( int startYear, YearMonth startMonth, int monthCounth ) :
-			this( startYear, startMonth, monthCounth, new TimeCalendar() )
+		protected MonthTimeRange( int year, YearMonth month, int monthCounth ) :
+			this( year, month, monthCounth, new TimeCalendar() )
 		{
 		} // MonthTimeRange
 
 		// ----------------------------------------------------------------------
-		protected MonthTimeRange( int startYear, YearMonth startMonth, int monthCount, ITimeCalendar calendar ) :
-			base( GetPeriodOf( calendar, startYear, startMonth, monthCount ), calendar )
+		protected MonthTimeRange( int year, YearMonth month, int monthCount, ITimeCalendar calendar ) :
+			base( GetPeriodOf( calendar, year, month, monthCount ), calendar )
 		{
-			this.startYear = startYear;
-			this.startMonth = startMonth;
+			this.year = year;
+			this.month = month;
 			this.monthCount = monthCount;
-			TimeTool.AddMonth( startYear, startMonth, monthCount - 1, out endYear, out endMonth );
+			TimeTool.AddMonth( year, month, monthCount - 1, out endYear, out endMonth );
 		} // MonthTimeRange
 
 		// ----------------------------------------------------------------------
-		public int StartYear
-		{
-			get { return Calendar.GetYear( startYear, (int)startMonth ); }
-		} // StartYear
+		public int StartYear => Calendar.GetYear( year, (int)month ); // StartYear
 
 		// ----------------------------------------------------------------------
-		public int EndYear
-		{
-			get { return Calendar.GetYear( endYear, (int)endMonth ); }
-		} // EndYear
+		public int EndYear => Calendar.GetYear( endYear, (int)endMonth ); // EndYear
 
 		// ----------------------------------------------------------------------
-		public YearMonth StartMonth
-		{
-			get { return startMonth; }
-		} // StartMonth
+		public YearMonth StartMonth => month; // StartMonth
 
 		// ----------------------------------------------------------------------
-		public YearMonth EndMonth
-		{
-			get { return endMonth; }
-		} // EndMonth
+		public YearMonth EndMonth => endMonth; // EndMonth
 
 		// ----------------------------------------------------------------------
-		public int MonthCount
-		{
-			get { return monthCount; }
-		} // MonthCount
+		public int MonthCount => monthCount; // MonthCount
 
 		// ----------------------------------------------------------------------
-		public string StartMonthName
-		{
-			get { return Calendar.GetMonthName( (int)StartMonth ); }
-		} // StartMonthName
+		public string StartMonthName => Calendar.GetMonthName( (int)StartMonth ); // StartMonthName
 
 		// ----------------------------------------------------------------------
-		public string StartMonthOfYearName
-		{
-			get { return Calendar.GetMonthOfYearName( StartYear, (int)StartMonth ); }
-		} // StartMonthOfYearName
+		public string StartMonthOfYearName => Calendar.GetMonthOfYearName( StartYear, (int)StartMonth ); // StartMonthOfYearName
 
 		// ----------------------------------------------------------------------
-		public string EndMonthName
-		{
-			get { return Calendar.GetMonthName( (int)EndMonth ); }
-		} // EndMonthName
+		public string EndMonthName => Calendar.GetMonthName( (int)EndMonth ); // EndMonthName
 
 		// ----------------------------------------------------------------------
-		public string EndMonthOfYearName
-		{
-			get { return Calendar.GetMonthOfYearName( EndYear, (int)EndMonth ); }
-		} // EndMonthOfYearName
+		public string EndMonthOfYearName => Calendar.GetMonthOfYearName( EndYear, (int)EndMonth ); // EndMonthOfYearName
 
 		// ----------------------------------------------------------------------
 		public ITimePeriodCollection GetDays()
 		{
 			TimePeriodCollection days = new TimePeriodCollection();
-			DateTime startDate = GetStartOfMonth( Calendar, startYear, startMonth );
+			DateTime date = GetStartOfMonth( Calendar, year, month );
 			for ( int month = 0; month < monthCount; month++ )
 			{
-				DateTime monthStart = startDate.AddMonths( month );
+				DateTime monthStart = date.AddMonths( month );
 				int daysOfMonth = TimeTool.GetDaysInMonth( monthStart.Year, monthStart.Month );
 				for ( int day = 0; day < daysOfMonth; day++ )
 				{
@@ -112,8 +86,8 @@ namespace Itenso.TimePeriod
 		private bool HasSameData( MonthTimeRange comp )
 		{
 			return
-				startYear == comp.startYear &&
-				startMonth == comp.startMonth &&
+				year == comp.year &&
+				month == comp.month &&
 				monthCount == comp.monthCount &&
 				endYear == comp.endYear &&
 				endMonth == comp.endMonth;
@@ -122,40 +96,38 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		protected override int ComputeHashCode()
 		{
-			return HashTool.ComputeHashCode( base.ComputeHashCode(), startYear, startMonth, monthCount, endYear, endMonth );
+			return HashTool.ComputeHashCode( base.ComputeHashCode(), year, month, monthCount, endYear, endMonth );
 		} // ComputeHashCode
 
 		// ----------------------------------------------------------------------
 		private static DateTime GetStartOfMonth( ITimeCalendar calendar, int year, YearMonth month )
 		{
-			DateTime startOfMonth;
+			DateTime ofMonth;
 			if ( calendar.YearType == YearType.FiscalYear )
 			{
-				startOfMonth = FiscalCalendarTool.GetStartOfMonth(
+				ofMonth = FiscalCalendarTool.GetStartOfMonth(
 					year, month, calendar.YearBaseMonth, calendar.FiscalFirstDayOfYear, calendar.FiscalYearAlignment, calendar.FiscalQuarterGrouping );
 			}
 			else
 			{
-				startOfMonth = new DateTime( year, (int)month, 1 );
+				ofMonth = new DateTime( year, (int)month, 1 );
 			}
-			return startOfMonth;
+			return ofMonth;
 		} // GetStartOfMonth
 
 		// ----------------------------------------------------------------------
-		private static TimeRange GetPeriodOf( ITimeCalendar calendar, int startYear, YearMonth startMonth, int monthCount )
+		private static TimeRange GetPeriodOf( ITimeCalendar calendar, int year, YearMonth month, int monthCount )
 		{
 			if ( monthCount < 1 )
 			{
 				throw new ArgumentOutOfRangeException( "monthCount" );
 			}
 
-			DateTime start = GetStartOfMonth( calendar, startYear, startMonth );
+			DateTime start = GetStartOfMonth( calendar, year, month );
 			DateTime end;
 			if ( calendar.YearType == YearType.FiscalYear )
 			{
-				int endYear;
-				YearMonth endMonth;
-				TimeTool.AddMonth( startYear, startMonth, monthCount, out endYear, out endMonth );
+                TimeTool.AddMonth( year, month, monthCount, out var endYear, out var endMonth );
 				end = GetStartOfMonth( calendar, endYear, endMonth );
 			}
 			else
@@ -167,8 +139,8 @@ namespace Itenso.TimePeriod
 
 		// ----------------------------------------------------------------------
 		// members
-		private readonly int startYear;
-		private readonly YearMonth startMonth;
+		private readonly int year;
+		private readonly YearMonth month;
 		private readonly int monthCount;
 		private readonly int endYear; // cache
 		private readonly YearMonth endMonth; // cache

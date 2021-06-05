@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2013 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -45,9 +46,9 @@ namespace Itenso.TimePeriod
 		#region Month
 
 		// ----------------------------------------------------------------------
-		public static void AddMonths( int startYear, YearMonth startMonth, int addMonths, out int targetYear, out YearMonth targetMonth )
+		public static void AddMonths( int year, YearMonth month, int addMonths, out int targetYear, out YearMonth targetMonth )
 		{
-			int totalMonths = ( startYear * TimeSpec.MonthsPerYear ) + ( (int)startMonth - 1 ) + addMonths;
+			int totalMonths = ( year * TimeSpec.MonthsPerYear ) + ( (int)month - 1 ) + addMonths;
 			targetYear = totalMonths / TimeSpec.MonthsPerYear;
 			targetMonth = (YearMonth)( ( totalMonths % TimeSpec.MonthsPerYear ) + 1 );
 		} // AddMonths

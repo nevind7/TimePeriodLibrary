@@ -6,11 +6,12 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -29,22 +30,13 @@ namespace Itenso.TimePeriod
 		} // DateTimeSet
 
 		// ----------------------------------------------------------------------
-		public DateTime this[ int index ]
-		{
-			get { return moments[ index ]; }
-		} // this[]
+		public DateTime this[ int index ] => moments[ index ];  // this[]
 
 		// ----------------------------------------------------------------------
-		public DateTime? Min
-		{
-			get { return !IsEmpty ? moments[ 0 ] : (DateTime?)null; }
-		} // Min
+		public DateTime? Min => !IsEmpty ? moments[ 0 ] : (DateTime?)null; // Min
 
 		// ----------------------------------------------------------------------
-		public DateTime? Max
-		{
-			get { return !IsEmpty ? moments[ Count - 1 ] : (DateTime?)null; }
-		} // Max
+		public DateTime? Max => !IsEmpty ? moments[ Count - 1 ] : (DateTime?)null; // Max
 
 		// ----------------------------------------------------------------------
 		public TimeSpan? Duration
@@ -58,10 +50,7 @@ namespace Itenso.TimePeriod
 		} // Duration
 
 		// ----------------------------------------------------------------------
-		public bool IsEmpty
-		{
-			get { return Count == 0; }
-		} // IsEmpty
+		public bool IsEmpty => Count == 0; // IsEmpty
 
 		// ----------------------------------------------------------------------
 		public bool IsMoment
@@ -87,16 +76,10 @@ namespace Itenso.TimePeriod
 		} // IsAnytime
 
 		// ----------------------------------------------------------------------
-		public int Count
-		{
-			get { return moments.Count; }
-		} // Count
+		public int Count => moments.Count; // Count
 
 		// ----------------------------------------------------------------------
-		bool ICollection<DateTime>.IsReadOnly
-		{
-			get { return false; }
-		} // ICollection<DateTime>.IsReadOnly
+		bool ICollection<DateTime>.IsReadOnly => false; // ICollection<DateTime>.IsReadOnly
 
 		// ----------------------------------------------------------------------
 		public int IndexOf( DateTime moment )
@@ -197,27 +180,27 @@ namespace Itenso.TimePeriod
 		} // AddAll
 
 		// ----------------------------------------------------------------------
-		public IList<TimeSpan> GetDurations( int startIndex, int count )
+		public IList<TimeSpan> GetDurations( int index, int count )
 		{
-			if ( startIndex >= Count - 1 )
+			if ( index >= Count - 1 )
 			{
-				throw new ArgumentOutOfRangeException( "startIndex" );
+				throw new ArgumentOutOfRangeException( "index" );
 			}
 			if ( count <= 0 )
 			{
 				throw new ArgumentOutOfRangeException( "count" );
 			}
 
-			int endIndex = startIndex + count - 1;
+			int endIndex = index + count - 1;
 			if ( endIndex >= Count - 1 )
 			{
 				endIndex = Count - 2;
 			}
 
 			List<TimeSpan> durations = new List<TimeSpan>();
-			if ( endIndex >= startIndex )
+			if ( endIndex >= index )
 			{
-				for ( int i = startIndex; i <= endIndex; i++ )
+				for ( int i = index; i <= endIndex; i++ )
 				{
 					durations.Add( this[ i + 1 ] - this[ i ] );
 				}

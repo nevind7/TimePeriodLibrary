@@ -6,10 +6,11 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
-using System;
-using Itenso.TimePeriod;
 
-namespace Itenso.TimePeriodDemo.Player
+using System;
+using TimePeriod;
+
+namespace TimePeriodDemo.Player
 {
 
 	// ------------------------------------------------------------------------
@@ -39,15 +40,15 @@ namespace Itenso.TimePeriodDemo.Player
 		// ----------------------------------------------------------------------
 		public PlayDirection Direction
 		{
-			get { return direction; }
-			set { direction = value; }
-		} // Direction
+			get => direction;
+            set => direction = value;
+        } // Direction
 
 		// ----------------------------------------------------------------------
 		public DateTime PlayStart
 		{
-			get { return Direction == PlayDirection.Forward ? Start : End; }
-			set
+			get => Direction == PlayDirection.Forward ? Start : End;
+            set
 			{
 				if ( Direction == PlayDirection.Forward )
 				{
@@ -63,8 +64,8 @@ namespace Itenso.TimePeriodDemo.Player
 		// ----------------------------------------------------------------------
 		public DateTime PlayEnd
 		{
-			get { return Direction == PlayDirection.Forward ? End : Start; }
-			set
+			get => Direction == PlayDirection.Forward ? End : Start;
+            set
 			{
 				if ( Direction == PlayDirection.Forward )
 				{

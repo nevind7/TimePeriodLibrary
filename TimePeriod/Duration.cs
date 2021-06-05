@@ -6,10 +6,11 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Globalization;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -32,25 +33,25 @@ namespace Itenso.TimePeriod
 
 		#endregion
 
-		#region Halfyear
+		#region HalfYear
 
 		// ----------------------------------------------------------------------
-		public static TimeSpan Halfyear( int year, YearHalfyear yearHalfyear )
+		public static TimeSpan HalfYear( int year, YearHalfYear yearHalfYear )
 		{
-			return DateTimeFormatInfo.CurrentInfo == null ? TimeSpan.Zero : Halfyear( DateTimeFormatInfo.CurrentInfo.Calendar, year, yearHalfyear );
-		} // Halfyear
+			return DateTimeFormatInfo.CurrentInfo == null ? TimeSpan.Zero : HalfYear( DateTimeFormatInfo.CurrentInfo.Calendar, year, yearHalfYear );
+		} // HalfYear
 
 		// ----------------------------------------------------------------------
-		public static TimeSpan Halfyear( Calendar calendar, int year, YearHalfyear yearHalfyear )
+		public static TimeSpan HalfYear( Calendar calendar, int year, YearHalfYear yearHalfYear )
 		{
-			YearMonth[] halfyearMonths = TimeTool.GetMonthsOfHalfyear( yearHalfyear );
+			YearMonth[] halfYearMonths = TimeTool.GetMonthsOfHalfYear( yearHalfYear );
 			TimeSpan duration = TimeSpec.NoDuration;
-			foreach ( YearMonth halfyearMonth in halfyearMonths )
+			foreach ( YearMonth halfYearMonth in halfYearMonths )
 			{
-				duration = duration.Add( Month( calendar, year, halfyearMonth ) );
+				duration = duration.Add( Month( calendar, year, halfYearMonth ) );
 			}
 			return duration;
-		} // Halfyear
+		} // HalfYear
 
 		#endregion
 

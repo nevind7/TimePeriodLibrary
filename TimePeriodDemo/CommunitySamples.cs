@@ -6,13 +6,13 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Threading;
-using Itenso.TimePeriod;
+using TimePeriod;
 
-namespace Itenso.TimePeriodDemo
+namespace TimePeriodDemo
 {
 
 	// ------------------------------------------------------------------------
@@ -38,8 +38,8 @@ namespace Itenso.TimePeriodDemo
 		// ----------------------------------------------------------------------
 		public DateTimeOffset UtcStart
 		{
-			get { return utcStart; }
-			set
+			get => utcStart;
+            set
 			{
 				if ( value > utcEnd )
 				{
@@ -53,8 +53,8 @@ namespace Itenso.TimePeriodDemo
 		// ----------------------------------------------------------------------
 		public DateTimeOffset UtcEnd
 		{
-			get { return utcEnd; }
-			set
+			get => utcEnd;
+            set
 			{
 				if ( value < utcStart )
 				{
@@ -2720,11 +2720,11 @@ namespace Itenso.TimePeriodDemo
 				} );
 
 			Year year1 = new Year( new DateTime( 2013, 7, 1 ), calendar1 );
-			Halfyear halfyear1 = new Halfyear( new DateTime( 2013, 7, 1 ), calendar1 );
+			HalfYear halfyear1 = new HalfYear( new DateTime( 2013, 7, 1 ), calendar1 );
 			Quarter quarter1 = new Quarter( new DateTime( 2013, 7, 1 ), calendar1 );
 
 			Console.WriteLine( "Year: {0}", year1 );
-			Console.WriteLine( "Halfyear: {0}", halfyear1 );
+			Console.WriteLine( "HalfYear: {0}", halfyear1 );
 			Console.WriteLine( "Quarter: {0}", quarter1 );
 			Console.WriteLine();
 
@@ -2736,11 +2736,11 @@ namespace Itenso.TimePeriodDemo
 				} );
 
 			Year year2 = new Year( new DateTime( 2013, 7, 1 ), calendar2 );
-			Halfyear halfyear2 = new Halfyear( new DateTime( 2013, 7, 1 ), calendar2 );
+			HalfYear halfyear2 = new HalfYear( new DateTime( 2013, 7, 1 ), calendar2 );
 			Quarter quarter2 = new Quarter( new DateTime( 2013, 7, 1 ), calendar2 );
 
 			Console.WriteLine( "Year: {0}", year2 );
-			Console.WriteLine( "Halfyear: {0}", halfyear2 );
+			Console.WriteLine( "HalfYear: {0}", halfyear2 );
 			Console.WriteLine( "Quarter: {0}", quarter2 );
 			Console.WriteLine();
 
@@ -2753,11 +2753,11 @@ namespace Itenso.TimePeriodDemo
 			} );
 
 			Year year3 = new Year( new DateTime( 2013, 7, 1 ), calendar3 );
-			Halfyear halfyear3 = new Halfyear( new DateTime( 2013, 7, 1 ), calendar3 );
+			HalfYear halfyear3 = new HalfYear( new DateTime( 2013, 7, 1 ), calendar3 );
 			Quarter quarter3 = new Quarter( new DateTime( 2013, 7, 1 ), calendar3 );
 
 			Console.WriteLine( "Year: {0}", year3 );
-			Console.WriteLine( "Halfyear: {0}", halfyear3 );
+			Console.WriteLine( "HalfYear: {0}", halfyear3 );
 			Console.WriteLine( "Quarter: {0}", quarter3 );
 		} // FiscalYear2014
 

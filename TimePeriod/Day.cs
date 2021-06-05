@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -64,34 +65,19 @@ namespace Itenso.TimePeriod
 		} // Day
 
 		// ----------------------------------------------------------------------
-		public int Year
-		{
-			get { return StartYear; }
-		} // Year
+		public int Year => StartYear; // Year
 
 		// ----------------------------------------------------------------------
-		public int Month
-		{
-			get { return StartMonth; }
-		} // Month
+		public int Month => StartMonth; // Month
 
 		// ----------------------------------------------------------------------
-		public int DayValue
-		{
-			get { return StartDay; }
-		} // DayValue
+		public int DayValue => StartDay; // DayValue
 
 		// ----------------------------------------------------------------------
-		public DayOfWeek DayOfWeek
-		{
-			get { return StartDayOfWeek; }
-		} // DayOfWeek
+		public DayOfWeek DayOfWeek => StartDayOfWeek; // DayOfWeek
 
 		// ----------------------------------------------------------------------
-		public string DayName
-		{
-			get { return StartDayName; }
-		} // DayName
+		public string DayName => StartDayName; // DayName
 
 		// ----------------------------------------------------------------------
 		public Day GetPreviousDay()
@@ -108,8 +94,8 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		public Day AddDays( int days )
 		{
-			DateTime startDay = new DateTime( StartYear, StartMonth, StartDay );
-			return new Day( startDay.AddDays( days ), Calendar );
+			DateTime day = new DateTime( StartYear, StartMonth, StartDay );
+			return new Day( day.AddDays( days ), Calendar );
 		} // AddDays
 
 		// ----------------------------------------------------------------------

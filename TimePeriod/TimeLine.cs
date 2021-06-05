@@ -6,10 +6,11 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Collections.Generic;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -36,22 +37,13 @@ namespace Itenso.TimePeriod
 		} // TimeLine
 
 		// ----------------------------------------------------------------------
-		public ITimePeriodContainer Periods
-		{
-			get { return periods; }
-		} // Periods
+		public ITimePeriodContainer Periods => periods; // Periods
 
 		// ----------------------------------------------------------------------
-		public ITimePeriod Limits
-		{
-			get { return limits; }
-		} // Limits
+		public ITimePeriod Limits => limits; // Limits
 
 		// ----------------------------------------------------------------------
-		public ITimePeriodMapper PeriodMapper
-		{
-			get { return periodMapper; }
-		} // PeriodMapper
+		public ITimePeriodMapper PeriodMapper => periodMapper; // PeriodMapper
 
 		// ----------------------------------------------------------------------
 		private bool HasNonMomentPeriods
@@ -192,15 +184,15 @@ namespace Itenso.TimePeriod
 			while ( itemIndex < timeLineMoments.Count )
 			{
 				ITimeLineMoment periodStart = timeLineMoments[ itemIndex ];
-				int startCount = periodStart.StartCount;
-				if ( startCount == 0 )
+				int count = periodStart.StartCount;
+				if ( count == 0 )
 				{
 					throw new InvalidOperationException();
 				}
 
 				// search next period end
 				// use balancing to handle overlapping periods
-				int balance = startCount;
+				int balance = count;
 				ITimeLineMoment periodEnd = null;
 				while ( itemIndex < timeLineMoments.Count - 1 && balance > 0 )
 				{
@@ -250,13 +242,13 @@ namespace Itenso.TimePeriod
 			{
 				ITimeLineMoment moment = timeLineMoments[ i ];
 
-				int startCount = moment.StartCount;
+				int count = moment.StartCount;
 				int endCount = moment.EndCount;
-				balance += startCount;
+				balance += count;
 				balance -= endCount;
 
 				// intersection is starting by a period start
-				if ( startCount > 0 && balance > 1 && intersectionStart < 0 )
+				if ( count > 0 && balance > 1 && intersectionStart < 0 )
 				{
 					intersectionStart = i;
 					continue;
@@ -340,15 +332,15 @@ namespace Itenso.TimePeriod
 			while ( itemIndex < timeLineMoments.Count )
 			{
 				ITimeLineMoment moment = timeLineMoments[ itemIndex ];
-				int startCount = moment.StartCount;
-				if ( startCount == 0 )
+				int count = moment.StartCount;
+				if ( count == 0 )
 				{
 					throw new InvalidOperationException();
 				}
 
 				// search next gap start
 				// use balancing to handle overlapping periods
-				int balance = startCount;
+				int balance = count;
 				ITimeLineMoment gapStart = null;
 				while ( itemIndex < timeLineMoments.Count - 1 && balance > 0 )
 				{

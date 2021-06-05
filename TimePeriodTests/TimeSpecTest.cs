@@ -6,11 +6,12 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
-using Itenso.TimePeriod;
+using TimePeriod;
 using Xunit;
 
-namespace Itenso.TimePeriodTests
+namespace TimePeriodTests.Core
 {
 
 	// ------------------------------------------------------------------------
@@ -25,11 +26,11 @@ namespace Itenso.TimePeriodTests
 		{
 			// relations
 			Assert.Equal(12, TimeSpec.MonthsPerYear);
-			Assert.Equal(2, TimeSpec.HalfyearsPerYear);
+			Assert.Equal(2, TimeSpec.HalfYearsPerYear);
 			Assert.Equal(4, TimeSpec.QuartersPerYear);
-			Assert.Equal( TimeSpec.QuartersPerHalfyear, TimeSpec.QuartersPerYear / TimeSpec.HalfyearsPerYear );
+			Assert.Equal( TimeSpec.QuartersPerHalfYear, TimeSpec.QuartersPerYear / TimeSpec.HalfYearsPerYear );
 			Assert.Equal(53, TimeSpec.MaxWeeksPerYear);
-			Assert.Equal( TimeSpec.MonthsPerHalfyear, TimeSpec.MonthsPerYear / TimeSpec.HalfyearsPerYear );
+			Assert.Equal( TimeSpec.MonthsPerHalfYear, TimeSpec.MonthsPerYear / TimeSpec.HalfYearsPerYear );
 			Assert.Equal( TimeSpec.MonthsPerQuarter, TimeSpec.MonthsPerYear / TimeSpec.QuartersPerYear );
 			Assert.Equal(31, TimeSpec.MaxDaysPerMonth);
 			Assert.Equal(7, TimeSpec.DaysPerWeek);
@@ -39,21 +40,21 @@ namespace Itenso.TimePeriodTests
 			Assert.Equal(1000, TimeSpec.MillisecondsPerSecond);
 
 			// halfyear
-			Assert.Equal( TimeSpec.FirstHalfyearMonths.Length, TimeSpec.MonthsPerHalfyear );
-			Assert.Equal(YearMonth.January, TimeSpec.FirstHalfyearMonths[ 0 ]);
-			Assert.Equal(YearMonth.February, TimeSpec.FirstHalfyearMonths[ 1 ]);
-			Assert.Equal(YearMonth.March, TimeSpec.FirstHalfyearMonths[ 2 ]);
-			Assert.Equal(YearMonth.April, TimeSpec.FirstHalfyearMonths[ 3 ]);
-			Assert.Equal(YearMonth.May, TimeSpec.FirstHalfyearMonths[ 4 ]);
-			Assert.Equal(YearMonth.June, TimeSpec.FirstHalfyearMonths[ 5 ]);
+			Assert.Equal( TimeSpec.FirstHalfYearMonths.Length, TimeSpec.MonthsPerHalfYear );
+			Assert.Equal(YearMonth.January, TimeSpec.FirstHalfYearMonths[ 0 ]);
+			Assert.Equal(YearMonth.February, TimeSpec.FirstHalfYearMonths[ 1 ]);
+			Assert.Equal(YearMonth.March, TimeSpec.FirstHalfYearMonths[ 2 ]);
+			Assert.Equal(YearMonth.April, TimeSpec.FirstHalfYearMonths[ 3 ]);
+			Assert.Equal(YearMonth.May, TimeSpec.FirstHalfYearMonths[ 4 ]);
+			Assert.Equal(YearMonth.June, TimeSpec.FirstHalfYearMonths[ 5 ]);
 
-			Assert.Equal( TimeSpec.SecondHalfyearMonths.Length, TimeSpec.MonthsPerHalfyear );
-			Assert.Equal(YearMonth.July, TimeSpec.SecondHalfyearMonths[ 0 ]);
-			Assert.Equal(YearMonth.August, TimeSpec.SecondHalfyearMonths[ 1 ]);
-			Assert.Equal(YearMonth.September, TimeSpec.SecondHalfyearMonths[ 2 ]);
-			Assert.Equal(YearMonth.October, TimeSpec.SecondHalfyearMonths[ 3 ]);
-			Assert.Equal(YearMonth.November, TimeSpec.SecondHalfyearMonths[ 4 ]);
-			Assert.Equal(YearMonth.December, TimeSpec.SecondHalfyearMonths[ 5 ]);
+			Assert.Equal( TimeSpec.SecondHalfYearMonths.Length, TimeSpec.MonthsPerHalfYear );
+			Assert.Equal(YearMonth.July, TimeSpec.SecondHalfYearMonths[ 0 ]);
+			Assert.Equal(YearMonth.August, TimeSpec.SecondHalfYearMonths[ 1 ]);
+			Assert.Equal(YearMonth.September, TimeSpec.SecondHalfYearMonths[ 2 ]);
+			Assert.Equal(YearMonth.October, TimeSpec.SecondHalfYearMonths[ 3 ]);
+			Assert.Equal(YearMonth.November, TimeSpec.SecondHalfYearMonths[ 4 ]);
+			Assert.Equal(YearMonth.December, TimeSpec.SecondHalfYearMonths[ 5 ]);
 
 			// quarter
 			Assert.Equal(1, TimeSpec.FirstQuarterMonthIndex);

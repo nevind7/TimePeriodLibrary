@@ -6,11 +6,12 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
-using Itenso.TimePeriod;
+using TimePeriod;
 using Xunit;
 
-namespace Itenso.TimePeriodTests
+namespace TimePeriodTests.Core
 {
 
 	// ------------------------------------------------------------------------
@@ -205,9 +206,9 @@ namespace Itenso.TimePeriodTests
 				{
 					YearType = YearType.FiscalYear,
 					YearBaseMonth = YearMonth.September,
-					FiscalFirstDayOfYear = DayOfWeek.Sunday,
-					FiscalYearAlignment = yearAlignment,
-					FiscalQuarterGrouping = FiscalQuarterGrouping.FourFourFiveWeeks
+                    FiscalFirstDayOfYear = DayOfWeek.Sunday,
+                    FiscalYearAlignment = yearAlignment,
+                    FiscalQuarterGrouping = FiscalQuarterGrouping.FourFourFiveWeeks
 				} );
 		} // GetFiscalYearCalendar
 
@@ -215,7 +216,7 @@ namespace Itenso.TimePeriodTests
         // http://en.wikipedia.org/wiki/4-4-5_Calendar
         [Trait("Category", "Quarters")]
         [Fact]
-		public void FiscalYearGetMonthsTest()
+		public void YearGetMonthsTest()
 		{
 			const int quarterCount = 8;
 			Quarters halfyears = new Quarters( 2006, YearQuarter.First, quarterCount, GetFiscalYearCalendar( FiscalYearAlignment.LastDay ) );

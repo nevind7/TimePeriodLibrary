@@ -6,10 +6,11 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Globalization;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -35,13 +36,13 @@ namespace Itenso.TimePeriod
 		#region Hafyear
 
 		// ----------------------------------------------------------------------
-		public static bool IsSameHalfyear( DateTime left, DateTime right )
+		public static bool IsSameHalfYear( DateTime left, DateTime right )
 		{
-			return IsSameHalfyear( TimeSpec.CalendarYearStartMonth, left, right );
-		} // IsSameHalfyear
+			return IsSameHalfYear( TimeSpec.CalendarYearStartMonth, left, right );
+		} // IsSameHalfYear
 
 		// ----------------------------------------------------------------------
-		public static bool IsSameHalfyear( YearMonth yearStartMonth, DateTime left, DateTime right )
+		public static bool IsSameHalfYear( YearMonth yearStartMonth, DateTime left, DateTime right )
 		{
 			int leftYear = TimeTool.GetYearOf( yearStartMonth, left );
 			int rightYear = TimeTool.GetYearOf( yearStartMonth, right );
@@ -50,8 +51,8 @@ namespace Itenso.TimePeriod
 				return false;
 			}
 
-			return TimeTool.GetHalfyearOfMonth( yearStartMonth, (YearMonth)left.Month ) == TimeTool.GetHalfyearOfMonth( yearStartMonth, (YearMonth)right.Month );
-		} // IsSameHalfyear
+			return TimeTool.GetHalfYearOfMonth( yearStartMonth, (YearMonth)left.Month ) == TimeTool.GetHalfYearOfMonth( yearStartMonth, (YearMonth)right.Month );
+		} // IsSameHalfYear
 
 		#endregion
 
@@ -106,14 +107,10 @@ namespace Itenso.TimePeriod
 			}
 
 			// left
-			int leftWeekOfYear;
-			int leftYear;
-			TimeTool.GetWeekOfYear( left, culture, weekRule, firstDayOfWeek, weekType, out leftYear, out leftWeekOfYear );
+            TimeTool.GetWeekOfYear( left, culture, weekRule, firstDayOfWeek, weekType, out var leftYear, out var leftWeekOfYear );
 
 			// rught
-			int rightWeekOfYear;
-			int rightYear;
-			TimeTool.GetWeekOfYear( right, culture, weekRule, firstDayOfWeek, weekType, out rightYear, out rightWeekOfYear );
+            TimeTool.GetWeekOfYear( right, culture, weekRule, firstDayOfWeek, weekType, out var rightYear, out var rightWeekOfYear );
 
 			return leftYear == rightYear && leftWeekOfYear == rightWeekOfYear;
 		} // IsSameWeek

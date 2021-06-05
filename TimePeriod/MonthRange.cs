@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -33,22 +34,13 @@ namespace Itenso.TimePeriod
 		} // MonthRange
 
 		// ----------------------------------------------------------------------
-		public YearMonth Min
-		{
-			get { return min; }
-		} // Min
+		public YearMonth Min => min; // Min
 
 		// ----------------------------------------------------------------------
-		public YearMonth Max
-		{
-			get { return max; }
-		} // Max
+		public YearMonth Max => max; // Max
 
 		// ----------------------------------------------------------------------
-		public bool IsSingleMonth
-		{
-			get { return min == max; }
-		} // IsSingleMonth
+		public bool IsSingleMonth => min == max; // IsSingleMonth
 
 		// ----------------------------------------------------------------------
 		public bool HasInside( YearMonth test )

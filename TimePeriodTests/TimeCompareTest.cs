@@ -6,12 +6,13 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Globalization;
-using Itenso.TimePeriod;
+using TimePeriod;
 using Xunit;
 
-namespace Itenso.TimePeriodTests
+namespace TimePeriodTests.Core
 {
 
 	// ------------------------------------------------------------------------
@@ -34,18 +35,18 @@ namespace Itenso.TimePeriodTests
         // ----------------------------------------------------------------------
         [Trait("Category", "TimeCompare")]
         [Fact]
-		public void IsSameHalfyearTest()
+		public void IsSameHalfYearTest()
 		{
-			Assert.True( TimeCompare.IsSameHalfyear( new DateTime( 2000, 1, 1 ), new DateTime( 2000, 6, 30 ) ) );
-			Assert.True( TimeCompare.IsSameHalfyear( new DateTime( 2000, 7, 1 ), new DateTime( 2000, 12, 31 ) ) );
-			Assert.False( TimeCompare.IsSameHalfyear( new DateTime( 2000, 1, 1 ), new DateTime( 2000, 7, 1 ) ) );
-			Assert.False( TimeCompare.IsSameHalfyear( new DateTime( 2000, 7, 1 ), new DateTime( 2001, 1, 1 ) ) );
+			Assert.True( TimeCompare.IsSameHalfYear( new DateTime( 2000, 1, 1 ), new DateTime( 2000, 6, 30 ) ) );
+			Assert.True( TimeCompare.IsSameHalfYear( new DateTime( 2000, 7, 1 ), new DateTime( 2000, 12, 31 ) ) );
+			Assert.False( TimeCompare.IsSameHalfYear( new DateTime( 2000, 1, 1 ), new DateTime( 2000, 7, 1 ) ) );
+			Assert.False( TimeCompare.IsSameHalfYear( new DateTime( 2000, 7, 1 ), new DateTime( 2001, 1, 1 ) ) );
 
-			Assert.True( TimeCompare.IsSameHalfyear( YearMonth.April, new DateTime( 2000, 4, 1 ), new DateTime( 2000, 9, 30 ) ) );
-			Assert.True( TimeCompare.IsSameHalfyear( YearMonth.April, new DateTime( 2000, 10, 1 ), new DateTime( 2001, 3, 31 ) ) );
-			Assert.False( TimeCompare.IsSameHalfyear( YearMonth.April, new DateTime( 2000, 4, 1 ), new DateTime( 2000, 10, 1 ) ) );
-			Assert.False( TimeCompare.IsSameHalfyear( YearMonth.April, new DateTime( 2000, 10, 1 ), new DateTime( 2001, 4, 1 ) ) );
-		} // IsSameHalfyearTest
+			Assert.True( TimeCompare.IsSameHalfYear( YearMonth.April, new DateTime( 2000, 4, 1 ), new DateTime( 2000, 9, 30 ) ) );
+			Assert.True( TimeCompare.IsSameHalfYear( YearMonth.April, new DateTime( 2000, 10, 1 ), new DateTime( 2001, 3, 31 ) ) );
+			Assert.False( TimeCompare.IsSameHalfYear( YearMonth.April, new DateTime( 2000, 4, 1 ), new DateTime( 2000, 10, 1 ) ) );
+			Assert.False( TimeCompare.IsSameHalfYear( YearMonth.April, new DateTime( 2000, 10, 1 ), new DateTime( 2001, 4, 1 ) ) );
+		} // IsSameHalfYearTest
 
         // ----------------------------------------------------------------------
         [Trait("Category", "TimeCompare")]
@@ -107,9 +108,9 @@ namespace Itenso.TimePeriodTests
 						int weekOfYear;
 
 						TimeTool.GetWeekOfYear( testDate, culture, yearWeekType, out year, out weekOfYear );
-						DateTime startOfWeek = TimeTool.GetStartOfYearWeek( year, weekOfYear, culture, yearWeekType );
+						DateTime ofWeek = TimeTool.GetStartOfYearWeek( year, weekOfYear, culture, yearWeekType );
 
-						Assert.True( TimeCompare.IsSameWeek( testDate, startOfWeek, culture, yearWeekType ) );
+						Assert.True( TimeCompare.IsSameWeek( testDate, ofWeek, culture, yearWeekType ) );
 						Assert.True( TimeCompare.IsSameWeek( testDate, testDate, culture, yearWeekType ) );
 						Assert.True( TimeCompare.IsSameWeek( testDiffDate, testDiffDate, culture, yearWeekType ) );
 						Assert.False( TimeCompare.IsSameWeek( testDate, testDiffDate, culture, yearWeekType ) );
@@ -120,9 +121,9 @@ namespace Itenso.TimePeriodTests
 						{
 							culture.DateTimeFormat.FirstDayOfWeek = dayOfWeek;
 							TimeTool.GetWeekOfYear( testDate, culture, weekRule, dayOfWeek, yearWeekType, out year, out weekOfYear );
-							startOfWeek = TimeTool.GetStartOfYearWeek( year, weekOfYear, culture, weekRule, dayOfWeek, yearWeekType );
+							ofWeek = TimeTool.GetStartOfYearWeek( year, weekOfYear, culture, weekRule, dayOfWeek, yearWeekType );
 
-							Assert.True( TimeCompare.IsSameWeek( testDate, startOfWeek, culture, yearWeekType ) );
+							Assert.True( TimeCompare.IsSameWeek( testDate, ofWeek, culture, yearWeekType ) );
 							Assert.True( TimeCompare.IsSameWeek( testDate, testDate, culture, yearWeekType ) );
 							Assert.True( TimeCompare.IsSameWeek( testDiffDate, testDiffDate, culture, yearWeekType ) );
 							Assert.False( TimeCompare.IsSameWeek( testDate, testDiffDate, culture, yearWeekType ) );

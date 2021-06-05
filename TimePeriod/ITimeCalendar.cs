@@ -6,17 +6,18 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Globalization;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
 	public interface ITimeCalendar : ITimePeriodMapper
 	{
 
-		// ----------------------------------------------------------------------
+			// ----------------------------------------------------------------------
 		CultureInfo Culture { get; }
 
 		// ----------------------------------------------------------------------
@@ -77,10 +78,10 @@ namespace Itenso.TimePeriod
 		string GetYearName( int year );
 
 		// ----------------------------------------------------------------------
-		string GetHalfyearName( YearHalfyear yearHalfyear );
+		string GetHalfYearName( YearHalfYear yearHalfyear );
 
 		// ----------------------------------------------------------------------
-		string GetHalfyearOfYearName( int year, YearHalfyear yearHalfyear );
+		string GetHalfYearOfYearName( int year, YearHalfYear yearHalfyear );
 
 		// ----------------------------------------------------------------------
 		string GetQuarterName( YearQuarter yearQuarter );
@@ -105,6 +106,7 @@ namespace Itenso.TimePeriod
 
 		// ----------------------------------------------------------------------
 		DateTime GetStartOfYearWeek( int year, int weekOfYear );
+
 
 	} // class ITimeCalendar
 

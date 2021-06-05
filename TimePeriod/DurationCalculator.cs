@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2013 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -33,22 +34,13 @@ namespace Itenso.TimePeriod
 		} // DurationCalculator
 
 		// ----------------------------------------------------------------------
-		public IDurationProvider DurationProvider
-		{
-			get { return durationProvider; }
-		} // DurationProvider
+		public IDurationProvider DurationProvider => durationProvider; // DurationProvider
 
 		// ----------------------------------------------------------------------
-		public ITimePeriodCollection IncludePeriods
-		{
-			get { return includePeriods; }
-		} // IncludePeriods
+		public ITimePeriodCollection IncludePeriods => includePeriods; // IncludePeriods
 
 		// ----------------------------------------------------------------------
-		public ITimePeriodCollection ExcludePeriods
-		{
-			get { return excludePeriods; }
-		} // ExcludePeriods
+		public ITimePeriodCollection ExcludePeriods => excludePeriods; // ExcludePeriods
 
 		// ----------------------------------------------------------------------
 		public void Hours( Time start, Time end )

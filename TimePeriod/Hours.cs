@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -29,14 +30,14 @@ namespace Itenso.TimePeriod
 		} // Hours
 
 		// ----------------------------------------------------------------------
-		public Hours( int startYear, int startMonth, int startDay, int hour, int hourCount ) :
-			this( startYear, startMonth, startDay, hour, hourCount, new TimeCalendar() )
+		public Hours( int year, int month, int day, int hour, int hourCount ) :
+			this( year, month, day, hour, hourCount, new TimeCalendar() )
 		{
 		} // Hours
 
 		// ----------------------------------------------------------------------
-		public Hours( int startYear, int startMonth, int startDay, int hour, int hourCount, ITimeCalendar calendar ) :
-			base( startYear, startMonth, startDay, hour, hourCount, calendar )
+		public Hours( int year, int month, int day, int hour, int hourCount, ITimeCalendar calendar ) :
+			base( year, month, day, hour, hourCount, calendar )
 		{
 		} // Hours
 
@@ -44,10 +45,10 @@ namespace Itenso.TimePeriod
 		public ITimePeriodCollection GetHours()
 		{
 			TimePeriodCollection hours = new TimePeriodCollection();
-			DateTime startHour = new DateTime( StartYear, StartMonth, StartDay, StartHour, 0, 0 );
+			DateTime hour = new DateTime( StartYear, StartMonth, StartDay, StartHour, 0, 0 );
 			for ( int i = 0; i < HourCount; i++ )
 			{
-				hours.Add( new Hour( startHour.AddHours( i ), Calendar ) );
+				hours.Add( new Hour( hour.AddHours( i ), Calendar ) );
 			}
 			return hours;
 		} // GetHours

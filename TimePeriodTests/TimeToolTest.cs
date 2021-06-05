@@ -6,12 +6,13 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Globalization;
-using Itenso.TimePeriod;
+using TimePeriod;
 using Xunit;
 
-namespace Itenso.TimePeriodTests
+namespace TimePeriodTests.Core
 {
 
 	// ------------------------------------------------------------------------
@@ -109,142 +110,142 @@ namespace Itenso.TimePeriodTests
 
         #endregion
 
-        #region Halfyear
+        #region HalfYear
 
         // ----------------------------------------------------------------------
         [Trait("Category", "TimeTool")]
         [Fact]
-		public void NextHalfyearTest()
+		public void NextHalfYearTest()
 		{
 			int year;
-			YearHalfyear halfyear;
+			YearHalfYear halfyear;
 
-			TimeTool.NextHalfyear( YearHalfyear.First, out year, out halfyear );
-			Assert.Equal(YearHalfyear.Second, halfyear);
+			TimeTool.NextHalfYear( YearHalfYear.First, out year, out halfyear );
+			Assert.Equal(YearHalfYear.Second, halfyear);
 
-			TimeTool.NextHalfyear( YearHalfyear.Second, out year, out halfyear );
-			Assert.Equal(YearHalfyear.First, halfyear);
-		} // NextHalfyearTest
+			TimeTool.NextHalfYear( YearHalfYear.Second, out year, out halfyear );
+			Assert.Equal(YearHalfYear.First, halfyear);
+		} // NextHalfYearTest
 
         // ----------------------------------------------------------------------
         [Trait("Category", "TimeTool")]
         [Fact]
-		public void PreviousHalfyearTest()
+		public void PreviousHalfYearTest()
 		{
 			int year;
-			YearHalfyear halfyear;
+			YearHalfYear halfyear;
 
-			TimeTool.PreviousHalfyear( YearHalfyear.First, out year, out halfyear );
-			Assert.Equal(YearHalfyear.Second, halfyear);
+			TimeTool.PreviousHalfYear( YearHalfYear.First, out year, out halfyear );
+			Assert.Equal(YearHalfYear.Second, halfyear);
 
-			TimeTool.PreviousHalfyear( YearHalfyear.Second, out year, out halfyear );
-			Assert.Equal(YearHalfyear.First, halfyear);
-		} // PreviousHalfyearTest
+			TimeTool.PreviousHalfYear( YearHalfYear.Second, out year, out halfyear );
+			Assert.Equal(YearHalfYear.First, halfyear);
+		} // PreviousHalfYearTest
 
         // ----------------------------------------------------------------------
         [Trait("Category", "TimeTool")]
         [Fact]
-		public void AddHalfyearTest()
+		public void AddHalfYearTest()
 		{
 			int year;
-			YearHalfyear halfyear;
+			YearHalfYear halfyear;
 
-			TimeTool.AddHalfyear( YearHalfyear.First, 1, out year, out halfyear );
-			Assert.Equal(YearHalfyear.Second, halfyear);
-			TimeTool.AddHalfyear( YearHalfyear.First, -1, out year, out halfyear );
-			Assert.Equal(YearHalfyear.Second, halfyear);
-			TimeTool.AddHalfyear( YearHalfyear.Second, 1, out year, out halfyear );
-			Assert.Equal(YearHalfyear.First, halfyear);
-			TimeTool.AddHalfyear( YearHalfyear.Second, -1, out year, out halfyear );
-			Assert.Equal(YearHalfyear.First, halfyear);
+			TimeTool.AddHalfYear( YearHalfYear.First, 1, out year, out halfyear );
+			Assert.Equal(YearHalfYear.Second, halfyear);
+			TimeTool.AddHalfYear( YearHalfYear.First, -1, out year, out halfyear );
+			Assert.Equal(YearHalfYear.Second, halfyear);
+			TimeTool.AddHalfYear( YearHalfYear.Second, 1, out year, out halfyear );
+			Assert.Equal(YearHalfYear.First, halfyear);
+			TimeTool.AddHalfYear( YearHalfYear.Second, -1, out year, out halfyear );
+			Assert.Equal(YearHalfYear.First, halfyear);
 
-			TimeTool.AddHalfyear( YearHalfyear.First, 2, out year, out halfyear );
-			Assert.Equal(YearHalfyear.First, halfyear);
-			TimeTool.AddHalfyear( YearHalfyear.First, -2, out year, out halfyear );
-			Assert.Equal(YearHalfyear.First, halfyear);
-			TimeTool.AddHalfyear( YearHalfyear.Second, 2, out year, out halfyear );
-			Assert.Equal(YearHalfyear.Second, halfyear);
-			TimeTool.AddHalfyear( YearHalfyear.Second, -2, out year, out halfyear );
-			Assert.Equal(YearHalfyear.Second, halfyear);
+			TimeTool.AddHalfYear( YearHalfYear.First, 2, out year, out halfyear );
+			Assert.Equal(YearHalfYear.First, halfyear);
+			TimeTool.AddHalfYear( YearHalfYear.First, -2, out year, out halfyear );
+			Assert.Equal(YearHalfYear.First, halfyear);
+			TimeTool.AddHalfYear( YearHalfYear.Second, 2, out year, out halfyear );
+			Assert.Equal(YearHalfYear.Second, halfyear);
+			TimeTool.AddHalfYear( YearHalfYear.Second, -2, out year, out halfyear );
+			Assert.Equal(YearHalfYear.Second, halfyear);
 
-			TimeTool.AddHalfyear( YearHalfyear.First, 5, out year, out halfyear );
-			Assert.Equal(YearHalfyear.Second, halfyear);
-			TimeTool.AddHalfyear( YearHalfyear.First, -5, out year, out halfyear );
-			Assert.Equal(YearHalfyear.Second, halfyear);
-			TimeTool.AddHalfyear( YearHalfyear.Second, 5, out year, out halfyear );
-			Assert.Equal(YearHalfyear.First, halfyear);
-			TimeTool.AddHalfyear( YearHalfyear.Second, -5, out year, out halfyear );
-			Assert.Equal(YearHalfyear.First, halfyear);
+			TimeTool.AddHalfYear( YearHalfYear.First, 5, out year, out halfyear );
+			Assert.Equal(YearHalfYear.Second, halfyear);
+			TimeTool.AddHalfYear( YearHalfYear.First, -5, out year, out halfyear );
+			Assert.Equal(YearHalfYear.Second, halfyear);
+			TimeTool.AddHalfYear( YearHalfYear.Second, 5, out year, out halfyear );
+			Assert.Equal(YearHalfYear.First, halfyear);
+			TimeTool.AddHalfYear( YearHalfYear.Second, -5, out year, out halfyear );
+			Assert.Equal(YearHalfYear.First, halfyear);
 
-			TimeTool.AddHalfyear( 2008, YearHalfyear.First, 1, out year, out halfyear );
+			TimeTool.AddHalfYear( 2008, YearHalfYear.First, 1, out year, out halfyear );
 			Assert.Equal(2008, year);
-			Assert.Equal(YearHalfyear.Second, halfyear);
-			TimeTool.AddHalfyear( 2008, YearHalfyear.Second, 1, out year, out halfyear );
+			Assert.Equal(YearHalfYear.Second, halfyear);
+			TimeTool.AddHalfYear( 2008, YearHalfYear.Second, 1, out year, out halfyear );
 			Assert.Equal(2009, year);
-			Assert.Equal(YearHalfyear.First, halfyear);
+			Assert.Equal(YearHalfYear.First, halfyear);
 
-			TimeTool.AddHalfyear( 2008, YearHalfyear.First, 2, out year, out halfyear );
+			TimeTool.AddHalfYear( 2008, YearHalfYear.First, 2, out year, out halfyear );
 			Assert.Equal(2009, year);
-			Assert.Equal(YearHalfyear.First, halfyear);
-			TimeTool.AddHalfyear( 2008, YearHalfyear.Second, 2, out year, out halfyear );
+			Assert.Equal(YearHalfYear.First, halfyear);
+			TimeTool.AddHalfYear( 2008, YearHalfYear.Second, 2, out year, out halfyear );
 			Assert.Equal(2009, year);
-			Assert.Equal(YearHalfyear.Second, halfyear);
+			Assert.Equal(YearHalfYear.Second, halfyear);
 
-			TimeTool.AddHalfyear( 2008, YearHalfyear.First, 3, out year, out halfyear );
+			TimeTool.AddHalfYear( 2008, YearHalfYear.First, 3, out year, out halfyear );
 			Assert.Equal(2009, year);
-			Assert.Equal(YearHalfyear.Second, halfyear);
-			TimeTool.AddHalfyear( 2008, YearHalfyear.Second, 3, out year, out halfyear );
+			Assert.Equal(YearHalfYear.Second, halfyear);
+			TimeTool.AddHalfYear( 2008, YearHalfYear.Second, 3, out year, out halfyear );
 			Assert.Equal(2010, year);
-			Assert.Equal(YearHalfyear.First, halfyear);
-		} // AddHalfyearTest
+			Assert.Equal(YearHalfYear.First, halfyear);
+		} // AddHalfYearTest
 
         // ----------------------------------------------------------------------
         [Trait("Category", "TimeTool")]
         [Fact]
-		public void GetCalendarHalfyearOfMonthTest()
+		public void GetCalendarHalfYearOfMonthTest()
 		{
-			Assert.Equal(YearHalfyear.First, TimeTool.GetHalfyearOfMonth( YearMonth.January ));
-			Assert.Equal(YearHalfyear.First, TimeTool.GetHalfyearOfMonth( YearMonth.February ));
-			Assert.Equal(YearHalfyear.First, TimeTool.GetHalfyearOfMonth( YearMonth.March ));
-			Assert.Equal(YearHalfyear.First, TimeTool.GetHalfyearOfMonth( YearMonth.April ));
-			Assert.Equal(YearHalfyear.First, TimeTool.GetHalfyearOfMonth( YearMonth.May ));
-			Assert.Equal(YearHalfyear.First, TimeTool.GetHalfyearOfMonth( YearMonth.June ));
+			Assert.Equal(YearHalfYear.First, TimeTool.GetHalfYearOfMonth( YearMonth.January ));
+			Assert.Equal(YearHalfYear.First, TimeTool.GetHalfYearOfMonth( YearMonth.February ));
+			Assert.Equal(YearHalfYear.First, TimeTool.GetHalfYearOfMonth( YearMonth.March ));
+			Assert.Equal(YearHalfYear.First, TimeTool.GetHalfYearOfMonth( YearMonth.April ));
+			Assert.Equal(YearHalfYear.First, TimeTool.GetHalfYearOfMonth( YearMonth.May ));
+			Assert.Equal(YearHalfYear.First, TimeTool.GetHalfYearOfMonth( YearMonth.June ));
 
-			Assert.Equal(YearHalfyear.Second, TimeTool.GetHalfyearOfMonth( YearMonth.July ));
-			Assert.Equal(YearHalfyear.Second, TimeTool.GetHalfyearOfMonth( YearMonth.August ));
-			Assert.Equal(YearHalfyear.Second, TimeTool.GetHalfyearOfMonth( YearMonth.September ));
-			Assert.Equal(YearHalfyear.Second, TimeTool.GetHalfyearOfMonth( YearMonth.October ));
-			Assert.Equal(YearHalfyear.Second, TimeTool.GetHalfyearOfMonth( YearMonth.November ));
-			Assert.Equal(YearHalfyear.Second, TimeTool.GetHalfyearOfMonth( YearMonth.December ));
-		} // GetCalendarHalfyearOfMonthTest
+			Assert.Equal(YearHalfYear.Second, TimeTool.GetHalfYearOfMonth( YearMonth.July ));
+			Assert.Equal(YearHalfYear.Second, TimeTool.GetHalfYearOfMonth( YearMonth.August ));
+			Assert.Equal(YearHalfYear.Second, TimeTool.GetHalfYearOfMonth( YearMonth.September ));
+			Assert.Equal(YearHalfYear.Second, TimeTool.GetHalfYearOfMonth( YearMonth.October ));
+			Assert.Equal(YearHalfYear.Second, TimeTool.GetHalfYearOfMonth( YearMonth.November ));
+			Assert.Equal(YearHalfYear.Second, TimeTool.GetHalfYearOfMonth( YearMonth.December ));
+		} // GetCalendarHalfYearOfMonthTest
 
         // ----------------------------------------------------------------------
         [Trait("Category", "TimeTool")]
         [Fact]
-		public void GetHalfyearOfMonthTest()
+		public void GetHalfYearOfMonthTest()
 		{
-			Assert.Equal(YearHalfyear.First, TimeTool.GetHalfyearOfMonth( YearMonth.October, YearMonth.October ));
-			Assert.Equal(YearHalfyear.First, TimeTool.GetHalfyearOfMonth( YearMonth.October, YearMonth.November ));
-			Assert.Equal(YearHalfyear.First, TimeTool.GetHalfyearOfMonth( YearMonth.October, YearMonth.December ));
-			Assert.Equal(YearHalfyear.First, TimeTool.GetHalfyearOfMonth( YearMonth.October, YearMonth.January ));
-			Assert.Equal(YearHalfyear.First, TimeTool.GetHalfyearOfMonth( YearMonth.October, YearMonth.February ));
-			Assert.Equal(YearHalfyear.First, TimeTool.GetHalfyearOfMonth( YearMonth.October, YearMonth.March ));
+			Assert.Equal(YearHalfYear.First, TimeTool.GetHalfYearOfMonth( YearMonth.October, YearMonth.October ));
+			Assert.Equal(YearHalfYear.First, TimeTool.GetHalfYearOfMonth( YearMonth.October, YearMonth.November ));
+			Assert.Equal(YearHalfYear.First, TimeTool.GetHalfYearOfMonth( YearMonth.October, YearMonth.December ));
+			Assert.Equal(YearHalfYear.First, TimeTool.GetHalfYearOfMonth( YearMonth.October, YearMonth.January ));
+			Assert.Equal(YearHalfYear.First, TimeTool.GetHalfYearOfMonth( YearMonth.October, YearMonth.February ));
+			Assert.Equal(YearHalfYear.First, TimeTool.GetHalfYearOfMonth( YearMonth.October, YearMonth.March ));
 
-			Assert.Equal(YearHalfyear.Second, TimeTool.GetHalfyearOfMonth( YearMonth.October, YearMonth.April ));
-			Assert.Equal(YearHalfyear.Second, TimeTool.GetHalfyearOfMonth( YearMonth.October, YearMonth.May ));
-			Assert.Equal(YearHalfyear.Second, TimeTool.GetHalfyearOfMonth( YearMonth.October, YearMonth.June ));
-			Assert.Equal(YearHalfyear.Second, TimeTool.GetHalfyearOfMonth( YearMonth.October, YearMonth.July ));
-			Assert.Equal(YearHalfyear.Second, TimeTool.GetHalfyearOfMonth( YearMonth.October, YearMonth.August ));
-			Assert.Equal(YearHalfyear.Second, TimeTool.GetHalfyearOfMonth( YearMonth.October, YearMonth.September ));
-		} // GetHalfyearOfMonthTest
+			Assert.Equal(YearHalfYear.Second, TimeTool.GetHalfYearOfMonth( YearMonth.October, YearMonth.April ));
+			Assert.Equal(YearHalfYear.Second, TimeTool.GetHalfYearOfMonth( YearMonth.October, YearMonth.May ));
+			Assert.Equal(YearHalfYear.Second, TimeTool.GetHalfYearOfMonth( YearMonth.October, YearMonth.June ));
+			Assert.Equal(YearHalfYear.Second, TimeTool.GetHalfYearOfMonth( YearMonth.October, YearMonth.July ));
+			Assert.Equal(YearHalfYear.Second, TimeTool.GetHalfYearOfMonth( YearMonth.October, YearMonth.August ));
+			Assert.Equal(YearHalfYear.Second, TimeTool.GetHalfYearOfMonth( YearMonth.October, YearMonth.September ));
+		} // GetHalfYearOfMonthTest
 
         // ----------------------------------------------------------------------
         [Trait("Category", "TimeTool")]
         [Fact]
-		public void GetMonthsOfHalfyearTest()
+		public void GetMonthsOfHalfYearTest()
 		{
-			Assert.Equal( TimeTool.GetMonthsOfHalfyear( YearHalfyear.First ), TimeSpec.FirstHalfyearMonths );
-			Assert.Equal( TimeTool.GetMonthsOfHalfyear( YearHalfyear.Second ), TimeSpec.SecondHalfyearMonths );
+			Assert.Equal( TimeTool.GetMonthsOfHalfYear( YearHalfYear.First ), TimeSpec.FirstHalfYearMonths );
+			Assert.Equal( TimeTool.GetMonthsOfHalfYear( YearHalfYear.Second ), TimeSpec.SecondHalfYearMonths );
 		} // GetMonthsOfQuarterTest
 
         #endregion

@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -23,8 +24,8 @@ namespace Itenso.TimePeriod
 		} // DayHourRange
 
 		// ----------------------------------------------------------------------
-		public DayHourRange( DayOfWeek day, int startHour, int endHour ) :
-			base( new Time( startHour ), new Time( endHour ) )
+		public DayHourRange( DayOfWeek day, int hour, int endHour ) :
+			base( new Time( hour ), new Time( endHour ) )
 		{
 			this.day = day;
 		} // DayHourRange
@@ -37,10 +38,7 @@ namespace Itenso.TimePeriod
 		} // DayHourRange
 
 		// ----------------------------------------------------------------------
-		public DayOfWeek Day
-		{
-			get { return day; }
-		} // Day
+		public DayOfWeek Day => day; // Day
 
 		// ----------------------------------------------------------------------
 		public override string ToString()

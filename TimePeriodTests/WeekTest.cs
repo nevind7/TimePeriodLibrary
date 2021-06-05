@@ -6,12 +6,13 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Globalization;
-using Itenso.TimePeriod;
+using TimePeriod;
 using Xunit;
 
-namespace Itenso.TimePeriodTests
+namespace TimePeriodTests.Core
 {
 
 	// ------------------------------------------------------------------------
@@ -51,11 +52,11 @@ namespace Itenso.TimePeriodTests
         [Fact]
 		public void EnAuCultureTest()
 		{
-			CultureInfo cultureInfo = new CultureInfo( "en-AU" );
-			//	cultureInfo.DateTimeFormat.CalendarWeekRule = CalendarWeekRule.FirstFourDayWeek;
-			TimeCalendar calendar = new TimeCalendar( new TimeCalendarConfig { Culture = cultureInfo } );
-			Week week = new Week( new DateTime( 2011, 4, 1, 9, 0, 0 ), calendar );
-			Assert.Equal( week.Start, new DateTime( 2011, 3, 28 ) );
+            CultureInfo cultureInfo = new CultureInfo( "en-AU" ); //First day of week is Sunday
+            //	cultureInfo.DateTimeFormat.CalendarWeekRule = CalendarWeekRule.FirstFourDayWeek;
+            TimeCalendar calendar = new TimeCalendar( new TimeCalendarConfig { Culture = cultureInfo } );
+            Week week = new Week( new DateTime( 2011, 4, 1, 9, 0, 0 ), calendar );
+            Assert.Equal( week.Start, new DateTime( 2011, 3, 27 ) );
 		} // EnAuCultureTest
 
         // ----------------------------------------------------------------------

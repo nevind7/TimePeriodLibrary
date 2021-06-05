@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -16,85 +17,52 @@ namespace Itenso.TimePeriod
 	{
 
 		// ----------------------------------------------------------------------
-		protected MinuteTimeRange( int startYear, int startMonth, int startDay, int startHour, int startMinute, int minuteCount ) :
-			this( startYear, startMonth, startDay, startHour, startMinute, minuteCount, new TimeCalendar() )
+		protected MinuteTimeRange( int year, int month, int day, int hour, int minute, int minuteCount ) :
+			this( year, month, day, hour, minute, minuteCount, new TimeCalendar() )
 		{
 		} // MinuteTimeRange
 
 		// ----------------------------------------------------------------------
-		protected MinuteTimeRange( int startYear, int startMonth, int startDay, int startHour, int startMinute, int minuteCount, ITimeCalendar calendar ) :
-			base( GetPeriodOf( startYear, startMonth, startDay, startHour, startMinute, minuteCount ), calendar )
+		protected MinuteTimeRange( int year, int month, int day, int hour, int minute, int minuteCount, ITimeCalendar calendar ) :
+			base( GetPeriodOf( year, month, day, hour, minute, minuteCount ), calendar )
 		{
-			this.startMinute = new DateTime( startYear, startMonth, startDay, startHour, startMinute, 0 );
+			this.minute = new DateTime( year, month, day, hour, minute, 0 );
 			this.minuteCount = minuteCount;
-			endMinute = this.startMinute.AddMinutes( minuteCount );
+			endMinute = this.minute.AddMinutes( minuteCount );
 		} // MinuteTimeRange
 
 		// ----------------------------------------------------------------------
-		public int StartYear
-		{
-			get { return startMinute.Year; }
-		} // StartYear
+		public int StartYear => minute.Year; // StartYear
 
 		// ----------------------------------------------------------------------
-		public int StartMonth
-		{
-			get { return startMinute.Month; }
-		} // StartMonth
+		public int StartMonth => minute.Month; // StartMonth
 
 		// ----------------------------------------------------------------------
-		public int StartDay
-		{
-			get { return startMinute.Day; }
-		} // StartDay
+		public int StartDay => minute.Day; // StartDay
 
 		// ----------------------------------------------------------------------
-		public int StartHour
-		{
-			get { return startMinute.Hour; }
-		} // StartHour
+		public int StartHour => minute.Hour; // StartHour
 
 		// ----------------------------------------------------------------------
-		public int StartMinute
-		{
-			get { return startMinute.Minute; }
-		} // StartMinute
+		public int StartMinute => minute.Minute; // StartMinute
 
 		// ----------------------------------------------------------------------
-		public int EndYear
-		{
-			get { return endMinute.Year; }
-		} // EndYear
+		public int EndYear => endMinute.Year; // EndYear
 
 		// ----------------------------------------------------------------------
-		public int EndMonth
-		{
-			get { return endMinute.Month; }
-		} // EndMonth
+		public int EndMonth => endMinute.Month; // EndMonth
 
 		// ----------------------------------------------------------------------
-		public int EndDay
-		{
-			get { return endMinute.Day; }
-		} // EndDay
+		public int EndDay => endMinute.Day; // EndDay
 
 		// ----------------------------------------------------------------------
-		public int EndHour
-		{
-			get { return endMinute.Hour; }
-		} // EndHour
+		public int EndHour => endMinute.Hour; // EndHour
 
 		// ----------------------------------------------------------------------
-		public int EndMinute
-		{
-			get { return endMinute.Minute; }
-		} // EndMinute
+		public int EndMinute => endMinute.Minute; // EndMinute
 
 		// ----------------------------------------------------------------------
-		public int MinuteCount
-		{
-			get { return minuteCount; }
-		} // MinuteCount
+		public int MinuteCount => minuteCount; // MinuteCount
 
 		// ----------------------------------------------------------------------
 		protected override bool IsEqual( object obj )
@@ -105,13 +73,13 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		private bool HasSameData( MinuteTimeRange comp )
 		{
-			return startMinute == comp.startMinute && minuteCount == comp.minuteCount && endMinute == comp.endMinute;
+			return minute == comp.minute && minuteCount == comp.minuteCount && endMinute == comp.endMinute;
 		} // HasSameData
 
 		// ----------------------------------------------------------------------
 		protected override int ComputeHashCode()
 		{
-			return HashTool.ComputeHashCode( base.ComputeHashCode(), startMinute, minuteCount, endMinute );
+			return HashTool.ComputeHashCode( base.ComputeHashCode(), minute, minuteCount, endMinute );
 		} // ComputeHashCode
 
 		// ----------------------------------------------------------------------
@@ -129,7 +97,7 @@ namespace Itenso.TimePeriod
 
 		// ----------------------------------------------------------------------
 		// members
-		private readonly DateTime startMinute;
+		private readonly DateTime minute;
 		private readonly int minuteCount;
 		private readonly DateTime endMinute; // cache
 

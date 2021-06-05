@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -16,94 +17,61 @@ namespace Itenso.TimePeriod
 	{
 
 		// ----------------------------------------------------------------------
-		protected DayTimeRange( int startYear, int startMonth, int startDay, int dayCount ) :
-			this( startYear, startMonth, startDay, dayCount, new TimeCalendar() )
+		protected DayTimeRange( int year, int month, int day, int dayCount ) :
+			this( year, month, day, dayCount, new TimeCalendar() )
 		{
 		} // DayTimeRange
 
 		// ----------------------------------------------------------------------
-		protected DayTimeRange( int startYear, int startMonth, int startDay, int dayCount, ITimeCalendar calendar ) :
-			base( GetPeriodOf( startYear, startMonth, startDay, dayCount ), calendar )
+		protected DayTimeRange( int year, int month, int day, int dayCount, ITimeCalendar calendar ) :
+			base( GetPeriodOf( year, month, day, dayCount ), calendar )
 		{
-			this.startDay = new DateTime( startYear, startMonth, startDay );
+			this.day = new DateTime( year, month, day );
 			this.dayCount = dayCount;
-			endDay = calendar.MapEnd( this.startDay.AddDays( dayCount ) );
+			endDay = calendar.MapEnd( this.day.AddDays( dayCount ) );
 		} // DayTimeRange
 
 		// ----------------------------------------------------------------------
-		public int StartYear
-		{
-			get { return startDay.Year; }
-		} // StartYear
+		public int StartYear => day.Year; // StartYear
 
 		// ----------------------------------------------------------------------
-		public int StartMonth
-		{
-			get { return startDay.Month; }
-		} // StartMonth
+		public int StartMonth => day.Month; // StartMonth
 
 		// ----------------------------------------------------------------------
-		public int StartDay
-		{
-			get { return startDay.Day; }
-		} // StartDay
+		public int StartDay => day.Day; // StartDay
 
 		// ----------------------------------------------------------------------
-		public int EndYear
-		{
-			get { return endDay.Year; }
-		} // EndYear
+		public int EndYear => endDay.Year; // EndYear
 
 		// ----------------------------------------------------------------------
-		public int EndMonth
-		{
-			get { return endDay.Month; }
-		} // EndMonth
+		public int EndMonth => endDay.Month; // EndMonth
 
 		// ----------------------------------------------------------------------
-		public int EndDay
-		{
-			get { return endDay.Day; }
-		} // EndDay
+		public int EndDay => endDay.Day; // EndDay
 
 		// ----------------------------------------------------------------------
-		public int DayCount
-		{
-			get { return dayCount; }
-		} // DayCount
+		public int DayCount => dayCount; // DayCount
 
 		// ----------------------------------------------------------------------
-		public DayOfWeek StartDayOfWeek
-		{
-			get { return Calendar.GetDayOfWeek( startDay ); }
-		} // StartDayOfWeek
+		public DayOfWeek StartDayOfWeek => Calendar.GetDayOfWeek( day ); // StartDayOfWeek
 
 		// ----------------------------------------------------------------------
-		public string StartDayName
-		{
-			get { return Calendar.GetDayName( StartDayOfWeek ); }
-		} // StartDayName
+		public string StartDayName => Calendar.GetDayName( StartDayOfWeek ); // StartDayName
 
 		// ----------------------------------------------------------------------
-		public DayOfWeek EndDayOfWeek
-		{
-			get { return Calendar.GetDayOfWeek( endDay ); }
-		} // EndDayOfWeek
+		public DayOfWeek EndDayOfWeek => Calendar.GetDayOfWeek( endDay ); // EndDayOfWeek
 
 		// ----------------------------------------------------------------------
-		public string EndDayName
-		{
-			get { return Calendar.GetDayName( EndDayOfWeek ); }
-		} // EndDayName
+		public string EndDayName => Calendar.GetDayName( EndDayOfWeek ); // EndDayName
 
 		// ----------------------------------------------------------------------
 		public ITimePeriodCollection GetHours()
 		{
 			TimePeriodCollection hours = new TimePeriodCollection();
-			DateTime startDate = startDay;
+			DateTime date = day;
 			for ( int day = 0; day < dayCount; day++ )
 			{
-				DateTime curDay = startDate.AddDays( day );
+				DateTime curDay = date.AddDays( day );
 				for ( int hour = 0; hour < TimeSpec.HoursPerDay; hour++ )
 				{
 					hours.Add( new Hour( curDay.AddHours( hour ), Calendar ) );
@@ -122,7 +90,7 @@ namespace Itenso.TimePeriod
 		private bool HasSameData( DayTimeRange comp )
 		{
 			return 
-				startDay == comp.startDay && 
+				day == comp.day && 
 				dayCount == comp.dayCount && 
 				endDay == comp.endDay;
 		} // HasSameData
@@ -130,7 +98,7 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		protected override int ComputeHashCode()
 		{
-			return HashTool.ComputeHashCode( base.ComputeHashCode(), startDay, dayCount, endDay );
+			return HashTool.ComputeHashCode( base.ComputeHashCode(), day, dayCount, endDay );
 		} // ComputeHashCode
 
 		// ----------------------------------------------------------------------
@@ -148,7 +116,7 @@ namespace Itenso.TimePeriod
 
 		// ----------------------------------------------------------------------
 		// members
-		private readonly DateTime startDay;
+		private readonly DateTime day;
 		private readonly int dayCount;
 		private readonly DateTime endDay; // cache
 

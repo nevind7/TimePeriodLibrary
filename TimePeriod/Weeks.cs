@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -28,14 +29,14 @@ namespace Itenso.TimePeriod
 		} // Weeks
 
 		// ----------------------------------------------------------------------
-		public Weeks( int year, int startWeek, int count ) :
-			this( year, startWeek, count, new TimeCalendar() )
+		public Weeks( int year, int week, int count ) :
+			this( year, week, count, new TimeCalendar() )
 		{
 		} // Weeks
 
 		// ----------------------------------------------------------------------
-		public Weeks( int year, int startWeek, int count, ITimeCalendar calendar ) :
-			base( year, startWeek, count, calendar )
+		public Weeks( int year, int week, int count, ITimeCalendar calendar ) :
+			base( year, week, count, calendar )
 		{
 		} // Weeks
 

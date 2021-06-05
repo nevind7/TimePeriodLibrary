@@ -6,11 +6,12 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Collections.Generic;
-using Itenso.TimePeriod;
+using TimePeriod;
 
-namespace Itenso.TimePeriodDemo.Thermostat
+namespace TimePeriodDemo.Thermostat
 {
 
 	// ------------------------------------------------------------------------
@@ -28,16 +29,10 @@ namespace Itenso.TimePeriodDemo.Thermostat
 		} // ScheduleCalculator
 
 		// ----------------------------------------------------------------------
-		public ITimePeriodCollection Holidays
-		{
-			get { return holidays; }
-		} // Holidays
+		public ITimePeriodCollection Holidays => holidays; // Holidays
 
 		// ----------------------------------------------------------------------
-		public ScheduleWeek<T> Week
-		{
-			get { return week; }
-		} // Week
+		public ScheduleWeek<T> Week => week; // Week
 
 		// ----------------------------------------------------------------------
 		public DateTime CalculateNextStateChange( DateTime moment, WorkingState state )

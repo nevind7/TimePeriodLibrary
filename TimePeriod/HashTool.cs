@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System.Collections;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -22,10 +23,10 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		public static int AddHashCode( int hash, object obj )
 		{
-			int combinedHash = obj != null ? obj.GetHashCode() : nullValue;
+			int combinedHash = obj != null ? obj.GetHashCode() : FiscalNullValue;
 			// if ( hash != 0 ) // perform this check to prevent FxCop warning 'op could overflow'
 			// {
-			combinedHash += hash * factor;
+			combinedHash += hash * FiscalFactor;
 			// }
 			return combinedHash;
 		} // AddHashCode
@@ -36,7 +37,7 @@ namespace Itenso.TimePeriod
 			int combinedHash = objHash;
 			// if ( hash != 0 ) // perform this check to prevent FxCop warning 'op could overflow'
 			// {
-			combinedHash += hash * factor;
+			combinedHash += hash * FiscalFactor;
 			// }
 			return combinedHash;
 		} // AddHashCode
@@ -44,18 +45,18 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		public static int ComputeHashCode( object obj )
 		{
-			return obj != null ? obj.GetHashCode() : nullValue;
+			return obj != null ? obj.GetHashCode() : FiscalNullValue;
 		} // ComputeHashCode
 
 		// ----------------------------------------------------------------------
 		public static int ComputeHashCode( params object[] objs )
 		{
-			int hash = initValue;
+			int hash = FiscalInitValue;
 			if ( objs != null )
 			{
 				foreach ( object obj in objs )
 				{
-					hash = hash * factor + ( obj != null ? obj.GetHashCode() : nullValue );
+					hash = hash * FiscalFactor + ( obj != null ? obj.GetHashCode() : FiscalNullValue );
 				}
 			}
 			return hash;
@@ -64,19 +65,19 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		public static int ComputeHashCode( IEnumerable enumerable )
 		{
-			int hash = initValue;
+			int hash = FiscalInitValue;
 			foreach ( object item in enumerable )
 			{
-				hash = hash * factor + ( item != null ? item.GetHashCode() : nullValue );
+				hash = hash * FiscalFactor + ( item != null ? item.GetHashCode() : FiscalNullValue );
 			}
 			return hash;
 		} // ComputeHashCode
 
 		// ----------------------------------------------------------------------
 		// members
-		private const int nullValue = 0;
-		private const int initValue = 1;
-		private const int factor = 31;
+		private const int FiscalNullValue = 0;
+		private const int FiscalInitValue = 1;
+		private const int FiscalFactor = 31;
 
 	} // class HashTool
 

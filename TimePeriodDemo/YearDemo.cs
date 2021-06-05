@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
-using Itenso.TimePeriod;
 
-namespace Itenso.TimePeriodDemo
+using TimePeriod;
+
+namespace TimePeriodDemo
 {
 
 	// ------------------------------------------------------------------------
@@ -52,9 +53,9 @@ namespace Itenso.TimePeriodDemo
 				WriteLine();
 			}
 
-			foreach ( Halfyear halfyear in yearTimeRange.GetHalfyears() )
+			foreach ( HalfYear halfyear in yearTimeRange.GetHalfYears() )
 			{
-				HalfyearDemo.ShowCompactHalfyear( halfyear );
+				HalfYearDemo.ShowCompactHalfYear( halfyear );
 			}
 			WriteLine();
 			foreach ( Quarter quarter in yearTimeRange.GetQuarters() )

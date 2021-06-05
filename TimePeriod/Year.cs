@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -52,22 +53,13 @@ namespace Itenso.TimePeriod
 		} // Year
 
 		// ----------------------------------------------------------------------
-		public int YearValue
-		{
-			get { return Calendar.GetYear( BaseYear, (int)YearBaseMonth ); }
-		} // YearValue
+		public int YearValue => Calendar.GetYear( BaseYear, (int)YearBaseMonth ); // YearValue
 
 		// ----------------------------------------------------------------------
-		public string YearName
-		{
-			get { return StartYearName; }
-		} // YearName
+		public string YearName => StartYearName; // YearName
 
 		// ----------------------------------------------------------------------
-		public bool IsCalendarYear
-		{
-			get { return YearBaseMonth == TimeSpec.CalendarYearStartMonth; }
-		} // IsCalendarYearPeriod
+		public bool IsCalendarYear => YearBaseMonth == TimeSpec.CalendarYearStartMonth; // IsCalendarYearPeriod
 
 		// ----------------------------------------------------------------------
 		public Year GetPreviousYear()
@@ -84,8 +76,8 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		public Year AddYears( int count )
 		{
-			DateTime startDate = new DateTime( BaseYear, (int)YearBaseMonth, 1 );
-			return new Year( startDate.AddYears( count ), Calendar );
+			DateTime date = new DateTime( BaseYear, (int)YearBaseMonth, 1 );
+			return new Year( date.AddYears( count ), Calendar );
 		} // AddYears
 
 		// ----------------------------------------------------------------------

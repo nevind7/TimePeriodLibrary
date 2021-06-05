@@ -6,10 +6,11 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Globalization;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -19,33 +20,27 @@ namespace Itenso.TimePeriod
 		#region Year
 
 		// ----------------------------------------------------------------------
-		public static DateTime CalendarYear
-		{
-			get { return Year( TimeSpec.CalendarYearStartMonth ); }
-		} // CalendarYear
+		public static DateTime CalendarYear => Year( TimeSpec.CalendarYearStartMonth ); // CalendarYear
 
 		// ----------------------------------------------------------------------
 		public static DateTime Year( YearMonth yearStartMonth )
 		{
 			DateTime now = ClockProxy.Clock.Now;
-			int startMonth = (int)yearStartMonth;
-			int monthOffset = now.Month - startMonth;
+			int month = (int)yearStartMonth;
+			int monthOffset = now.Month - month;
 			int year = monthOffset < 0 ? now.Year - 1 : now.Year;
-			return new DateTime( year, startMonth, 1 );
+			return new DateTime( year, month, 1 );
 		} // Year
 
 		#endregion
 
-		#region Halfyear
+		#region HalfYear
 
 		// ----------------------------------------------------------------------
-		public static DateTime CalendarHalfyear
-		{
-			get { return Halfyear( TimeSpec.CalendarYearStartMonth ); }
-		} // CalendarHalfyear
+		public static DateTime CalendarHalfYear => HalfYear( TimeSpec.CalendarYearStartMonth ); // CalendarHalfYear
 
 		// ----------------------------------------------------------------------
-		public static DateTime Halfyear( YearMonth yearStartMonth )
+		public static DateTime HalfYear( YearMonth yearStartMonth )
 		{
 			DateTime now = ClockProxy.Clock.Now;
 			int year = now.Year;
@@ -53,20 +48,17 @@ namespace Itenso.TimePeriod
 			{
 				year--;
 			}
-			YearHalfyear halfyear = TimeTool.GetHalfyearOfMonth( yearStartMonth, (YearMonth)now.Month );
-			int months = ( (int)halfyear - 1 ) * TimeSpec.MonthsPerHalfyear;
+			YearHalfYear halfYear = TimeTool.GetHalfYearOfMonth( yearStartMonth, (YearMonth)now.Month );
+			int months = ( (int)halfYear - 1 ) * TimeSpec.MonthsPerHalfYear;
 			return new DateTime( year, (int)yearStartMonth, 1 ).AddMonths( months );
-		} // Halfyear
+		} // HalfYear
 
 		#endregion
 
 		#region Quarter
 
 		// ----------------------------------------------------------------------
-		public static DateTime CalendarQuarter
-		{
-			get { return Quarter( TimeSpec.CalendarYearStartMonth ); }
-		} // CalendarQuarter
+		public static DateTime CalendarQuarter => Quarter( TimeSpec.CalendarYearStartMonth ); // CalendarQuarter
 
 		// ----------------------------------------------------------------------
 		public static DateTime Quarter( YearMonth yearStartMonth )
@@ -87,16 +79,10 @@ namespace Itenso.TimePeriod
 		#region Month
 
 		// ----------------------------------------------------------------------
-		public static DateTime Month
-		{
-			get { return TimeTrim.Day( ClockProxy.Clock.Now ); }
-		} // Month
+		public static DateTime Month => TimeTrim.Day( ClockProxy.Clock.Now ); // Month
 
 		// ----------------------------------------------------------------------
-		public static YearMonth YearMonth
-		{
-			get { return (YearMonth)ClockProxy.Clock.Now.Month; }
-		} // YearMonth
+		public static YearMonth YearMonth => (YearMonth)ClockProxy.Clock.Now.Month; // YearMonth
 
 		#endregion
 
@@ -124,40 +110,28 @@ namespace Itenso.TimePeriod
 		#region Day
 
 		// ----------------------------------------------------------------------
-		public static DateTime Today
-		{
-			get { return ClockProxy.Clock.Now.Date; }
-		} // Today
+		public static DateTime Today => ClockProxy.Clock.Now.Date; // Today
 
 		#endregion
 
 		#region Hour
 
 		// ----------------------------------------------------------------------
-		public static DateTime Hour
-		{
-			get { return TimeTrim.Minute( ClockProxy.Clock.Now ); }
-		} // Hour
+		public static DateTime Hour => TimeTrim.Minute( ClockProxy.Clock.Now ); // Hour
 
 		#endregion
 
 		#region Minute
 
 		// ----------------------------------------------------------------------
-		public static DateTime Minute
-		{
-			get { return TimeTrim.Second( ClockProxy.Clock.Now ); }
-		} // Minute
+		public static DateTime Minute => TimeTrim.Second( ClockProxy.Clock.Now ); // Minute
 
 		#endregion
 
 		#region Second
 
 		// ----------------------------------------------------------------------
-		public static DateTime Second
-		{
-			get { return TimeTrim.Millisecond( ClockProxy.Clock.Now ); }
-		} // Second
+		public static DateTime Second => TimeTrim.Millisecond( ClockProxy.Clock.Now ); // Second
 
 		#endregion
 

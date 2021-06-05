@@ -6,14 +6,14 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
-using System;
-#if (!PCL)
-using System.ComponentModel;
-#endif
-using Itenso.TimePeriod;
-using Xunit;
 
-namespace Itenso.TimePeriodTests
+using System;
+using TimePeriod;
+using Xunit;
+#if (!PCL)
+#endif
+
+namespace TimePeriodTests.Core
 {
 
 	// ------------------------------------------------------------------------
@@ -24,9 +24,9 @@ namespace Itenso.TimePeriodTests
 		// ----------------------------------------------------------------------
 		public TimePeriodCollectionTest()
 		{
-			startTestData = ClockProxy.Clock.Now;
-			endTestData = startTestData.Add( durationTesData );
-			timeRangeTestData = new TimeRangePeriodRelationTestData( startTestData, endTestData, offsetTestData );
+			testData = ClockProxy.Clock.Now;
+			endTestData = testData.Add( durationTesData );
+			timeRangeTestData = new TimeRangePeriodRelationTestData( testData, endTestData, offsetTestData );
 		} // TimePeriodCollectionTest
 
         // ----------------------------------------------------------------------
@@ -703,14 +703,14 @@ namespace Itenso.TimePeriodTests
 			SchoolDay schoolDay = new SchoolDay( now );
 			TimePeriodCollection timePeriods = new TimePeriodCollection( schoolDay );
 
-			DateTime startDate = schoolDay.Start;
+			DateTime date = schoolDay.Start;
 			DateTime endDate = schoolDay.End;
-			TimeSpan startDuration = timePeriods.Duration;
+			TimeSpan duration = timePeriods.Duration;
 
-			TimeSpan duration = Duration.Hour;
+			TimeSpan startDuration = duration;
 			timePeriods.Move( duration );
 
-			Assert.Equal( timePeriods.Start, startDate.Add( duration ) );
+			Assert.Equal( timePeriods.Start, date.Add( duration ) );
 			Assert.Equal( timePeriods.End, endDate.Add( duration ) );
 			Assert.Equal( timePeriods.Duration, startDuration );
 		} // MoveTest
@@ -1050,7 +1050,7 @@ namespace Itenso.TimePeriodTests
 		// ----------------------------------------------------------------------
 		// members
 		private readonly TimeSpan durationTesData = Duration.Hour;
-		private readonly DateTime startTestData;
+		private readonly DateTime testData;
 		private readonly DateTime endTestData;
 		private readonly TimeSpan offsetTestData = Duration.Millisecond;
 		private readonly TimeRangePeriodRelationTestData timeRangeTestData;

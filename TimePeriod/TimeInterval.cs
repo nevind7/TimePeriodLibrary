@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -27,29 +28,29 @@ namespace Itenso.TimePeriod
 
 		// ----------------------------------------------------------------------
 		public TimeInterval( DateTime moment,
-			IntervalEdge startEdge = IntervalEdge.Closed, IntervalEdge endEdge = IntervalEdge.Closed,
+			IntervalEdge edge = IntervalEdge.Closed, IntervalEdge endEdge = IntervalEdge.Closed,
 			bool isIntervalEnabled = true, bool isReadOnly = false ) :
-			this( moment, moment, startEdge, endEdge, isIntervalEnabled, isReadOnly )
+			this( moment, moment, edge, endEdge, isIntervalEnabled, isReadOnly )
 		{
 		} // TimeInterval
 
 		// ----------------------------------------------------------------------
-		public TimeInterval( DateTime startInterval, DateTime endInterval,
-			IntervalEdge startEdge = IntervalEdge.Closed, IntervalEdge endEdge = IntervalEdge.Closed, 
+		public TimeInterval( DateTime interval, DateTime endInterval,
+			IntervalEdge edge = IntervalEdge.Closed, IntervalEdge endEdge = IntervalEdge.Closed, 
 			bool isIntervalEnabled = true, bool isReadOnly = false )
 		{
-			if ( startInterval <= endInterval )
+			if ( interval <= endInterval )
 			{
-				this.startInterval = startInterval;
+				this.interval = interval;
 				this.endInterval = endInterval;
 			}
 			else
 			{
-				this.endInterval = startInterval;
-				this.startInterval = endInterval;
+				this.endInterval = interval;
+				this.interval = endInterval;
 			}
 
-			this.startEdge = startEdge;
+			this.edge = edge;
 			this.endEdge = endEdge;
 
 			this.isIntervalEnabled = isIntervalEnabled;
@@ -66,15 +67,15 @@ namespace Itenso.TimePeriod
 			ITimeInterval timeInterval = copy as ITimeInterval;
 			if ( timeInterval != null )
 			{
-				startInterval = timeInterval.StartInterval;
+				interval = timeInterval.StartInterval;
 				endInterval = timeInterval.EndInterval;
-				startEdge = timeInterval.StartEdge;
+				edge = timeInterval.StartEdge;
 				endEdge = timeInterval.EndEdge;
 				isIntervalEnabled = timeInterval.IsIntervalEnabled;
 			}
 			else
 			{
-				startInterval = copy.Start;
+				interval = copy.Start;
 				endInterval = copy.End;
 			}
 
@@ -91,91 +92,58 @@ namespace Itenso.TimePeriod
 			ITimeInterval timeInterval = copy as ITimeInterval;
 			if ( timeInterval != null )
 			{
-				startInterval = timeInterval.StartInterval;
+				interval = timeInterval.StartInterval;
 				endInterval = timeInterval.EndInterval;
-				startEdge = timeInterval.StartEdge;
+				edge = timeInterval.StartEdge;
 				endEdge = timeInterval.EndEdge;
 				isIntervalEnabled = timeInterval.IsIntervalEnabled;
 			}
 			else
 			{
-				startInterval = copy.Start;
+				interval = copy.Start;
 				endInterval = copy.End;
 			}
 			this.isReadOnly = isReadOnly;
 		} // TimeInterval
 
 		// ----------------------------------------------------------------------
-		public bool IsReadOnly
-		{
-			get { return isReadOnly; }
-		} // IsReadOnly
+		public bool IsReadOnly => isReadOnly; // IsReadOnly
 
 		// ----------------------------------------------------------------------
-		public bool IsAnytime
-		{
-			get { return !HasStart && !HasEnd; }
-		} // IsAnytime
+		public bool IsAnytime => !HasStart && !HasEnd; // IsAnytime
 
 		// ----------------------------------------------------------------------
-		public bool IsMoment
-		{
-			get { return startInterval.Equals( endInterval ); }
-		} // IsMoment
+		public bool IsMoment => interval.Equals( endInterval ); // IsMoment
 
 		// ----------------------------------------------------------------------
-		public bool IsStartOpen
-		{
-			get { return startEdge == IntervalEdge.Open; }
-		} // IsOpen
+		public bool IsStartOpen => edge == IntervalEdge.Open; // IsOpen
 
 		// ----------------------------------------------------------------------
-		public bool IsEndOpen
-		{
-			get { return endEdge == IntervalEdge.Open; }
-		} // IsStartOpen
+		public bool IsEndOpen => endEdge == IntervalEdge.Open; // IsStartOpen
 
 		// ----------------------------------------------------------------------
-		public bool IsOpen
-		{
-			get { return IsStartOpen && IsEndOpen; }
-		} // IsOpen
+		public bool IsOpen => IsStartOpen && IsEndOpen; // IsOpen
 
 		// ----------------------------------------------------------------------
-		public bool IsStartClosed
-		{
-			get { return startEdge == IntervalEdge.Closed; }
-		} // IsStartClosed
+		public bool IsStartClosed => edge == IntervalEdge.Closed; // IsStartClosed
 
 	// ----------------------------------------------------------------------
-		public bool IsEndClosed
-		{
-			get { return endEdge == IntervalEdge.Closed; }
-		} // IsEndClosed
+		public bool IsEndClosed => endEdge == IntervalEdge.Closed; // IsEndClosed
 
 		// ----------------------------------------------------------------------
-		public bool IsClosed
-		{
-			get { return IsStartClosed && IsEndClosed; }
-		} // IsClosed
+		public bool IsClosed => IsStartClosed && IsEndClosed; // IsClosed
 
 		// ----------------------------------------------------------------------
-		public bool IsEmpty
-		{
-			get { return IsMoment && !IsClosed; }
-		} // IsMoment
+		public bool IsEmpty => IsMoment && !IsClosed; // IsMoment
 
 		// ----------------------------------------------------------------------
-		public bool IsDegenerate
-		{
-			get { return IsMoment && IsClosed; }
-		} // IsDegenerate
+		public bool IsDegenerate => IsMoment && IsClosed; // IsDegenerate
 
 		// ----------------------------------------------------------------------
 		public bool IsIntervalEnabled
 		{
-			get { return isIntervalEnabled; }
-			set
+			get => isIntervalEnabled;
+            set
 			{
 				CheckModification();
 				isIntervalEnabled = value;
@@ -183,23 +151,20 @@ namespace Itenso.TimePeriod
 		} // IsIntervalEnabled
 
 		// ----------------------------------------------------------------------
-		public bool HasStart
-		{
-			get { return !( startInterval == TimeSpec.MinPeriodDate && startEdge == IntervalEdge.Closed ); }
-		} // HasStart
+		public bool HasStart => !( interval == TimeSpec.MinPeriodDate && edge == IntervalEdge.Closed ); // HasStart
 
 		// ----------------------------------------------------------------------
 		public DateTime StartInterval
 		{
-			get { return startInterval; }
-			set
+			get => interval;
+            set
 			{
 				CheckModification();
 				if ( value > endInterval )
 				{
 					throw new ArgumentOutOfRangeException( "value" );
 				}
-				startInterval = value;
+				interval = value;
 			}
 		} // StartInterval
 
@@ -208,39 +173,36 @@ namespace Itenso.TimePeriod
 		{
 			get
 			{
-				if ( isIntervalEnabled && startEdge == IntervalEdge.Open )
+				if ( isIntervalEnabled && edge == IntervalEdge.Open )
 				{
-					return startInterval.AddTicks( 1 );
+					return interval.AddTicks( 1 );
 				}
-				return startInterval;
+				return interval;
 			}
 		} // Start
 
 		// ----------------------------------------------------------------------
 		public IntervalEdge StartEdge
 		{
-			get { return startEdge; }
-			set
+			get => edge;
+            set
 			{
 				CheckModification();
-				startEdge = value;
+				edge = value;
 			}
 		} // StartEdge
 
 		// ----------------------------------------------------------------------
-		public bool HasEnd
-		{
-			get { return !( endInterval == TimeSpec.MaxPeriodDate && endEdge == IntervalEdge.Closed ); }
-		} // HasEnd
+		public bool HasEnd => !( endInterval == TimeSpec.MaxPeriodDate && endEdge == IntervalEdge.Closed ); // HasEnd
 
 		// ----------------------------------------------------------------------
 		public DateTime EndInterval
 		{
-			get { return endInterval; }
-			set
+			get => endInterval;
+            set
 			{
 				CheckModification();
-				if ( value < startInterval )
+				if ( value < interval )
 				{
 					throw new ArgumentOutOfRangeException( "value" );
 				}
@@ -264,8 +226,8 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		public IntervalEdge EndEdge
 		{
-			get { return endEdge; }
-			set
+			get => endEdge;
+            set
 			{
 				CheckModification();
 				endEdge = value;
@@ -273,16 +235,10 @@ namespace Itenso.TimePeriod
 		} // EndEdge
 
 		// ----------------------------------------------------------------------
-		public TimeSpan Duration
-		{
-			get { return endInterval.Subtract( startInterval ); }
-		} // Duration
+		public TimeSpan Duration => endInterval.Subtract( interval ); // Duration
 
 		// ----------------------------------------------------------------------
-		public string DurationDescription
-		{
-			get { return TimeFormatter.Instance.GetDuration( Duration, DurationFormatType.Detailed ); }
-		} // DurationDescription
+		public string DurationDescription => TimeFormatter.Instance.GetDuration( Duration, DurationFormatType.Detailed ); // DurationDescription
 
 		// ----------------------------------------------------------------------
 		public virtual TimeSpan GetDuration( IDurationProvider provider )
@@ -300,13 +256,13 @@ namespace Itenso.TimePeriod
 			CheckModification();
 			if ( newStartInterval <= newEndInterval )
 			{
-				startInterval = newStartInterval;
+				interval = newStartInterval;
 				endInterval = newEndInterval;
 			}
 			else
 			{
 				endInterval = newStartInterval;
-				startInterval = newEndInterval;
+				interval = newEndInterval;
 			}
 		} // Setup
 
@@ -346,9 +302,9 @@ namespace Itenso.TimePeriod
 		public virtual ITimeInterval Copy( TimeSpan offset )
 		{
 			return new TimeInterval( 
-				startInterval.Add( offset ), 
+				interval.Add( offset ), 
 				endInterval.Add( offset ),
-				startEdge, 
+				edge, 
 				endEdge,
 				IsIntervalEnabled,
 				IsReadOnly );
@@ -362,7 +318,7 @@ namespace Itenso.TimePeriod
 			{
 				return;
 			}
-			startInterval = startInterval.Add( offset );
+			interval = interval.Add( offset );
 			endInterval = endInterval.Add( offset );
 		} // Move
 
@@ -370,9 +326,9 @@ namespace Itenso.TimePeriod
 		public virtual void ExpandStartTo( DateTime moment )
 		{
 			CheckModification();
-			if ( startInterval > moment )
+			if ( interval > moment )
 			{
-				startInterval = moment;
+				interval = moment;
 			}
 		} // ExpandStartTo
 
@@ -417,9 +373,9 @@ namespace Itenso.TimePeriod
 		public virtual void ShrinkStartTo( DateTime moment )
 		{
 			CheckModification();
-			if ( HasInside( moment ) && startInterval < moment )
+			if ( HasInside( moment ) && interval < moment )
 			{
-				startInterval = moment;
+				interval = moment;
 			}
 		} // ShrinkStartTo
 
@@ -527,9 +483,9 @@ namespace Itenso.TimePeriod
 		{
 			CheckModification();
 			isIntervalEnabled = true;
-			startInterval = TimeSpec.MinPeriodDate;
+			interval = TimeSpec.MinPeriodDate;
 			endInterval = TimeSpec.MaxPeriodDate;
-			startEdge = IntervalEdge.Closed;
+			edge = IntervalEdge.Closed;
 			endEdge = IntervalEdge.Closed;
 		} // Reset
 
@@ -542,7 +498,7 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		protected virtual string Format( ITimeFormatter formatter )
 		{
-			return formatter.GetInterval( startInterval, endInterval, startEdge, endEdge, Duration );
+			return formatter.GetInterval( interval, endInterval, edge, endEdge, Duration );
 		} // Format
 
 		// ----------------------------------------------------------------------
@@ -577,9 +533,9 @@ namespace Itenso.TimePeriod
 			return
 				isReadOnly == comp.isReadOnly &&
 				isIntervalEnabled == comp.isIntervalEnabled &&
-				startInterval == comp.startInterval &&
+				interval == comp.interval &&
 				endInterval == comp.endInterval &&
-				startEdge == comp.startEdge &&
+				edge == comp.edge &&
 				endEdge == comp.endEdge;
 		} // HasSameData
 
@@ -595,9 +551,9 @@ namespace Itenso.TimePeriod
 			return HashTool.ComputeHashCode( 
 				isReadOnly,
 				isIntervalEnabled,
-				startInterval, 
+				interval, 
 				endInterval, 
-				startEdge, 
+				edge, 
 				endEdge );
 		} // ComputeHashCode
 
@@ -614,9 +570,9 @@ namespace Itenso.TimePeriod
 		// members
 		private readonly bool isReadOnly;
 		private bool isIntervalEnabled = true;
-		private DateTime startInterval;
+		private DateTime interval;
 		private DateTime endInterval;
-		private IntervalEdge startEdge;
+		private IntervalEdge edge;
 		private IntervalEdge endEdge;
 
 	} // class TimeInterval

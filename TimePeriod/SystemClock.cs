@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -21,10 +22,7 @@ namespace Itenso.TimePeriod
 		} // SystemClock
 
 		// ----------------------------------------------------------------------
-		public DateTime Now
-		{
-			get { return DateTime.Now; }
-		} // Now
+		public DateTime Now => DateTime.Now; // Now
 
 	} // class SystemClock
 

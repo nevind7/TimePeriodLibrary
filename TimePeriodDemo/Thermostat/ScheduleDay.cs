@@ -6,10 +6,11 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
-using System;
-using Itenso.TimePeriod;
 
-namespace Itenso.TimePeriodDemo.Thermostat
+using System;
+using TimePeriod;
+
+namespace TimePeriodDemo.Thermostat
 {
 
 	// ------------------------------------------------------------------------
@@ -23,16 +24,10 @@ namespace Itenso.TimePeriodDemo.Thermostat
 		} // ScheduleDay
 
 		// ----------------------------------------------------------------------
-		public ITimePeriodCollection WorkingTimes
-		{
-			get { return workingTimes; }
-		} // WorkingTimes
+		public ITimePeriodCollection WorkingTimes => workingTimes; // WorkingTimes
 
 		// ----------------------------------------------------------------------
-		public DayOfWeek DayOfWeek
-		{
-			get { return dayOfWeek; }
-		} // DayOfWeek
+		public DayOfWeek DayOfWeek => dayOfWeek; // DayOfWeek
 
 		// ----------------------------------------------------------------------
 		public ITimePeriodCollection GetWorkingPeriods( DateTime moment )

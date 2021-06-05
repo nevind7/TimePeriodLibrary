@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriodDemo
+namespace TimePeriodDemo
 {
 
 	// ------------------------------------------------------------------------
@@ -147,7 +148,7 @@ namespace Itenso.TimePeriodDemo
 							demoData.QueryPeriodCount() &&
 							demoData.QueryYear() &&
 							demoData.QueryYearBaseMonth() &&
-							demoData.QueryYearHalfyear();
+							demoData.QueryYearHalfYear();
 					case "Q":
 						Console.Clear();
 						goto case "q";
@@ -246,7 +247,7 @@ namespace Itenso.TimePeriodDemo
 					BroadcastYearDemo.ShowAll( demoData.Year );
 					break;
 				case "hy":
-					HalfyearDemo.ShowAll( demoData.PeriodCount, demoData.Year, demoData.Halfyear, demoData.CalendarConfig );
+					HalfYearDemo.ShowAll( demoData.PeriodCount, demoData.Year, demoData.HalfYear, demoData.CalendarConfig );
 					break;
 				case "q":
 					QuarterDemo.ShowAll( demoData.PeriodCount, demoData.Year, demoData.Quarter, demoData.CalendarConfig );

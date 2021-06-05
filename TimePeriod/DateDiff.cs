@@ -6,10 +6,11 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Globalization;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -86,64 +87,34 @@ namespace Itenso.TimePeriod
 			this.difference = difference;
 		} // DateDiff
 
-		public static DateTimeFormatInfo SafeCurrentInfo
-		{
-			get { return ( DateTimeFormatInfo.CurrentInfo ?? DateTimeFormatInfo.InvariantInfo ); }
-		} // SafeCurrentInfo
+		public static DateTimeFormatInfo SafeCurrentInfo => ( DateTimeFormatInfo.CurrentInfo ?? DateTimeFormatInfo.InvariantInfo ); // SafeCurrentInfo
 
 		// ----------------------------------------------------------------------
-		public Calendar Calendar
-		{
-			get { return calendar; }
-		} // Calendar
+		public Calendar Calendar => calendar; // Calendar
 
 		// ----------------------------------------------------------------------
-		public YearMonth YearBaseMonth
-		{
-			get { return yearBaseMonth; }
-		} // YearBaseMonth
+		public YearMonth YearBaseMonth => yearBaseMonth; // YearBaseMonth
 
 		// ----------------------------------------------------------------------
-		public DayOfWeek FirstDayOfWeek
-		{
-			get { return firstDayOfWeek; }
-		} // FirstDayOfWeek
+		public DayOfWeek FirstDayOfWeek => firstDayOfWeek; // FirstDayOfWeek
 
 		// ----------------------------------------------------------------------
-		public DateTime Date1
-		{
-			get { return date1; }
-		} // Date1
+		public DateTime Date1 => date1; // Date1
 
 		// ----------------------------------------------------------------------
-		public DateTime Date2
-		{
-			get { return date2; }
-		} // Date2
+		public DateTime Date2 => date2; // Date2
 
 		// ----------------------------------------------------------------------
-		public TimeSpan Difference
-		{
-			get { return difference; }
-		} // Difference
+		public TimeSpan Difference => difference; // Difference
 
 		// ----------------------------------------------------------------------
-		public bool IsEmpty
-		{
-			get { return difference == TimeSpan.Zero; }
-		} // IsEmpty
+		public bool IsEmpty => difference == TimeSpan.Zero; // IsEmpty
 
 		// ----------------------------------------------------------------------
-		private int Year1
-		{
-			get { return calendar.GetYear( Date1 ); }
-		} // Year1
+		private int Year1 => calendar.GetYear( Date1 ); // Year1
 
 		// ----------------------------------------------------------------------
-		private int Year2
-		{
-			get { return calendar.GetYear( Date2 ); }
-		} // Year2
+		private int Year2 => calendar.GetYear( Date2 ); // Year2
 
 		// ----------------------------------------------------------------------
 		public int Years
@@ -185,16 +156,10 @@ namespace Itenso.TimePeriod
 		} // Quarters
 
 		// ----------------------------------------------------------------------
-		private int Month1
-		{
-			get { return calendar.GetMonth( Date1 ); }
-		} // Month1
+		private int Month1 => calendar.GetMonth( Date1 ); // Month1
 
 		// ----------------------------------------------------------------------
-		private int Month2
-		{
-			get { return calendar.GetMonth( Date2 ); }
-		} // Month2
+		private int Month2 => calendar.GetMonth( Date2 ); // Month2
 
 		// ----------------------------------------------------------------------
 		public int Months
@@ -236,16 +201,10 @@ namespace Itenso.TimePeriod
 		} // Weeks
 
 		// ----------------------------------------------------------------------
-		public int Days
-		{
-			get { return (int)Math.Round( Round( difference.TotalDays ) ); }
-		} // Days
+		public int Days => (int)Math.Round( Round( difference.TotalDays ) ); // Days
 
 		// ----------------------------------------------------------------------
-		public int Weekdays
-		{
-			get { return ( (int)Math.Round( Round( difference.TotalDays ) ) ) / TimeSpec.DaysPerWeek; }
-		} // Weekdays
+		public int Weekdays => ( (int)Math.Round( Round( difference.TotalDays ) ) ) / TimeSpec.DaysPerWeek; // Weekdays
 
 		// ----------------------------------------------------------------------
 		public int ElapsedDays
@@ -262,10 +221,7 @@ namespace Itenso.TimePeriod
 		} // ElapsedDays
 
 		// ----------------------------------------------------------------------
-		public int Hours
-		{
-			get { return (int)Math.Round( Round( difference.TotalHours ) ); }
-		} // Hours
+		public int Hours => (int)Math.Round( Round( difference.TotalHours ) ); // Hours
 
 		// ----------------------------------------------------------------------
 		public int ElapsedHours
@@ -282,10 +238,7 @@ namespace Itenso.TimePeriod
 		} // ElapsedHours
 
 		// ----------------------------------------------------------------------
-		public int Minutes
-		{
-			get { return (int)Math.Round( Round( difference.TotalMinutes ) ); }
-		} // Minutes
+		public int Minutes => (int)Math.Round( Round( difference.TotalMinutes ) ); // Minutes
 
 		// ----------------------------------------------------------------------
 		public int ElapsedMinutes
@@ -303,10 +256,7 @@ namespace Itenso.TimePeriod
 		} // ElapsedMinutes
 
 		// ----------------------------------------------------------------------
-		public int Seconds
-		{
-			get { return (int)Math.Round( Round( difference.TotalSeconds ) ); }
-		} // Seconds
+		public int Seconds => (int)Math.Round( Round( difference.TotalSeconds ) ); // Seconds
 
 		// ----------------------------------------------------------------------
 		public int ElapsedSeconds

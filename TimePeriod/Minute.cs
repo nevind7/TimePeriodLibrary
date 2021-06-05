@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -53,34 +54,19 @@ namespace Itenso.TimePeriod
 		} // Minute
 
 		// ----------------------------------------------------------------------
-		public int Year
-		{
-			get { return StartYear; }
-		} // Year
+		public int Year => StartYear; // Year
 
 		// ----------------------------------------------------------------------
-		public int Month
-		{
-			get { return StartMonth; }
-		} // Month
+		public int Month => StartMonth; // Month
 
 		// ----------------------------------------------------------------------
-		public int Day
-		{
-			get { return StartDay; }
-		} // Day
+		public int Day => StartDay; // Day
 
 		// ----------------------------------------------------------------------
-		public int Hour
-		{
-			get { return StartHour; }
-		} // Hour
+		public int Hour => StartHour; // Hour
 
 		// ----------------------------------------------------------------------
-		public int MinuteValue
-		{
-			get { return StartMinute; }
-		} // MinuteValue
+		public int MinuteValue => StartMinute; // MinuteValue
 
 		// ----------------------------------------------------------------------
 		public Minute GetPreviousMinute()
@@ -97,8 +83,8 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		public Minute AddMinutes( int minutes )
 		{
-			DateTime startMinute = new DateTime( StartYear, StartMonth, StartDay, StartHour, StartMinute, 0 );
-			return new Minute( startMinute.AddMinutes( minutes ), Calendar );
+			DateTime minute = new DateTime( StartYear, StartMonth, StartDay, StartHour, StartMinute, 0 );
+			return new Minute( minute.AddMinutes( minutes ), Calendar );
 		} // AddMinutes
 
 		// ----------------------------------------------------------------------

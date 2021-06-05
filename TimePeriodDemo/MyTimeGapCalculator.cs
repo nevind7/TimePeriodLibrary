@@ -6,10 +6,11 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
-using System.Collections.Generic;
-using Itenso.TimePeriod;
 
-namespace Itenso.TimePeriodDemo
+using System.Collections.Generic;
+using TimePeriod;
+
+namespace TimePeriodDemo
 {
 
 	// ------------------------------------------------------------------------

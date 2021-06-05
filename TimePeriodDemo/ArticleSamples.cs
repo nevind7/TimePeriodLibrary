@@ -6,12 +6,13 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using Itenso.TimePeriod;
+using TimePeriod;
 
-namespace Itenso.TimePeriodDemo
+namespace TimePeriodDemo
 {
 
 	// ------------------------------------------------------------------------
@@ -312,14 +313,14 @@ namespace Itenso.TimePeriodDemo
 			Console.WriteLine( "Calendar Periods of {0}:", moment.ToString("d") );
 			// > Calendar Periods of 15.08.2011:
 			Console.WriteLine( "Year     : {0}", new Year( moment ) );
-			Console.WriteLine( "Halfyear : {0}", new Halfyear( moment ) );
+			Console.WriteLine( "HalfYear : {0}", new HalfYear( moment ) );
 			Console.WriteLine( "Quarter  : {0}", new Quarter( moment ) );
 			Console.WriteLine( "Month    : {0}", new Month( moment ) );
 			Console.WriteLine( "Week     : {0}", new Week( moment ) );
 			Console.WriteLine( "Day      : {0}", new Day( moment ) );
 			Console.WriteLine( "Hour     : {0}", new Hour( moment ) );
 			// > Year     : 2011; 01.01.2011 - 31.12.2011 | 364.23:59
-			// > Halfyear : HY2 2011; 01.07.2011 - 31.12.2011 | 183.23:59
+			// > HalfYear : HY2 2011; 01.07.2011 - 31.12.2011 | 183.23:59
 			// > Quarter  : Q3 2011; 01.07.2011 - 30.09.2011 | 91.23:59
 			// > Month    : August 2011; 01.08.2011 - 31.08.2011 | 30.23:59
 			// > Week     : w/c 33 2011; 15.08.2011 - 21.08.2011 | 6.23:59
@@ -358,10 +359,10 @@ namespace Itenso.TimePeriodDemo
 			Console.WriteLine( "Fiscal Year Periods of {0}:", moment.ToString("d") );
 			// > Fiscal Year Periods of 15.08.2011:
 			Console.WriteLine( "Year     : {0}", new Year( moment, fiscalCalendar ) );
-			Console.WriteLine( "Halfyear : {0}", new Halfyear( moment, fiscalCalendar ) );
+			Console.WriteLine( "HalfYear : {0}", new HalfYear( moment, fiscalCalendar ) );
 			Console.WriteLine( "Quarter  : {0}", new Quarter( moment, fiscalCalendar ) );
 			// > Year     : FY2010; 01.10.2010 - 30.09.2011 | 364.23:59
-			// > Halfyear : FHY2 2010; 01.04.2011 - 30.09.2011 | 182.23:59
+			// > HalfYear : FHY2 2010; 01.04.2011 - 30.09.2011 | 182.23:59
 			// > Quarter  : FQ4 2010; 01.07.2011 - 30.09.2011 | 91.23:59
 		} // FiscalYearTimePeriodsSample
 

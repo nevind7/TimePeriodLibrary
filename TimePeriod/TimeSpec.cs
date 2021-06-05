@@ -6,23 +6,23 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
 	public static class TimeSpec
 	{
-
 		// ----------------------------------------------------------------------
 		// relations
 		public const int MonthsPerYear = 12;
-		public const int HalfyearsPerYear = 2;
+		public const int HalfYearsPerYear = 2;
 		public const int QuartersPerYear = 4;
-		public const int QuartersPerHalfyear = QuartersPerYear / HalfyearsPerYear;
+		public const int QuartersPerHalfYear = QuartersPerYear / HalfYearsPerYear;
 		public const int MaxWeeksPerYear = 53;
-		public const int MonthsPerHalfyear = MonthsPerYear / HalfyearsPerYear;
+		public const int MonthsPerHalfYear = MonthsPerYear / HalfYearsPerYear;
 		public const int MonthsPerQuarter = MonthsPerYear / QuartersPerYear;
 		public const int MaxDaysPerMonth = 31;
 		public const int DaysPerWeek = 7;
@@ -42,8 +42,8 @@ namespace Itenso.TimePeriod
 		public const int FiscalWeeksPerLeapMonth = 6;
 		public const int FiscalWeeksPerQuarter = ( 2 * FiscalWeeksPerShortMonth ) + FiscalWeeksPerLongMonth;
 		public const int FiscalWeeksPerLeapQuarter = FiscalWeeksPerQuarter + 1;
-		public const int FiscalWeeksPerHalfyear = FiscalWeeksPerQuarter * QuartersPerHalfyear;
-		public const int FiscalWeeksPerLeapHalfyear = FiscalWeeksPerHalfyear + 1;
+		public const int FiscalWeeksPerHalfYear = FiscalWeeksPerQuarter * QuartersPerHalfYear;
+		public const int FiscalWeeksPerLeapHalfYear = FiscalWeeksPerHalfYear + 1;
 		public const int FiscalWeeksPerYear = FiscalWeeksPerQuarter * QuartersPerYear;
 		public const int FiscalWeeksPerLeapYear = FiscalWeeksPerYear + 1;
 
@@ -52,15 +52,15 @@ namespace Itenso.TimePeriod
 		public const int FiscalDaysPerLeapMonth = FiscalWeeksPerLeapMonth * DaysPerWeek;
 		public const int FiscalDaysPerQuarter = ( 2 * FiscalDaysPerShortMonth ) + FiscalDaysPerLongMonth;
 		public const int FiscalDaysPerLeapQuarter = FiscalDaysPerQuarter + DaysPerWeek;
-		public const int FiscalDaysPerHalfyear = FiscalDaysPerQuarter * QuartersPerHalfyear;
-		public const int FiscalDaysPerLeapHalfyear = FiscalDaysPerHalfyear + DaysPerWeek;
+		public const int FiscalDaysPerHalfYear = FiscalDaysPerQuarter * QuartersPerHalfYear;
+		public const int FiscalDaysPerLeapHalfYear = FiscalDaysPerHalfYear + DaysPerWeek;
 		public const int FiscalDaysPerYear = FiscalDaysPerQuarter * QuartersPerYear;
 		public const int FiscalDaysPerLeapYear = FiscalDaysPerYear + DaysPerWeek;
 
 		// ----------------------------------------------------------------------
 		// halfyear
-		public static YearMonth[] FirstHalfyearMonths = new[] { YearMonth.January, YearMonth.February, YearMonth.March, YearMonth.April, YearMonth.May, YearMonth.June };
-		public static YearMonth[] SecondHalfyearMonths = new[] { YearMonth.July, YearMonth.August, YearMonth.September, YearMonth.October, YearMonth.November, YearMonth.December };
+		public static YearMonth[] FirstHalfYearMonths = new[] { YearMonth.January, YearMonth.February, YearMonth.March, YearMonth.April, YearMonth.May, YearMonth.June };
+		public static YearMonth[] SecondHalfYearMonths = new[] { YearMonth.July, YearMonth.August, YearMonth.September, YearMonth.October, YearMonth.November, YearMonth.December };
 
 		// ----------------------------------------------------------------------
 		// quarter
@@ -86,6 +86,7 @@ namespace Itenso.TimePeriod
 		public static readonly DateTime MaxPeriodDate = DateTime.MaxValue;
 		public static readonly TimeSpan MinPeriodDuration = TimeSpan.Zero;
 		public static readonly TimeSpan MaxPeriodDuration = MaxPeriodDate - MinPeriodDate;
+
 
 	} // class TimeSpec
 

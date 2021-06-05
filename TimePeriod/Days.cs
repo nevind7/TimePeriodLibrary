@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -28,14 +29,14 @@ namespace Itenso.TimePeriod
 		} // Days
 
 		// ----------------------------------------------------------------------
-		public Days( int startYear, int startMonth, int startDay, int dayCount ) :
-			this( startYear, startMonth, startDay, dayCount, new TimeCalendar() )
+		public Days( int year, int month, int day, int dayCount ) :
+			this( year, month, day, dayCount, new TimeCalendar() )
 		{
 		} // Days
 
 		// ----------------------------------------------------------------------
-		public Days( int startYear, int startMonth, int startDay, int dayCount, ITimeCalendar calendar ) :
-			base( startYear, startMonth, startDay, dayCount, calendar )
+		public Days( int year, int month, int day, int dayCount, ITimeCalendar calendar ) :
+			base( year, month, day, dayCount, calendar )
 		{
 		} // Days
 
@@ -43,10 +44,10 @@ namespace Itenso.TimePeriod
 		public ITimePeriodCollection GetDays()
 		{
 			TimePeriodCollection days = new TimePeriodCollection();
-			DateTime startDay = new DateTime( StartYear, StartMonth, StartDay );
+			DateTime day = new DateTime( StartYear, StartMonth, StartDay );
 			for ( int i = 0; i < DayCount; i++ )
 			{
-				days.Add( new Day( startDay.AddDays( i ), Calendar ) );
+				days.Add( new Day( day.AddDays( i ), Calendar ) );
 			}
 			return days;
 		} // GetDays

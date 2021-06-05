@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System.Collections.Generic;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -25,28 +26,16 @@ namespace Itenso.TimePeriod
 		} // Clear
 
 		// ----------------------------------------------------------------------
-		public IList<MonthRange> CollectingMonths
-		{
-			get { return collectingMonths; }
-		} // CollectingMonths
+		public IList<MonthRange> CollectingMonths => collectingMonths; // CollectingMonths
 
 		// ----------------------------------------------------------------------
-		public IList<DayRange> CollectingDays
-		{
-			get { return collectingDays; }
-		} // CollectingDays
+		public IList<DayRange> CollectingDays => collectingDays; // CollectingDays
 
 		// ----------------------------------------------------------------------
-		public IList<HourRange> CollectingHours
-		{
-			get { return collectingHours; }
-		} // CollectingHours
+		public IList<HourRange> CollectingHours => collectingHours; // CollectingHours
 
 		// ----------------------------------------------------------------------
-		public IList<DayHourRange> CollectingDayHours
-		{
-			get { return collectingDayHours; }
-		} // CollectingDayHours
+		public IList<DayHourRange> CollectingDayHours => collectingDayHours; // CollectingDayHours
 
 		// ----------------------------------------------------------------------
 		// members

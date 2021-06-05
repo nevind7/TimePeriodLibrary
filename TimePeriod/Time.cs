@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -31,7 +32,7 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		public Time( int hour = 0, int minute = 0, int second = 0, int millisecond = 0 )
 		{
-			if ( hour < 0 || hour > TimeSpec.HoursPerDay )
+			if ( hour is < 0 or > TimeSpec.HoursPerDay )
 			{
 				throw new ArgumentOutOfRangeException( "hour" );
 			}
@@ -50,15 +51,15 @@ namespace Itenso.TimePeriod
 					throw new ArgumentOutOfRangeException( "millisecond" );
 				}
 			}
-			if ( minute < 0 || minute >= TimeSpec.MinutesPerHour )
+			if ( minute is < 0 or >= TimeSpec.MinutesPerHour )
 			{
 				throw new ArgumentOutOfRangeException( "minute" );
 			}
-			if ( second < 0 || second >= TimeSpec.SecondsPerMinute )
+			if ( second is < 0 or >= TimeSpec.SecondsPerMinute )
 			{
 				throw new ArgumentOutOfRangeException( "second" );
 			}
-			if ( millisecond < 0 || millisecond >= TimeSpec.MillisecondsPerSecond )
+			if ( millisecond is < 0 or >= TimeSpec.MillisecondsPerSecond )
 			{
 				throw new ArgumentOutOfRangeException( "millisecond" );
 			}
@@ -67,82 +68,43 @@ namespace Itenso.TimePeriod
 		} // Time
 
 		// ----------------------------------------------------------------------
-		public int Hour
-		{
-			get { return duration.Hours; }
-		} // Hour
+		public int Hour => duration.Hours; // Hour
 
 		// ----------------------------------------------------------------------
-		public int Minute
-		{
-			get { return duration.Minutes; }
-		} // Minute
+		public int Minute => duration.Minutes; // Minute
 
 		// ----------------------------------------------------------------------
-		public int Second
-		{
-			get { return duration.Seconds; }
-		} // Second
+		public int Second => duration.Seconds; // Second
 
 		// ----------------------------------------------------------------------
-		public int Millisecond
-		{
-			get { return duration.Milliseconds; }
-		} // Millisecond
+		public int Millisecond => duration.Milliseconds; // Millisecond
 
 		// ----------------------------------------------------------------------
-		public TimeSpan Duration
-		{
-			get { return duration; }
-		} // Duration
+		public TimeSpan Duration => duration; // Duration
 
 		// ----------------------------------------------------------------------
-		public bool IsZero
-		{
-			get { return duration.Equals( TimeSpan.Zero ); }
-		} // IsZero
+		public bool IsZero => duration.Equals( TimeSpan.Zero ); // IsZero
 
 		// ----------------------------------------------------------------------
-		public bool IsFullDay
-		{
-			get { return (int)duration.TotalHours == TimeSpec.HoursPerDay; }
-		} // IsFullDay
+		public bool IsFullDay => (int)duration.TotalHours == TimeSpec.HoursPerDay; // IsFullDay
 
 		// ----------------------------------------------------------------------
-		public bool IsFullDayOrZero
-		{
-			get { return IsFullDay || IsZero; }
-		} // IsFullDayOrZero
+		public bool IsFullDayOrZero => IsFullDay || IsZero; // IsFullDayOrZero
 
 		// ----------------------------------------------------------------------
-		public long Ticks
-		{
-			get { return duration.Ticks; }
-		} // Ticks
+		public long Ticks => duration.Ticks; // Ticks
 
 		// ----------------------------------------------------------------------
-		public double TotalHours
-		{
-			get { return duration.TotalHours; }
-		} // TotalHours
+		public double TotalHours => duration.TotalHours; // TotalHours
 
 		// ----------------------------------------------------------------------
-		public double TotalMinutes
-		{
-			get { return duration.TotalMinutes; }
-		} // TotalMinutes
+		public double TotalMinutes => duration.TotalMinutes; // TotalMinutes
 
 		// ----------------------------------------------------------------------
-		public double TotalSeconds
-		{
-			get { return duration.TotalSeconds; }
-		} // TotalSeconds
+		public double TotalSeconds => duration.TotalSeconds; // TotalSeconds
 
 		// ----------------------------------------------------------------------
-		public double TotalMilliseconds
-		{
-			get { return duration.TotalMilliseconds; }
-		} // TotalMilliseconds
+		public double TotalMilliseconds => duration.TotalMilliseconds; // TotalMilliseconds
 
 		// ----------------------------------------------------------------------
 		public int CompareTo( Time other )

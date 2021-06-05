@@ -6,11 +6,12 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
-using Itenso.TimePeriod;
+using TimePeriod;
 using Xunit;
 
-namespace Itenso.TimePeriodTests
+namespace TimePeriodTests.Core
 {
 
 	// ------------------------------------------------------------------------
@@ -49,7 +50,7 @@ namespace Itenso.TimePeriodTests
         // ----------------------------------------------------------------------
         [Trait("Category", "BusinessCase")]
         [Fact]
-		public void FiscalYearTest()
+		public void YearTest()
 		{
 			DateTime testDate = new DateTime( 2008, 11, 18 );
 			Year year = new Year( testDate, TimeCalendar.New( YearMonth.October ) );
@@ -66,12 +67,12 @@ namespace Itenso.TimePeriodTests
 			Assert.Equal(30, year.End.Day);
 
 			// half years
-			ITimePeriodCollection halfyears = year.GetHalfyears();
-			foreach ( Halfyear halfyear in halfyears )
+			ITimePeriodCollection halfyears = year.GetHalfYears();
+			foreach ( HalfYear halfyear in halfyears )
 			{
-				switch ( halfyear.YearHalfyear )
+				switch ( halfyear.YearHalfYear )
 				{
-					case YearHalfyear.First:
+					case YearHalfYear.First:
 						Assert.Equal( halfyear.Start, year.Start );
 						Assert.Equal( halfyear.Start.Year, testDate.Year );
 						Assert.Equal(10, halfyear.Start.Month);
@@ -80,7 +81,7 @@ namespace Itenso.TimePeriodTests
 						Assert.Equal(3, halfyear.End.Month);
 						Assert.Equal(31, halfyear.End.Day);
 						break;
-					case YearHalfyear.Second:
+					case YearHalfYear.Second:
 						Assert.Equal( halfyear.End, year.End );
 						Assert.Equal( halfyear.Start.Year, testDate.Year + 1 );
 						Assert.Equal(4, halfyear.Start.Month);
@@ -150,12 +151,12 @@ namespace Itenso.TimePeriodTests
 						break;
 				}
 
-				DateTime startDate = new DateTime( year.BaseYear, year.Start.Month, 1 ).AddMonths( monthIndex );
-				Assert.Equal( month.Start.Year, startDate.Year );
-				Assert.Equal( month.Start.Month, startDate.Month );
-				Assert.Equal( month.Start.Day, startDate.Day );
-				Assert.Equal( month.End.Year, startDate.Year );
-				Assert.Equal( month.End.Month, startDate.Month );
+				DateTime date = new DateTime( year.BaseYear, year.Start.Month, 1 ).AddMonths( monthIndex );
+				Assert.Equal( month.Start.Year, date.Year );
+				Assert.Equal( month.Start.Month, date.Month );
+				Assert.Equal( month.Start.Day, date.Day );
+				Assert.Equal( month.End.Year, date.Year );
+				Assert.Equal( month.End.Month, date.Month );
 
 				monthIndex++;
 			}

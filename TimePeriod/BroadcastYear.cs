@@ -6,10 +6,11 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2013 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Globalization;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -54,10 +55,7 @@ namespace Itenso.TimePeriod
 		} // BroadcastYear
 
 		// ----------------------------------------------------------------------
-		public int Year
-		{
-			get { return year; }
-		} // Year
+		public int Year => year; // Year
 
 		// ----------------------------------------------------------------------
 		public ITimePeriodCollection GetWeeks()
@@ -110,8 +108,7 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		private static int GetYearOf( DateTime moment )
 		{
-			int year;
-			BroadcastCalendarTool.GetYearOf( moment, out year );
+            BroadcastCalendarTool.GetYearOf( moment, out var year );
 			return year;
 		} // GetYearOf
 

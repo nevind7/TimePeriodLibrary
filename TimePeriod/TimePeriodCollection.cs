@@ -6,14 +6,15 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 #if (!PCL)
-using System.ComponentModel;
+
 #endif
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -37,41 +38,26 @@ namespace Itenso.TimePeriod
 		} // TimePeriodCollection
 
 		// ----------------------------------------------------------------------
-		public bool IsReadOnly
-		{
-			get { return false; }
-		} // IsReadOnly
+		public bool IsReadOnly => false; // IsReadOnly
 
 		// ----------------------------------------------------------------------
-		public int Count
-		{
-			get { return periods.Count; }
-		} // Count
+		public int Count => periods.Count; // Count
 
 		// ----------------------------------------------------------------------
 		public ITimePeriod this[ int index ]
 		{
-			get { return periods[ index ]; }
-			set { periods[ index ] = value; }
-		} // this[]
+			get => periods[ index ];
+            set => periods[ index ] = value;
+        } // this[]
 
 		// ----------------------------------------------------------------------
-		public bool IsAnytime
-		{
-			get { return !HasStart && !HasEnd; }
-		} // IsAnytime
+		public bool IsAnytime => !HasStart && !HasEnd; // IsAnytime
 
 		// ----------------------------------------------------------------------
-		public bool IsMoment
-		{
-			get { return Duration == TimeSpan.Zero; }
-		} // IsMoment
+		public bool IsMoment => Duration == TimeSpan.Zero; // IsMoment
 
 		// ----------------------------------------------------------------------
-		public bool HasStart
-		{
-			get { return Start != TimeSpec.MinPeriodDate; }
-		} // HasStart
+		public bool HasStart => Start != TimeSpec.MinPeriodDate; // HasStart
 
 		// ----------------------------------------------------------------------
 		public DateTime Start
@@ -92,10 +78,7 @@ namespace Itenso.TimePeriod
 		} // Start
 
 		// ----------------------------------------------------------------------
-		public bool HasEnd
-		{
-			get { return End != TimeSpec.MaxPeriodDate; }
-		} // HasEnd
+		public bool HasEnd => End != TimeSpec.MaxPeriodDate; // HasEnd
 
 		// ----------------------------------------------------------------------
 		public DateTime End
@@ -140,10 +123,7 @@ namespace Itenso.TimePeriod
 		} // GetTotalDuration
 
 		// ----------------------------------------------------------------------
-		public string DurationDescription
-		{
-			get { return TimeFormatter.Instance.GetDuration( Duration, DurationFormatType.Detailed ); }
-		} // DurationDescription
+		public string DurationDescription => TimeFormatter.Instance.GetDuration( Duration, DurationFormatType.Detailed ); // DurationDescription
 
 		// ----------------------------------------------------------------------
 		public virtual TimeSpan GetDuration( IDurationProvider provider )
@@ -789,10 +769,7 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		protected virtual TimeSpan? GetDuration()
 		{
-			DateTime? start;
-			DateTime? end;
-
-			GetStartEnd( out start, out end );
+            GetStartEnd( out var start, out var end );
 
 			if ( start == null || end == null )
 			{

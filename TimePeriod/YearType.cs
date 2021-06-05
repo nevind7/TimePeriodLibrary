@@ -7,7 +7,7 @@
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -15,8 +15,8 @@ namespace Itenso.TimePeriod
 	{
 		SystemYear,
 		CalendarYear,
-		FiscalYear,
-		SchoolYear,
+        FiscalYear,
+        SchoolYear,
 		CustomYear,
 	} // enum YearType
 

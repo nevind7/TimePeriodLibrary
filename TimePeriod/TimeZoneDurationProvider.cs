@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -31,22 +32,13 @@ namespace Itenso.TimePeriod
 		} // TimeZoneDurationProvider
 
 		// ----------------------------------------------------------------------
-		public TimeZoneInfo TimeZone
-		{
-			get { return timeZone; }
-		} // TimeZone
+		public TimeZoneInfo TimeZone => timeZone; // TimeZone
 
 		// ----------------------------------------------------------------------
-		public Func<TimeZoneInfo, DateTime, TimeSpan[], DateTime> AmbigiousMoment
-		{
-			get { return ambigiousMoment; }
-		} // AmbigiousMoment
+		public Func<TimeZoneInfo, DateTime, TimeSpan[], DateTime> AmbigiousMoment => ambigiousMoment; // AmbigiousMoment
 
 		// ----------------------------------------------------------------------
-		public Func<TimeZoneInfo, DateTime, DateTime> InvalidMoment
-		{
-			get { return invalidMoment; }
-		} // InvalidMoment
+		public Func<TimeZoneInfo, DateTime, DateTime> InvalidMoment => invalidMoment; // InvalidMoment
 
 		// ----------------------------------------------------------------------
 		public override TimeSpan GetDuration( DateTime start, DateTime end )

@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -52,34 +53,19 @@ namespace Itenso.TimePeriod
 		} // Week
 
 		// ----------------------------------------------------------------------
-		public int WeekOfYear
-		{
-			get { return StartWeek; }
-		} // WeekOfYear
+		public int WeekOfYear => StartWeek; // WeekOfYear
 
 		// ----------------------------------------------------------------------
-		public string WeekOfYearName
-		{
-			get { return StartWeekOfYearName; }
-		} // WeekOfYearName
+		public string WeekOfYearName => StartWeekOfYearName; // WeekOfYearName
 
 		// ----------------------------------------------------------------------
-		public DateTime FirstDayOfWeek
-		{
-			get { return Start; }
-		} // FirstDayOfWeek
+		public DateTime FirstDayOfWeek => Start; // FirstDayOfWeek
 
 		// ----------------------------------------------------------------------
-		public DateTime LastDayOfWeek
-		{
-			get { return FirstDayOfWeek.AddDays( TimeSpec.DaysPerWeek - 1 ); }
-		} // LastDayOfWeek
+		public DateTime LastDayOfWeek => FirstDayOfWeek.AddDays( TimeSpec.DaysPerWeek - 1 ); // LastDayOfWeek
 
 		// ----------------------------------------------------------------------
-		public bool MultipleCalendarYears
-		{
-			get { return FirstDayOfWeek.Year != LastDayOfWeek.Year; }
-		} // IsCalendarHalfyear
+		public bool MultipleCalendarYears => FirstDayOfWeek.Year != LastDayOfWeek.Year; // IsCalendarHalfYear
 
 		// ----------------------------------------------------------------------
 		public Week GetPreviousWeek()
@@ -96,8 +82,8 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		public Week AddWeeks( int weeks )
 		{
-			DateTime startDate = TimeTool.GetStartOfYearWeek( Year, StartWeek, Calendar.Culture, Calendar.YearWeekType );
-			return new Week( startDate.AddDays( weeks * TimeSpec.DaysPerWeek ), Calendar );
+			DateTime date = TimeTool.GetStartOfYearWeek( Year, StartWeek, Calendar.Culture, Calendar.YearWeekType );
+			return new Week( date.AddDays( weeks * TimeSpec.DaysPerWeek ), Calendar );
 		} // AddWeeks
 
 		// ----------------------------------------------------------------------

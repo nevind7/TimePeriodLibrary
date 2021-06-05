@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2013 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -54,16 +55,10 @@ namespace Itenso.TimePeriod
 		} // BroadcastMonth
 
 		// ----------------------------------------------------------------------
-		public YearMonth Month
-		{
-			get { return month; }
-		} // Month
+		public YearMonth Month => month; // Month
 
 		// ----------------------------------------------------------------------
-		public int Year
-		{
-			get { return year; }
-		} // Year
+		public int Year => year; // Year
 
 		// ----------------------------------------------------------------------
 		public ITimePeriodCollection GetDays()
@@ -106,9 +101,7 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		public BroadcastMonth AddMonths( int months )
 		{
-			int targetYear;
-			YearMonth targetMonth;
-			BroadcastCalendarTool.AddMonths( Year, Month, months, out targetYear, out targetMonth );
+            BroadcastCalendarTool.AddMonths( Year, Month, months, out var targetYear, out var targetMonth );
 			return new BroadcastMonth( targetYear, targetMonth, Calendar );
 		} // AddMonths
 
@@ -122,17 +115,14 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		private static int GetYearOf( DateTime moment )
 		{
-			int year;
-			BroadcastCalendarTool.GetYearOf( moment, out year );
+            BroadcastCalendarTool.GetYearOf( moment, out var year );
 			return year;
 		} // GetYaarOf
 
 		// ----------------------------------------------------------------------
 		private static YearMonth GetMonthOf( DateTime moment )
 		{
-			int year;
-			YearMonth month;
-			BroadcastCalendarTool.GetMonthOf( moment, out year, out month );
+            BroadcastCalendarTool.GetMonthOf( moment, out var year, out var month );
 			return month;
 		} // GetMonthOf
 

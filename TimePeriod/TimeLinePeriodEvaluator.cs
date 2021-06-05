@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -28,22 +29,13 @@ namespace Itenso.TimePeriod
 		} // TimeLinePeriodEvaluator
 
 		// ----------------------------------------------------------------------
-		public ITimePeriodContainer Periods
-		{
-			get { return periods; }
-		} // Periods
+		public ITimePeriodContainer Periods => periods; // Periods
 
 		// ----------------------------------------------------------------------
-		public ITimePeriodMapper PeriodMapper
-		{
-			get { return periodMapper; }
-		} // PeriodMapper
+		public ITimePeriodMapper PeriodMapper => periodMapper; // PeriodMapper
 
 		// ----------------------------------------------------------------------
-		protected virtual bool IgnoreEmptyPeriods
-		{
-			get { return false; }
-		} // IgnoreEmptyPeriods
+		protected virtual bool IgnoreEmptyPeriods => false; // IgnoreEmptyPeriods
 
 		// ----------------------------------------------------------------------
 		protected virtual void StartEvaluation()

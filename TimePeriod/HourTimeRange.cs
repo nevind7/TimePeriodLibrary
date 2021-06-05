@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -16,73 +17,46 @@ namespace Itenso.TimePeriod
 	{
 
 		// ----------------------------------------------------------------------
-		protected HourTimeRange( int startYear, int startMonth, int startDay, int startHour, int hourCount ) :
-			this( startYear, startMonth, startDay, startHour, hourCount, new TimeCalendar() )
+		protected HourTimeRange( int year, int month, int day, int hour, int hourCount ) :
+			this( year, month, day, hour, hourCount, new TimeCalendar() )
 		{
 		} // HourTimeRange
 
 		// ----------------------------------------------------------------------
-		protected HourTimeRange( int startYear, int startMonth, int startDay, int startHour, int hourCount, ITimeCalendar calendar ) :
-			base( GetPeriodOf( startYear, startMonth, startDay, startHour, hourCount ), calendar )
+		protected HourTimeRange( int year, int month, int day, int hour, int hourCount, ITimeCalendar calendar ) :
+			base( GetPeriodOf( year, month, day, hour, hourCount ), calendar )
 		{
-			this.startHour = new DateTime( startYear, startMonth, startDay, startHour, 0, 0 );
+			this.hour = new DateTime( year, month, day, hour, 0, 0 );
 			this.hourCount = hourCount;
-			endHour = this.startHour.AddHours( hourCount );
+			endHour = this.hour.AddHours( hourCount );
 		} // HourTimeRange
 
 		// ----------------------------------------------------------------------
-		public int StartYear
-		{
-			get { return startHour.Year; }
-		} // StartYear
+		public int StartYear => hour.Year; // StartYear
 
 		// ----------------------------------------------------------------------
-		public int StartMonth
-		{
-			get { return startHour.Month; }
-		} // StartMonth
+		public int StartMonth => hour.Month; // StartMonth
 
 		// ----------------------------------------------------------------------
-		public int StartDay
-		{
-			get { return startHour.Day; }
-		} // StartDay
+		public int StartDay => hour.Day; // StartDay
 
 		// ----------------------------------------------------------------------
-		public int StartHour
-		{
-			get { return startHour.Hour; }
-		} // StartHour
+		public int StartHour => hour.Hour; // StartHour
 
 		// ----------------------------------------------------------------------
-		public int EndYear
-		{
-			get { return endHour.Year; }
-		} // EndYear
+		public int EndYear => endHour.Year; // EndYear
 
 		// ----------------------------------------------------------------------
-		public int EndMonth
-		{
-			get { return endHour.Month; }
-		} // EndMonth
+		public int EndMonth => endHour.Month; // EndMonth
 
 		// ----------------------------------------------------------------------
-		public int EndDay
-		{
-			get { return endHour.Day; }
-		} // EndDay
+		public int EndDay => endHour.Day; // EndDay
 
 		// ----------------------------------------------------------------------
-		public int EndHour
-		{
-			get { return endHour.Hour; }
-		} // EndHour
+		public int EndHour => endHour.Hour; // EndHour
 
 		// ----------------------------------------------------------------------
-		public int HourCount
-		{
-			get { return hourCount; }
-		} // HourCount
+		public int HourCount => hourCount; // HourCount
 
 		// ----------------------------------------------------------------------
 		public ITimePeriodCollection GetMinutes()
@@ -90,7 +64,7 @@ namespace Itenso.TimePeriod
 			TimePeriodCollection minutes = new TimePeriodCollection();
 			for ( int hour = 0; hour < hourCount; hour++ )
 			{
-				DateTime curHour = startHour.AddHours( hour );
+				DateTime curHour = this.hour.AddHours( hour );
 				for ( int minute = 0; minute < TimeSpec.MinutesPerHour; minute++ )
 				{
 					minutes.Add( new Minute( curHour.AddMinutes( minute ), Calendar ) );
@@ -108,13 +82,13 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		private bool HasSameData( HourTimeRange comp )
 		{
-			return startHour == comp.startHour && hourCount == comp.hourCount && endHour == comp.endHour;
+			return hour == comp.hour && hourCount == comp.hourCount && endHour == comp.endHour;
 		} // HasSameData
 
 		// ----------------------------------------------------------------------
 		protected override int ComputeHashCode()
 		{
-			return HashTool.ComputeHashCode( base.ComputeHashCode(), startHour, hourCount, endHour );
+			return HashTool.ComputeHashCode( base.ComputeHashCode(), hour, hourCount, endHour );
 		} // ComputeHashCode
 
 		// ----------------------------------------------------------------------
@@ -132,7 +106,7 @@ namespace Itenso.TimePeriod
 
 		// ----------------------------------------------------------------------
 		// members
-		private readonly DateTime startHour;
+		private readonly DateTime hour;
 		private readonly int hourCount;
 		private readonly DateTime endHour; // cache
 

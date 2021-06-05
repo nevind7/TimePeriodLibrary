@@ -7,7 +7,7 @@
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -21,10 +21,7 @@ namespace Itenso.TimePeriod
 		} // TimePeriodReversComparer
 
 		// ----------------------------------------------------------------------
-		public ITimePeriodComparer BaseComparer
-		{
-			get { return baseComparer; }
-		} // BaseComparer
+		public ITimePeriodComparer BaseComparer => baseComparer; // BaseComparer
 
 		// ----------------------------------------------------------------------
 		public int Compare( ITimePeriod left, ITimePeriod right )

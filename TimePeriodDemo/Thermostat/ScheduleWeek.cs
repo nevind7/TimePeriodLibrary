@@ -6,12 +6,13 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Itenso.TimePeriod;
+using TimePeriod;
 
-namespace Itenso.TimePeriodDemo.Thermostat
+namespace TimePeriodDemo.Thermostat
 {
 
 	// ------------------------------------------------------------------------
@@ -25,16 +26,10 @@ namespace Itenso.TimePeriodDemo.Thermostat
 		} // ScheduleWeek
 
 		// ----------------------------------------------------------------------
-		public ScheduleDay<T> this[ DayOfWeek dayOfWeek ]
-		{
-			get { return days[ dayOfWeek ]; }
-		} // this[]
+		public ScheduleDay<T> this[ DayOfWeek dayOfWeek ] => days[ dayOfWeek ];  // this[]
 
 		// ----------------------------------------------------------------------
-		public IEnumerable Days
-		{
-			get { return days.Values; }
-		} // Days
+		public IEnumerable Days => days.Values; // Days
 
 		// ----------------------------------------------------------------------
 		public ITimePeriod GetWeekPeriod( DateTime moment )

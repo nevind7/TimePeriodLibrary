@@ -6,10 +6,11 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Globalization;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -110,7 +111,7 @@ namespace Itenso.TimePeriod
 		string GetPeriod( DateTime start, DateTime end, TimeSpan duration );
 
 		// ----------------------------------------------------------------------
-		string GetInterval( DateTime start, DateTime end, IntervalEdge startEdge, IntervalEdge endEdge, TimeSpan duration );
+		string GetInterval( DateTime start, DateTime end, IntervalEdge edge, IntervalEdge endEdge, TimeSpan duration );
 
 		// ----------------------------------------------------------------------
 		string GetCalendarPeriod( string start, string end, TimeSpan duration );
@@ -119,7 +120,7 @@ namespace Itenso.TimePeriod
 		string GetCalendarPeriod( string context, string start, string end, TimeSpan duration );
 
 		// ----------------------------------------------------------------------
-		string GetCalendarPeriod( string startContext, string endContext, string start, string end, TimeSpan duration );
+		string GetCalendarPeriod( string context, string endContext, string start, string end, TimeSpan duration );
 
 	} // interface ITimeFormatter
 

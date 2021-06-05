@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -16,26 +17,26 @@ namespace Itenso.TimePeriod
 	{
 
 		// ----------------------------------------------------------------------
-		public Months( DateTime moment, YearMonth startMonth, int count ) :
-			this( moment, startMonth, count, new TimeCalendar() )
+		public Months( DateTime moment, YearMonth month, int count ) :
+			this( moment, month, count, new TimeCalendar() )
 		{
 		} // Months
 
 		// ----------------------------------------------------------------------
-		public Months( DateTime moment, YearMonth startMonth, int count, ITimeCalendar calendar ) :
-			this( calendar.GetYear( moment ), startMonth, count, calendar )
+		public Months( DateTime moment, YearMonth month, int count, ITimeCalendar calendar ) :
+			this( calendar.GetYear( moment ), month, count, calendar )
 		{
 		} // Months
 
 		// ----------------------------------------------------------------------
-		public Months( int startYear, YearMonth startMonth, int monthCounth ) :
-			this( startYear, startMonth, monthCounth, new TimeCalendar() )
+		public Months( int year, YearMonth month, int monthCounth ) :
+			this( year, month, monthCounth, new TimeCalendar() )
 		{
 		} // Months
 
 		// ----------------------------------------------------------------------
-		public Months( int startYear, YearMonth startMonth, int monthCount, ITimeCalendar calendar ) :
-			base( startYear, startMonth, monthCount, calendar )
+		public Months( int year, YearMonth month, int monthCount, ITimeCalendar calendar ) :
+			base( year, month, monthCount, calendar )
 		{
 		} // Months
 
@@ -45,9 +46,7 @@ namespace Itenso.TimePeriod
 			TimePeriodCollection months = new TimePeriodCollection();
 			for ( int i = 0; i < MonthCount; i++ )
 			{
-				int year;
-				YearMonth month;
-				TimeTool.AddMonth( StartYear, StartMonth, i, out year, out month );
+                TimeTool.AddMonth( StartYear, StartMonth, i, out var year, out var month );
 				months.Add( new Month( year, month, Calendar ) );
 			}
 			return months;

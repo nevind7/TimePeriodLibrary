@@ -1,0 +1,14 @@
+C:\Users\nevin\Desktop\Business\TimePeriodLibraryFork\TimePeriodLibrary\.vs\TimePeriodTests\v16\lut\0\b\TimePeriod\Debug\net6.0\TimePeriod.deps.json
+C:\Users\nevin\Desktop\Business\TimePeriodLibraryFork\TimePeriodLibrary\.vs\TimePeriodTests\v16\lut\0\b\TimePeriod\Debug\net6.0\TimePeriod.dll
+C:\Users\nevin\Desktop\Business\TimePeriodLibraryFork\TimePeriodLibrary\.vs\TimePeriodTests\v16\lut\0\b\TimePeriod\Debug\net6.0\ref\TimePeriod.dll
+C:\Users\nevin\Desktop\Business\TimePeriodLibraryFork\TimePeriodLibrary\.vs\TimePeriodTests\v16\lut\0\b\TimePeriod\Debug\net6.0\de\TimePeriod.resources.dll
+C:\Users\nevin\Desktop\Business\TimePeriodLibraryFork\TimePeriodLibrary\.vs\TimePeriodTests\v16\lut\0\i\TimePeriod\Debug\net6.0\TimePeriod.Strings.resources
+C:\Users\nevin\Desktop\Business\TimePeriodLibraryFork\TimePeriodLibrary\.vs\TimePeriodTests\v16\lut\0\i\TimePeriod\Debug\net6.0\TimePeriod.Strings.de.resources
+C:\Users\nevin\Desktop\Business\TimePeriodLibraryFork\TimePeriodLibrary\.vs\TimePeriodTests\v16\lut\0\i\TimePeriod\Debug\net6.0\TimePeriod.csproj.GenerateResource.cache
+C:\Users\nevin\Desktop\Business\TimePeriodLibraryFork\TimePeriodLibrary\.vs\TimePeriodTests\v16\lut\0\i\TimePeriod\Debug\net6.0\TimePeriod.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nevin\Desktop\Business\TimePeriodLibraryFork\TimePeriodLibrary\.vs\TimePeriodTests\v16\lut\0\i\TimePeriod\Debug\net6.0\TimePeriod.AssemblyInfoInputs.cache
+C:\Users\nevin\Desktop\Business\TimePeriodLibraryFork\TimePeriodLibrary\.vs\TimePeriodTests\v16\lut\0\i\TimePeriod\Debug\net6.0\TimePeriod.AssemblyInfo.cs
+C:\Users\nevin\Desktop\Business\TimePeriodLibraryFork\TimePeriodLibrary\.vs\TimePeriodTests\v16\lut\0\i\TimePeriod\Debug\net6.0\de\TimePeriod.resources.dll
+C:\Users\nevin\Desktop\Business\TimePeriodLibraryFork\TimePeriodLibrary\.vs\TimePeriodTests\v16\lut\0\i\TimePeriod\Debug\net6.0\TimePeriod.csproj.CopyComplete
+C:\Users\nevin\Desktop\Business\TimePeriodLibraryFork\TimePeriodLibrary\.vs\TimePeriodTests\v16\lut\0\i\TimePeriod\Debug\net6.0\TimePeriod.dll
+C:\Users\nevin\Desktop\Business\TimePeriodLibraryFork\TimePeriodLibrary\.vs\TimePeriodTests\v16\lut\0\i\TimePeriod\Debug\net6.0\ref\TimePeriod.dll

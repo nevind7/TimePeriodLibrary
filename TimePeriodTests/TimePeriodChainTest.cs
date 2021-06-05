@@ -6,11 +6,12 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
-using Itenso.TimePeriod;
+using TimePeriod;
 using Xunit;
 
-namespace Itenso.TimePeriodTests
+namespace TimePeriodTests.Core
 {
 
 	// ------------------------------------------------------------------------
@@ -242,18 +243,18 @@ namespace Itenso.TimePeriodTests
         [Fact]
 		public void MoveTest()
 		{
-			SchoolDay schoolDay = new SchoolDay();
+            SchoolDay schoolDay = new SchoolDay();
 
-			DateTime startDate = schoolDay.Start;
-			DateTime endDate = schoolDay.End;
-			TimeSpan startDuration = schoolDay.Duration;
+            DateTime startDate = schoolDay.Start;
+            DateTime endDate = schoolDay.End;
+            TimeSpan startDuration = schoolDay.Duration;
 
-			TimeSpan duration = Duration.Hour;
-			schoolDay.Move( duration );
+            TimeSpan duration = Duration.Hour;
+            schoolDay.Move( duration );
 
-			Assert.Equal( schoolDay.Start, startDate.Add( duration ) );
-			Assert.Equal( schoolDay.End, endDate.Add( duration ) );
-			Assert.Equal( schoolDay.Duration, startDuration );
+            Assert.Equal( schoolDay.Start, startDate.Add( duration ) );
+            Assert.Equal( schoolDay.End, endDate.Add( duration ) );
+            Assert.Equal( schoolDay.Duration, startDuration );
 		} // MoveTest
 
         // ----------------------------------------------------------------------

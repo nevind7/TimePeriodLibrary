@@ -1,67 +1,66 @@
 // -- FILE ------------------------------------------------------------------
-// name       : Halfyears.cs
+// name       : HalfYears.cs
 // project    : Itenso Time Period
 // created    : Jani Giannoudis - 2011.02.18
 // language   : C# 4.0
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
-	public sealed class Halfyears : HalfyearTimeRange
+	public sealed class HalfYears : HalfYearTimeRange
 	{
 
 		// ----------------------------------------------------------------------
-		public Halfyears( DateTime moment, YearHalfyear startHalfyear, int count ) :
-			this( moment, startHalfyear, count, new TimeCalendar() )
+		public HalfYears( DateTime moment, YearHalfYear halfYear, int count ) :
+			this( moment, halfYear, count, new TimeCalendar() )
 		{
-		} // Halfyears
+		} // HalfYears
 
 		// ----------------------------------------------------------------------
-		public Halfyears( DateTime moment, YearHalfyear startHalfyear, int count, ITimeCalendar calendar ) :
+		public HalfYears( DateTime moment, YearHalfYear halfYear, int count, ITimeCalendar calendar ) :
 			this( TimeTool.GetYearOf( calendar.YearBaseMonth, calendar.GetYear( moment ), calendar.GetMonth( moment ) ),
-			startHalfyear, count, calendar )
+			halfYear, count, calendar )
 		{
-		} // Halfyears
+		} // HalfYears
 
 		// ----------------------------------------------------------------------
-		public Halfyears( int startYear, YearHalfyear startHalfyear, int halfyearCount ) :
-			this( startYear, startHalfyear, halfyearCount, new TimeCalendar() )
+		public HalfYears( int year, YearHalfYear halfYear, int halfYearCount ) :
+			this( year, halfYear, halfYearCount, new TimeCalendar() )
 		{
-		} // Halfyears
+		} // HalfYears
 
 		// ----------------------------------------------------------------------
-		public Halfyears( int startYear, YearHalfyear startHalfyear, int halfyearCount, ITimeCalendar calendar ) :
-			base( startYear, startHalfyear, halfyearCount, calendar )
+		public HalfYears( int year, YearHalfYear halfYear, int halfYearCount, ITimeCalendar calendar ) :
+			base( year, halfYear, halfYearCount, calendar )
 		{
-		} // Halfyears
+		} // HalfYears
 
 		// ----------------------------------------------------------------------
-		public ITimePeriodCollection GetHalfyears()
+		public ITimePeriodCollection GetHalfYears()
 		{
-			TimePeriodCollection halfyears = new TimePeriodCollection();
-			for ( int i = 0; i < HalfyearCount; i++ )
+			TimePeriodCollection halfYears = new TimePeriodCollection();
+			for ( int i = 0; i < HalfYearCount; i++ )
 			{
-				int year;
-				YearHalfyear halfyear;
-				TimeTool.AddHalfyear( BaseYear, StartHalfyear, i, out year, out halfyear );
-				halfyears.Add( new Halfyear( year, halfyear, Calendar ) );
+                TimeTool.AddHalfYear( BaseYear, StartHalfYear, i, out var year, out var halfYear );
+				halfYears.Add( new HalfYear( year, halfYear, Calendar ) );
 			}
-			return halfyears;
-		} // GetHalfyears
+			return halfYears;
+		} // GetHalfYears
 
 		// ----------------------------------------------------------------------
 		protected override string Format( ITimeFormatter formatter )
 		{
-			return formatter.GetCalendarPeriod( StartHalfyearOfYearName, EndHalfyearOfYearName,
+			return formatter.GetCalendarPeriod( StartHalfYearOfYearName, EndHalfYearOfYearName,
 				formatter.GetShortDate( Start ), formatter.GetShortDate( End ), Duration );
 		} // Format
 
-	} // class Halfyears
+	} // class HalfYears
 
 } // namespace Itenso.TimePeriod
 // -- EOF -------------------------------------------------------------------

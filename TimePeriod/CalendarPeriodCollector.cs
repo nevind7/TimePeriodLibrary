@@ -6,10 +6,11 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Collections.Generic;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -24,10 +25,7 @@ namespace Itenso.TimePeriod
 		} // CalendarPeriodCollector
 
 		// ----------------------------------------------------------------------
-		public ITimePeriodCollection Periods
-		{
-			get { return periods; }
-		} // Periods
+		public ITimePeriodCollection Periods => periods; // Periods
 
 		// ----------------------------------------------------------------------
 		public void CollectYears()
@@ -63,17 +61,14 @@ namespace Itenso.TimePeriod
 		protected override bool EnterYears( Years years, CalendarPeriodCollectorContext context )
 		{
 			return
-				context.Scope == CalendarPeriodCollectorContext.CollectType.Month ||
-				context.Scope == CalendarPeriodCollectorContext.CollectType.Day ||
-				context.Scope == CalendarPeriodCollectorContext.CollectType.Hour;
+				context.Scope is CalendarPeriodCollectorContext.CollectType.Month or CalendarPeriodCollectorContext.CollectType.Day or CalendarPeriodCollectorContext.CollectType.Hour;
 		} // EnterYears
 
 		// ----------------------------------------------------------------------
 		protected override bool EnterMonths( Year year, CalendarPeriodCollectorContext context )
 		{
 			return
-				context.Scope == CalendarPeriodCollectorContext.CollectType.Day ||
-				context.Scope == CalendarPeriodCollectorContext.CollectType.Hour;
+				context.Scope is CalendarPeriodCollectorContext.CollectType.Day or CalendarPeriodCollectorContext.CollectType.Hour;
 		} // EnterMonths
 
 		// ----------------------------------------------------------------------

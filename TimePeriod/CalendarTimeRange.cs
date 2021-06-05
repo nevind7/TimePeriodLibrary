@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -53,70 +54,37 @@ namespace Itenso.TimePeriod
 		} // CalendarTimeRange
 
 		// ----------------------------------------------------------------------
-		public ITimeCalendar Calendar
-		{
-			get { return calendar; }
-		} // Calendar
+		public ITimeCalendar Calendar => calendar; // Calendar
 
 		// ----------------------------------------------------------------------
-		public YearMonth YearBaseMonth
-		{
-			get { return Calendar.YearBaseMonth; }
-		} // YearBaseMonth
+		public YearMonth YearBaseMonth => Calendar.YearBaseMonth; // YearBaseMonth
 
 		// ----------------------------------------------------------------------
-		public virtual int BaseYear
-		{
-			get { return Start.Year; }
-		}
+		public virtual int BaseYear => Start.Year;
+
+        // ----------------------------------------------------------------------
+		public DateTime FirstMonthStart => new DateTime( Start.Year, Start.Month, 1 ); // FirstMonthStart
 
 		// ----------------------------------------------------------------------
-		public DateTime FirstMonthStart
-		{
-			get { return new DateTime( Start.Year, Start.Month, 1 ); }
-		} // FirstMonthStart
+		public DateTime LastMonthStart => new DateTime( End.Year, End.Month, 1 ); // LastMonthStart
 
 		// ----------------------------------------------------------------------
-		public DateTime LastMonthStart
-		{
-			get { return new DateTime( End.Year, End.Month, 1 ); }
-		} // LastMonthStart
+		public DateTime FirstDayStart => new DateTime( Start.Year, Start.Month, Start.Day ); // FirstDayStart
 
 		// ----------------------------------------------------------------------
-		public DateTime FirstDayStart
-		{
-			get { return new DateTime( Start.Year, Start.Month, Start.Day ); }
-		} // FirstDayStart
+		public DateTime LastDayStart => new DateTime( End.Year, End.Month, End.Day ); // LastDayStart
 
 		// ----------------------------------------------------------------------
-		public DateTime LastDayStart
-		{
-			get { return new DateTime( End.Year, End.Month, End.Day ); }
-		} // LastDayStart
+		public DateTime FirstHourStart => new DateTime( Start.Year, Start.Month, Start.Day, Start.Hour, 0, 0 ); // FirstHourStart
 
 		// ----------------------------------------------------------------------
-		public DateTime FirstHourStart
-		{
-			get { return new DateTime( Start.Year, Start.Month, Start.Day, Start.Hour, 0, 0 ); }
-		} // FirstHourStart
+		public DateTime LastHourStart => new DateTime( End.Year, End.Month, End.Day, End.Hour, 0, 0 ); // LastHourStart
 
 		// ----------------------------------------------------------------------
-		public DateTime LastHourStart
-		{
-			get { return new DateTime( End.Year, End.Month, End.Day, End.Hour, 0, 0 ); }
-		} // LastHourStart
+		public DateTime FirstMinuteStart => new DateTime( Start.Year, Start.Month, Start.Day, Start.Hour, Start.Minute, 0, 0 ); // FirstMinuteStart
 
 		// ----------------------------------------------------------------------
-		public DateTime FirstMinuteStart
-		{
-			get { return new DateTime( Start.Year, Start.Month, Start.Day, Start.Hour, Start.Minute, 0, 0 ); }
-		} // FirstMinuteStart
-
-		// ----------------------------------------------------------------------
-		public DateTime LastMinuteStart
-		{
-			get { return new DateTime( End.Year, End.Month, End.Day, End.Hour, End.Minute, 0, 0 ); }
-		} // LastMinuteStart
+		public DateTime LastMinuteStart => new DateTime( End.Year, End.Month, End.Day, End.Hour, End.Minute, 0, 0 ); // LastMinuteStart
 
 		// ----------------------------------------------------------------------
 		public override ITimeRange Copy( TimeSpan offset )

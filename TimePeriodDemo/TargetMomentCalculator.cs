@@ -6,10 +6,11 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
-using System;
-using Itenso.TimePeriod;
 
-namespace Itenso.TimePeriodDemo
+using System;
+using TimePeriod;
+
+namespace TimePeriodDemo
 {
 
 	// ------------------------------------------------------------------------
@@ -19,19 +20,19 @@ namespace Itenso.TimePeriodDemo
 		// ----------------------------------------------------------------------
 		public TargetMomentCalculator( ITimePeriodContainer periods, TimeSpan duration ) :
 			base( periods )
-		{
-			if ( duration == null )
-			{
-				throw new ArgumentNullException( "duration" );
-			}
-			this.duration = duration;
-		} // TargetMomentCalculator
+        {
+            if (duration != null)
+            {
+                this.duration = duration;
+            }
+            else
+            {
+                throw new ArgumentNullException("duration");
+            }
+        } // TargetMomentCalculator
 
-		// ----------------------------------------------------------------------
-		public TimeSpan Duration
-		{
-			get { return duration; }
-		} // Duration
+        // ----------------------------------------------------------------------
+        public TimeSpan Duration => duration; // Duration
 
 		// ----------------------------------------------------------------------
 		public DateTime? GetTargetMoment()

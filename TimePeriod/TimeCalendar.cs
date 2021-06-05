@@ -6,18 +6,18 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Globalization;
-using System.Threading;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
 	public class TimeCalendar : ITimeCalendar
 	{
 
-		// ----------------------------------------------------------------------
+	// ----------------------------------------------------------------------
 		public static readonly TimeSpan DefaultStartOffset = TimeSpec.NoDuration;
 		public static readonly TimeSpan DefaultEndOffset = TimeSpec.MinNegativeDuration;
 
@@ -40,84 +40,51 @@ namespace Itenso.TimePeriod
 			}
 
             culture = config.Culture ?? CultureInfo.CurrentCulture;
-            yearType = config.YearType.HasValue ? config.YearType.Value : YearType.SystemYear;
-			startOffset = config.StartOffset.HasValue ? config.StartOffset.Value : DefaultStartOffset;
-			endOffset = config.EndOffset.HasValue ? config.EndOffset.Value : DefaultEndOffset;
-			yearBaseMonth = config.YearBaseMonth.HasValue ? config.YearBaseMonth.Value : TimeSpec.CalendarYearStartMonth;
-			fiscalYearBaseMonth = config.FiscalYearBaseMonth.HasValue ? config.FiscalYearBaseMonth.Value : TimeSpec.FiscalYearBaseMonth;
-			fiscalFirstDayOfYear = config.FiscalFirstDayOfYear.HasValue ? config.FiscalFirstDayOfYear.Value : DayOfWeek.Sunday;
-			fiscalYearAlignment = config.FiscalYearAlignment.HasValue ? config.FiscalYearAlignment.Value : FiscalYearAlignment.None;
-			fiscalQuarterGrouping = config.FiscalQuarterGrouping.HasValue ? config.FiscalQuarterGrouping.Value : FiscalQuarterGrouping.FourFourFiveWeeks;
-			yearWeekType = config.YearWeekType.HasValue ? config.YearWeekType.Value : YearWeekType.Calendar;
-			dayNameType = config.DayNameType.HasValue ? config.DayNameType.Value : CalendarNameType.Full;
-			monthNameType = config.MonthNameType.HasValue ? config.MonthNameType.Value : CalendarNameType.Full;
+            yearType = config.YearType ?? YearType.SystemYear;
+			startOffset = config.StartOffset ?? DefaultStartOffset;
+			endOffset = config.EndOffset ?? DefaultEndOffset;
+			yearBaseMonth = config.YearBaseMonth ?? TimeSpec.CalendarYearStartMonth;
+			fiscalYearBaseMonth = config.FiscalYearBaseMonth ?? TimeSpec.FiscalYearBaseMonth;
+			fiscalFirstDayOfYear = config.FiscalFirstDayOfYear ?? DayOfWeek.Sunday;
+			fiscalYearAlignment = config.FiscalYearAlignment ?? FiscalYearAlignment.None;
+			fiscalQuarterGrouping = config.FiscalQuarterGrouping ?? FiscalQuarterGrouping.FourFourFiveWeeks;
+			yearWeekType = config.YearWeekType ?? YearWeekType.Calendar;
+			dayNameType = config.DayNameType ?? CalendarNameType.Full;
+			monthNameType = config.MonthNameType ?? CalendarNameType.Full;
 		} // TimeCalendar
 
 		// ----------------------------------------------------------------------
-		public CultureInfo Culture
-		{
-			get { return culture; }
-		} // Culture
+		public CultureInfo Culture => culture; // Culture
 
 		// ----------------------------------------------------------------------
-		public YearType YearType
-		{
-			get { return yearType; }
-		} // YearType
+		public YearType YearType => yearType; // YearType
 
 		// ----------------------------------------------------------------------
-		public TimeSpan StartOffset
-		{
-			get { return startOffset; }
-		} // StartOffset
+		public TimeSpan StartOffset => startOffset; // StartOffset
 
 		// ----------------------------------------------------------------------
-		public TimeSpan EndOffset
-		{
-			get { return endOffset; }
-		} // EndOffset
+		public TimeSpan EndOffset => endOffset; // EndOffset
 
 		// ----------------------------------------------------------------------
-		public YearMonth YearBaseMonth
-		{
-			get { return yearBaseMonth; }
-		} // YearBaseMonth
+		public YearMonth YearBaseMonth => yearBaseMonth; // YearBaseMonth
 
 		// ----------------------------------------------------------------------
-		public YearMonth FiscalYearBaseMonth
-		{
-			get { return fiscalYearBaseMonth; }
-		} // FiscalYearBaseMonth
+		public YearMonth FiscalYearBaseMonth => fiscalYearBaseMonth; // FiscalYearBaseMonth
 
 		// ----------------------------------------------------------------------
-		public DayOfWeek FiscalFirstDayOfYear
-		{
-			get { return fiscalFirstDayOfYear; }
-		} // FiscalFirstDayOfYear
+		public DayOfWeek FiscalFirstDayOfYear => fiscalFirstDayOfYear; // FiscalFirstDayOfYear
 
 		// ----------------------------------------------------------------------
-		public FiscalYearAlignment FiscalYearAlignment
-		{
-			get { return fiscalYearAlignment; }
-		} // FiscalYearAlignment
+		public FiscalYearAlignment FiscalYearAlignment => fiscalYearAlignment; // FiscalYearAlignment
 
 		// ----------------------------------------------------------------------
-		public FiscalQuarterGrouping FiscalQuarterGrouping
-		{
-			get { return fiscalQuarterGrouping; }
-		} // FiscalQuarterGrouping
+		public FiscalQuarterGrouping FiscalQuarterGrouping => fiscalQuarterGrouping; // FiscalQuarterGrouping
 
 		// ----------------------------------------------------------------------
-		public virtual DayOfWeek FirstDayOfWeek
-		{
-			get { return culture.DateTimeFormat.FirstDayOfWeek; }
-		} // FirstDayOfWeek
+		public virtual DayOfWeek FirstDayOfWeek => culture.DateTimeFormat.FirstDayOfWeek; // FirstDayOfWeek
 
 		// ----------------------------------------------------------------------
-		public YearWeekType YearWeekType
-		{
-			get { return yearWeekType; }
-		} // YearWeekType
+		public YearWeekType YearWeekType => yearWeekType; // YearWeekType
 
 		// ----------------------------------------------------------------------
 		public static TimeCalendar New( CultureInfo culture )
@@ -283,34 +250,34 @@ namespace Itenso.TimePeriod
 		} // GetYearName
 
 		// ----------------------------------------------------------------------
-		public virtual string GetHalfyearName( YearHalfyear yearHalfyear )
+		public virtual string GetHalfYearName( YearHalfYear yearHalfyear )
 		{
 			switch ( YearType )
 			{
 				case YearType.CalendarYear:
-					return Strings.CalendarHalfyearName( yearHalfyear );
+					return Strings.CalendarHalfYearName( yearHalfyear );
 				case YearType.FiscalYear:
-					return Strings.FiscalHalfyearName( yearHalfyear );
+					return Strings.FiscalHalfYearName( yearHalfyear );
 				case YearType.SchoolYear:
-					return Strings.SchoolHalfyearName( yearHalfyear );
+					return Strings.SchoolHalfYearName( yearHalfyear );
 				default:
-					return Strings.SystemHalfyearName( yearHalfyear );
+					return Strings.SystemHalfYearName( yearHalfyear );
 			}
 		} // GetHalfyearName
 
 		// ----------------------------------------------------------------------
-		public virtual string GetHalfyearOfYearName( int year, YearHalfyear yearHalfyear )
+		public virtual string GetHalfYearOfYearName( int year, YearHalfYear yearHalfyear )
 		{
 			switch ( YearType )
 			{
 				case YearType.CalendarYear:
-					return Strings.CalendarHalfyearOfYearName( yearHalfyear, year );
+					return Strings.CalendarHalfYearOfYearName( yearHalfyear, year );
 				case YearType.FiscalYear:
-					return Strings.FiscalHalfyearOfYearName( yearHalfyear, year );
+					return Strings.FiscalHalfYearOfYearName( yearHalfyear, year );
 				case YearType.SchoolYear:
-					return Strings.SchoolHalfyearOfYearName( yearHalfyear, year );
+					return Strings.SchoolHalfYearOfYearName( yearHalfyear, year );
 				default:
-					return Strings.SystemHalfyearOfYearName( yearHalfyear, year );
+					return Strings.SystemHalfYearOfYearName( yearHalfyear, year );
 			}
 		} // GetHalfyearOfYearName
 

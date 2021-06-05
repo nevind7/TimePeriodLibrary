@@ -129,16 +129,16 @@
   <data name="WeekOfYearName" xml:space="preserve">
     <value>w/c {0} {1}</value>
   </data>
-  <data name="SystemHalfyearName" xml:space="preserve">
+  <data name="SystemHalfYearName" xml:space="preserve">
     <value>HY{0}</value>
   </data>
-  <data name="SystemHalfyearOfYearName" xml:space="preserve">
+  <data name="SystemHalfYearOfYearName" xml:space="preserve">
     <value>HY{0} {1}</value>
   </data>
   <data name="SystemYearName" xml:space="preserve">
     <value>{0}</value>
   </data>
-  <data name="CalendarHalfyearName" xml:space="preserve">
+  <data name="CalendarHalfYearName" xml:space="preserve">
     <value>CHY{0}</value>
   </data>
   <data name="CalendarQuarterName" xml:space="preserve">
@@ -147,7 +147,7 @@
   <data name="CalendarYearName" xml:space="preserve">
     <value>CY{0}</value>
   </data>
-  <data name="FiscalHalfyearName" xml:space="preserve">
+  <data name="FiscalHalfYearName" xml:space="preserve">
     <value>FHY{0}</value>
   </data>
   <data name="FiscalQuarterName" xml:space="preserve">
@@ -156,7 +156,7 @@
   <data name="FiscalYearName" xml:space="preserve">
     <value>FY{0}</value>
   </data>
-  <data name="SchoolHalfyearName" xml:space="preserve">
+  <data name="SchoolHalfYearName" xml:space="preserve">
     <value>SHY{0}</value>
   </data>
   <data name="SchoolQuarterName" xml:space="preserve">
@@ -165,19 +165,19 @@
   <data name="SchoolYearName" xml:space="preserve">
     <value>SY{0}</value>
   </data>
-  <data name="CalendarHalfyearOfYearName" xml:space="preserve">
+  <data name="CalendarHalfYearOfYearName" xml:space="preserve">
     <value>CHY{0} {1}</value>
   </data>
   <data name="CalendarQuarterOfYearName" xml:space="preserve">
     <value>CQ{0} {1}</value>
   </data>
-  <data name="FiscalHalfyearOfYearName" xml:space="preserve">
+  <data name="FiscalHalfYearOfYearName" xml:space="preserve">
     <value>FHY{0} {1}</value>
   </data>
   <data name="FiscalQuarterOfYearName" xml:space="preserve">
     <value>FQ{0} {1}</value>
   </data>
-  <data name="SchoolHalfyearOfYearName" xml:space="preserve">
+  <data name="SchoolHalfYearOfYearName" xml:space="preserve">
     <value>SHY{0} {1}</value>
   </data>
   <data name="SchoolQuarterOfYearName" xml:space="preserve">

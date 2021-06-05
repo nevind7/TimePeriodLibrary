@@ -6,13 +6,14 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
-	public struct Date : IComparable, IComparable<Date>, IEquatable<Date>
+	public readonly struct Date : IComparable, IComparable<Date>, IEquatable<Date>
 	{
 
 		// ----------------------------------------------------------------------
@@ -28,11 +29,11 @@ namespace Itenso.TimePeriod
 			{
 				throw new ArgumentOutOfRangeException( "year" );
 			}
-			if ( month <= 0 || month > TimeSpec.MonthsPerYear )
+			if ( month is <= 0 or > TimeSpec.MonthsPerYear )
 			{
 				throw new ArgumentOutOfRangeException( "month" );
 			}
-			if ( day <= 0 || day > TimeSpec.MaxDaysPerMonth )
+			if ( day is <= 0 or > TimeSpec.MaxDaysPerMonth )
 			{
 				throw new ArgumentOutOfRangeException( "day" );
 			}
@@ -40,28 +41,16 @@ namespace Itenso.TimePeriod
 		} // Date
 
 		// ----------------------------------------------------------------------
-		public int Year
-		{
-			get { return date.Year; }
-		} // Year
+		public int Year => date.Year; // Year
 
 		// ----------------------------------------------------------------------
-		public int Month
-		{
-			get { return date.Month; }
-		} // Month
+		public int Month => date.Month; // Month
 
 		// ----------------------------------------------------------------------
-		public int Day
-		{
-			get { return date.Day; }
-		} // Day
+		public int Day => date.Day; // Day
 
 		// ----------------------------------------------------------------------
-		public DateTime DateTime
-		{
-			get { return date; }
-		} // DateTime
+		public DateTime DateTime => date; // DateTime
 
 		// ----------------------------------------------------------------------
 		public int CompareTo( Date other )

@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -16,27 +17,27 @@ namespace Itenso.TimePeriod
 	{
 
 		// ----------------------------------------------------------------------
-		public Quarters( DateTime moment, YearQuarter startYearQuarter, int count ) :
-			this( moment, startYearQuarter, count, new TimeCalendar() )
+		public Quarters( DateTime moment, YearQuarter yearQuarter, int count ) :
+			this( moment, yearQuarter, count, new TimeCalendar() )
 		{
 		} // Quarters
 
 		// ----------------------------------------------------------------------
-		public Quarters( DateTime moment, YearQuarter startYearQuarter, int count, ITimeCalendar calendar ) :
+		public Quarters( DateTime moment, YearQuarter yearQuarter, int count, ITimeCalendar calendar ) :
 			this( TimeTool.GetYearOf( calendar.YearBaseMonth, calendar.GetYear( moment ), calendar.GetMonth( moment ) ),
-			startYearQuarter, count, calendar )
+			yearQuarter, count, calendar )
 		{
 		} // Quarters
 
 		// ----------------------------------------------------------------------
-		public Quarters( int startYear, YearQuarter startYearQuarter, int quarterCount ) :
-			this( startYear, startYearQuarter, quarterCount, new TimeCalendar() )
+		public Quarters( int year, YearQuarter yearQuarter, int quarterCount ) :
+			this( year, yearQuarter, quarterCount, new TimeCalendar() )
 		{
 		} // Quarters
 
 		// ----------------------------------------------------------------------
-		public Quarters( int startYear, YearQuarter startYearQuarter, int quarterCount, ITimeCalendar calendar ) :
-			base( startYear, startYearQuarter, quarterCount, calendar )
+		public Quarters( int year, YearQuarter yearQuarter, int quarterCount, ITimeCalendar calendar ) :
+			base( year, yearQuarter, quarterCount, calendar )
 		{
 		} // Quarters
 
@@ -46,9 +47,7 @@ namespace Itenso.TimePeriod
 			TimePeriodCollection quarters = new TimePeriodCollection();
 			for ( int i = 0; i < QuarterCount; i++ )
 			{
-				int year;
-				YearQuarter quarter;
-				TimeTool.AddQuarter( BaseYear, StartQuarter, i, out year, out quarter );
+                TimeTool.AddQuarter( BaseYear, StartQuarter, i, out var year, out var quarter );
 				quarters.Add( new Quarter( year, quarter, Calendar ) );
 			}
 			return quarters;

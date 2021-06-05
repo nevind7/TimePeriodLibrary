@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -16,80 +17,50 @@ namespace Itenso.TimePeriod
 	{
 
 		// ----------------------------------------------------------------------
-		protected QuarterTimeRange( int startYear, YearQuarter startQuarter, int quarterCount ) :
-			this( startYear, startQuarter, quarterCount, new TimeCalendar() )
+		protected QuarterTimeRange( int year, YearQuarter quarter, int quarterCount ) :
+			this( year, quarter, quarterCount, new TimeCalendar() )
 		{
 		} // QuarterTimeRange
 
 		// ----------------------------------------------------------------------
-		protected QuarterTimeRange( int startYear, YearQuarter startQuarter, int quarterCount, ITimeCalendar calendar ) :
-			base( GetPeriodOf( calendar, startYear, startQuarter, quarterCount ), calendar )
+		protected QuarterTimeRange( int year, YearQuarter quarter, int quarterCount, ITimeCalendar calendar ) :
+			base( GetPeriodOf( calendar, year, quarter, quarterCount ), calendar )
 		{
-			this.startYear = startYear;
-			this.startQuarter = startQuarter;
+			this.year = year;
+			this.quarter = quarter;
 			this.quarterCount = quarterCount;
-			TimeTool.AddQuarter( startYear, startQuarter, quarterCount - 1, out endYear, out endQuarter );
+			TimeTool.AddQuarter( year, quarter, quarterCount - 1, out endYear, out endQuarter );
 		} // QuarterTimeRange
 
 		// ----------------------------------------------------------------------
-		public override int BaseYear
-		{
-			get { return startYear; }
-		} // BaseYear
+		public override int BaseYear => year; // BaseYear
 
 		// ----------------------------------------------------------------------
-		public int StartYear
-		{
-			get { return Calendar.GetYear( startYear, (int)Calendar.YearBaseMonth ); }
-		} // StartYear
+		public int StartYear => Calendar.GetYear( year, (int)Calendar.YearBaseMonth ); // StartYear
 
 		// ----------------------------------------------------------------------
-		public int EndYear
-		{
-			get { return Calendar.GetYear( endYear, (int)Calendar.YearBaseMonth ); }
-		} // EndYear
+		public int EndYear => Calendar.GetYear( endYear, (int)Calendar.YearBaseMonth ); // EndYear
 
 		// ----------------------------------------------------------------------
-		public YearQuarter StartQuarter
-		{
-			get { return startQuarter; }
-		} // StartQuarter
+		public YearQuarter StartQuarter => quarter; // StartQuarter
 
 		// ----------------------------------------------------------------------
-		public YearQuarter EndQuarter
-		{
-			get { return endQuarter; }
-		} // EndQuarter
+		public YearQuarter EndQuarter => endQuarter; // EndQuarter
 
 		// ----------------------------------------------------------------------
-		public int QuarterCount
-		{
-			get { return quarterCount; }
-		} // QuarterCount
+		public int QuarterCount => quarterCount; // QuarterCount
 
 		// ----------------------------------------------------------------------
-		public string StartQuarterName
-		{
-			get { return Calendar.GetQuarterName( StartQuarter ); }
-		} // StartQuarterName
+		public string StartQuarterName => Calendar.GetQuarterName( StartQuarter ); // StartQuarterName
 
 		// ----------------------------------------------------------------------
-		public string StartQuarterOfYearName
-		{
-			get { return Calendar.GetQuarterOfYearName( StartYear, StartQuarter ); }
-		} // StartQuarterOfYearName
+		public string StartQuarterOfYearName => Calendar.GetQuarterOfYearName( StartYear, StartQuarter ); // StartQuarterOfYearName
 
 		// ----------------------------------------------------------------------
-		public string EndQuarterName
-		{
-			get { return Calendar.GetQuarterName( EndQuarter ); }
-		} // EndQuarterName
+		public string EndQuarterName => Calendar.GetQuarterName( EndQuarter ); // EndQuarterName
 
 		// ----------------------------------------------------------------------
-		public string EndQuarterOfYearName
-		{
-			get { return Calendar.GetQuarterOfYearName( EndYear, EndQuarter ); }
-		} // EndQuarterOfYearName
+		public string EndQuarterOfYearName => Calendar.GetQuarterOfYearName( EndYear, EndQuarter ); // EndQuarterOfYearName
 
 		// ----------------------------------------------------------------------
 		public ITimePeriodCollection GetMonths()
@@ -99,9 +70,7 @@ namespace Itenso.TimePeriod
 			{
 				for ( int month = 0; month < TimeSpec.MonthsPerQuarter; month++ )
 				{
-					int year;
-					YearMonth yearMonth;
-					TimeTool.AddMonth( startYear, YearBaseMonth, ( i * TimeSpec.MonthsPerQuarter ) + month, out year, out yearMonth );
+                    TimeTool.AddMonth( this.year, YearBaseMonth, ( i * TimeSpec.MonthsPerQuarter ) + month, out var year, out var yearMonth );
 					months.Add( new Month( year, yearMonth, Calendar ) );
 				}
 			}
@@ -118,8 +87,8 @@ namespace Itenso.TimePeriod
 		private bool HasSameData( QuarterTimeRange comp )
 		{
 			return
-				startYear == comp.startYear &&
-				startQuarter == comp.startQuarter &&
+				year == comp.year &&
+				quarter == comp.quarter &&
 				quarterCount == comp.quarterCount &&
 				endYear == comp.endYear &&
 				endQuarter == comp.endQuarter;
@@ -128,41 +97,39 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		protected override int ComputeHashCode()
 		{
-			return HashTool.ComputeHashCode( base.ComputeHashCode(), startYear, startQuarter, quarterCount, endYear, endQuarter );
+			return HashTool.ComputeHashCode( base.ComputeHashCode(), year, quarter, quarterCount, endYear, endQuarter );
 		} // ComputeHashCode
 
 		// ----------------------------------------------------------------------
 		private static DateTime GetStartOfQuarter( ITimeCalendar calendar, int year, YearQuarter quarter )
 		{
-			DateTime startOfQuarter;
+			DateTime ofQuarter;
 
 			switch ( calendar.YearType )
 			{
 				case YearType.FiscalYear:
-					startOfQuarter = FiscalCalendarTool.GetStartOfQuarter( year, quarter,
+					ofQuarter = FiscalCalendarTool.GetStartOfQuarter( year, quarter,
 						calendar.YearBaseMonth, calendar.FiscalFirstDayOfYear, calendar.FiscalYearAlignment );
 					break;
 				default:
 					DateTime yearStart = new DateTime( year, (int)calendar.YearBaseMonth, 1 );
-					startOfQuarter = yearStart.AddMonths( ( (int)quarter - 1 ) * TimeSpec.MonthsPerQuarter );
+					ofQuarter = yearStart.AddMonths( ( (int)quarter - 1 ) * TimeSpec.MonthsPerQuarter );
 					break;
 			}
 
-			return startOfQuarter;
+			return ofQuarter;
 		} // GetStartOfQuarter
 
 		// ----------------------------------------------------------------------
-		private static TimeRange GetPeriodOf( ITimeCalendar calendar, int startYear, YearQuarter startQuarter, int quarterCount )
+		private static TimeRange GetPeriodOf( ITimeCalendar calendar, int year, YearQuarter quarter, int quarterCount )
 		{
 			if ( quarterCount < 1 )
 			{
 				throw new ArgumentOutOfRangeException( "quarterCount" );
 			}
 
-			DateTime start = GetStartOfQuarter( calendar, startYear, startQuarter );
-			int endYear;
-			YearQuarter endQuarter;
-			TimeTool.AddQuarter( startYear, startQuarter, quarterCount, out endYear, out endQuarter );
+			DateTime start = GetStartOfQuarter( calendar, year, quarter );
+            TimeTool.AddQuarter( year, quarter, quarterCount, out var endYear, out var endQuarter );
 			DateTime end = GetStartOfQuarter( calendar, endYear, endQuarter );
 
 			return new TimeRange( start, end );
@@ -170,8 +137,8 @@ namespace Itenso.TimePeriod
 
 		// ----------------------------------------------------------------------
 		// members
-		private readonly int startYear;
-		private readonly YearQuarter startQuarter;
+		private readonly int year;
+		private readonly YearQuarter quarter;
 		private readonly int quarterCount;
 		private readonly int endYear; // cache
 		private readonly YearQuarter endQuarter; // cache

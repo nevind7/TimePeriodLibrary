@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -93,34 +94,22 @@ namespace Itenso.TimePeriod
 		} // TimeRange
 
 		// ----------------------------------------------------------------------
-		public bool IsReadOnly
-		{
-			get { return isReadOnly; }
-		} // IsReadOnly
+		public bool IsReadOnly => isReadOnly; // IsReadOnly
 
 		// ----------------------------------------------------------------------
-		public bool IsAnytime
-		{
-			get { return !HasStart && !HasEnd; }
-		} // IsAnytime
+		public bool IsAnytime => !HasStart && !HasEnd; // IsAnytime
 
 		// ----------------------------------------------------------------------
-		public bool IsMoment
-		{
-			get { return start.Equals( end ); }
-		} // IsMoment
+		public bool IsMoment => start.Equals( end ); // IsMoment
 
 		// ----------------------------------------------------------------------
-		public bool HasStart
-		{
-			get { return start != TimeSpec.MinPeriodDate; }
-		} // HasStart
+		public bool HasStart => start != TimeSpec.MinPeriodDate; // HasStart
 
 		// ----------------------------------------------------------------------
 		public DateTime Start
 		{
-			get { return start; }
-			set
+			get => start;
+            set
 			{
 				CheckModification();
 				if ( value > end )
@@ -132,16 +121,13 @@ namespace Itenso.TimePeriod
 		} // Start
 
 		// ----------------------------------------------------------------------
-		public bool HasEnd
-		{
-			get { return end != TimeSpec.MaxPeriodDate; }
-		} // HasEnd
+		public bool HasEnd => end != TimeSpec.MaxPeriodDate; // HasEnd
 
 		// ----------------------------------------------------------------------
 		public DateTime End
 		{
-			get { return end; }
-			set
+			get => end;
+            set
 			{
 				CheckModification();
 				if ( value < start )
@@ -155,8 +141,8 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		public TimeSpan Duration
 		{
-			get { return end.Subtract( start ); }
-			set
+			get => end.Subtract( start );
+            set
 			{
 				CheckModification();
 				end = start.Add( value );
@@ -164,10 +150,7 @@ namespace Itenso.TimePeriod
 		} // Duration
 
 		// ----------------------------------------------------------------------
-		public string DurationDescription
-		{
-			get { return TimeFormatter.Instance.GetDuration( Duration, DurationFormatType.Detailed ); }
-		} // DurationDescription
+		public string DurationDescription => TimeFormatter.Instance.GetDuration( Duration, DurationFormatType.Detailed ); // DurationDescription
 
 		// ----------------------------------------------------------------------
 		public virtual TimeSpan GetDuration( IDurationProvider provider )

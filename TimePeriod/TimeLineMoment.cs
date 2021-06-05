@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -22,49 +23,34 @@ namespace Itenso.TimePeriod
 		} // TimeLineMoment
 
 		// ----------------------------------------------------------------------
-		public DateTime Moment
-		{
-			get { return moment; }
-		} // Moment
+		public DateTime Moment => moment; // Moment
 
 		// ----------------------------------------------------------------------
-		public int BalanceCount
-		{
-			get { return startCount - endCount; }
-		} // BalanceCount
+		public int BalanceCount => count - endCount; // BalanceCount
 
 		// ----------------------------------------------------------------------
-		public int StartCount
-		{
-			get { return startCount; }
-		} // StartCount
+		public int StartCount => count; // StartCount
 
 		// ----------------------------------------------------------------------
-		public int EndCount
-		{
-			get { return endCount; }
-		} // EndCount
+		public int EndCount => endCount; // EndCount
 
 		// ----------------------------------------------------------------------
-		public bool IsEmpty
-		{
-			get { return startCount == 0 && endCount == 0; }
-		} // IsEmpty
+		public bool IsEmpty => count == 0 && endCount == 0; // IsEmpty
 
 		// ----------------------------------------------------------------------
 		public void AddStart()
 		{
-			startCount++;
+			count++;
 		} // AddStart
 
 		// ----------------------------------------------------------------------
 		public void RemoveStart()
 		{
-			if ( startCount == 0 )
+			if ( count == 0 )
 			{
 				throw new InvalidOperationException();
 			}
-			startCount--;
+			count--;
 		} // RemoveStart
 
 		// ----------------------------------------------------------------------
@@ -92,7 +78,7 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		// members
 		private readonly DateTime moment;
-		private int startCount;
+		private int count;
 		private int endCount;
 
 	} // class TimeLineMoment

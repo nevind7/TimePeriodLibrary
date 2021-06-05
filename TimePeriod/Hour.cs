@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -53,28 +54,16 @@ namespace Itenso.TimePeriod
 		} // Hour
 
 		// ----------------------------------------------------------------------
-		public int Year
-		{
-			get { return StartYear; }
-		} // Year
+		public int Year => StartYear; // Year
 
 		// ----------------------------------------------------------------------
-		public int Month
-		{
-			get { return StartMonth; }
-		} // Month
+		public int Month => StartMonth; // Month
 
 		// ----------------------------------------------------------------------
-		public int Day
-		{
-			get { return StartDay; }
-		} // Day
+		public int Day => StartDay; // Day
 
 		// ----------------------------------------------------------------------
-		public int HourValue
-		{
-			get { return StartHour; }
-		} // HourValue
+		public int HourValue => StartHour; // HourValue
 
 		// ----------------------------------------------------------------------
 		public Hour GetPreviousHour()
@@ -91,8 +80,8 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		public Hour AddHours( int hours )
 		{
-			DateTime startHour = new DateTime( StartYear, StartMonth, StartDay, StartHour, 0, 0 );
-			return new Hour( startHour.AddHours( hours ), Calendar );
+			DateTime hour = new DateTime( StartYear, StartMonth, StartDay, StartHour, 0, 0 );
+			return new Hour( hour.AddHours( hours ), Calendar );
 		} // AddHours
 
 		// ----------------------------------------------------------------------

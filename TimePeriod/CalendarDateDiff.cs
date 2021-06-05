@@ -6,10 +6,11 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Collections.Generic;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -47,34 +48,19 @@ namespace Itenso.TimePeriod
 		} // CalendarDateDiff
 
 		// ----------------------------------------------------------------------
-		public IList<DayOfWeek> WeekDays
-		{
-			get { return collectorFilter.WeekDays; }
-		} // WeekDays
+		public IList<DayOfWeek> WeekDays => collectorFilter.WeekDays; // WeekDays
 
 		// ----------------------------------------------------------------------
-		public IList<HourRange> WorkingHours
-		{
-			get { return collectorFilter.CollectingHours; }
-		} // WorkingHours
+		public IList<HourRange> WorkingHours => collectorFilter.CollectingHours; // WorkingHours
 
 		// ----------------------------------------------------------------------
-		public IList<DayHourRange> WorkingDayHours
-		{
-			get { return collectorFilter.CollectingDayHours; }
-		} // WorkingDayHours
+		public IList<DayHourRange> WorkingDayHours => collectorFilter.CollectingDayHours; // WorkingDayHours
 
 		// ----------------------------------------------------------------------
-		public ITimeCalendar Calendar
-		{
-			get { return calendar; }
-		} // Calendar
+		public ITimeCalendar Calendar => calendar; // Calendar
 
 		// ----------------------------------------------------------------------
-		public IDurationProvider DurationProvider
-		{
-			get { return durationProvider; }
-		} // DurationProvider
+		public IDurationProvider DurationProvider => durationProvider; // DurationProvider
 
 		// ----------------------------------------------------------------------
 		public void AddWorkingWeekDays()

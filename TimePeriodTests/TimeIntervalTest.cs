@@ -6,11 +6,12 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
-using Itenso.TimePeriod;
+using TimePeriod;
 using Xunit;
 
-namespace Itenso.TimePeriodTests
+namespace TimePeriodTests.Core
 {
 
 	// ------------------------------------------------------------------------
@@ -194,8 +195,8 @@ namespace Itenso.TimePeriodTests
 		public void StartIntervalExcludeTest()
 		{
 			DateTime now = DateTime.Now;
-			DateTime startHour = new DateTime( now.Year, now.Month, now.Day, 8, 0, 0 );
-			TimeInterval timeInterval = new TimeInterval( startHour, startHour.AddHours( 1 ),
+			DateTime hour = new DateTime( now.Year, now.Month, now.Day, 8, 0, 0 );
+			TimeInterval timeInterval = new TimeInterval( hour, hour.AddHours( 1 ),
 				IntervalEdge.Open, IntervalEdge.Open );
 
 			Assert.Equal(IntervalEdge.Open, timeInterval.StartEdge);
@@ -241,8 +242,8 @@ namespace Itenso.TimePeriodTests
 		public void EndIntervalExcludeTest()
 		{
 			DateTime now = DateTime.Now;
-			DateTime startHour = new DateTime( now.Year, now.Month, now.Day, 8, 0, 0 );
-			TimeInterval timeInterval = new TimeInterval( startHour, startHour.AddHours( 1 ),
+			DateTime hour = new DateTime( now.Year, now.Month, now.Day, 8, 0, 0 );
+			TimeInterval timeInterval = new TimeInterval( hour, hour.AddHours( 1 ),
 				IntervalEdge.Open, IntervalEdge.Open );
 
 			Assert.Equal(IntervalEdge.Open, timeInterval.EndEdge);

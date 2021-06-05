@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -28,10 +29,7 @@ namespace Itenso.TimePeriod
 		} // TimeGapCalculator
 
 		// ----------------------------------------------------------------------
-		public ITimePeriodMapper PeriodMapper
-		{
-			get { return periodMapper; }
-		} // PeriodMapper
+		public ITimePeriodMapper PeriodMapper => periodMapper; // PeriodMapper
 
 		// ----------------------------------------------------------------------
 		public virtual ITimePeriodCollection GetGaps( ITimePeriodContainer periods, ITimePeriod limits = null ) 

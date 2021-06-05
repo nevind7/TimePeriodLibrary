@@ -6,11 +6,12 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -29,46 +30,25 @@ namespace Itenso.TimePeriod
 		} // TimeLineMomentCollection
 
 		// ----------------------------------------------------------------------
-		public int Count
-		{
-			get { return timeLineMoments.Count; }
-		} // Count
+		public int Count => timeLineMoments.Count; // Count
 
 		// ----------------------------------------------------------------------
-		public bool IsEmpty
-		{
-			get { return Count == 0; }
-		} // IsEmpty
+		public bool IsEmpty => Count == 0; // IsEmpty
 
 		// ----------------------------------------------------------------------
-		public ITimeLineMoment Min
-		{
-			get { return !IsEmpty ? timeLineMoments[ 0 ] : null; }
-		} // Min
+		public ITimeLineMoment Min => !IsEmpty ? timeLineMoments[ 0 ] : null; // Min
 
 		// ----------------------------------------------------------------------
-		public ITimeLineMoment Max
-		{
-			get { return !IsEmpty ? timeLineMoments[ Count - 1 ] : null; }
-		} // Max
+		public ITimeLineMoment Max => !IsEmpty ? timeLineMoments[ Count - 1 ] : null; // Max
 
 		// ----------------------------------------------------------------------
-		public ITimeLineMoment this[ int index ]
-		{
-			get { return timeLineMoments[ index ]; }
-		} // this[]
+		public ITimeLineMoment this[ int index ] => timeLineMoments[ index ];  // this[]
 
 		// ----------------------------------------------------------------------
-		public ITimeLineMoment this[ DateTime moment ]
-		{
-			get { return timeLineMomentLookup[ moment ]; }
-		} // this[]
+		public ITimeLineMoment this[ DateTime moment ] => timeLineMomentLookup[ moment ];  // this[]
 
 		// ----------------------------------------------------------------------
-		protected IList<ITimeLineMoment> Moments
-		{
-			get { return timeLineMoments; }
-		} // Moments
+		protected IList<ITimeLineMoment> Moments => timeLineMoments; // Moments
 
 		// ----------------------------------------------------------------------
 		public void Clear()
@@ -145,11 +125,11 @@ namespace Itenso.TimePeriod
 				bool start = true;
 				foreach ( ITimeLineMoment timeLineMoment in timeLineMoments )
 				{
-					int startCount = timeLineMoment.StartCount;
+					int count = timeLineMoment.StartCount;
 					int endCount = timeLineMoment.EndCount;
 					if ( start )
 					{
-						if ( startCount != 1 || endCount > 1 )
+						if ( count != 1 || endCount > 1 )
 						{
 							hasOverlaps = true;
 							break;
@@ -157,13 +137,13 @@ namespace Itenso.TimePeriod
 					}
 					else // end
 					{
-						if ( startCount > 1 || endCount != 1 )
+						if ( count > 1 || endCount != 1 )
 						{
 							hasOverlaps = true;
 							break;
 						}
 					}
-					start = ( endCount - startCount ) > 0;
+					start = ( endCount - count ) > 0;
 				}
 			}
 

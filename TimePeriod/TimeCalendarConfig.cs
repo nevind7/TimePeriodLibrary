@@ -6,10 +6,11 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Globalization;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -31,17 +32,17 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		public YearMonth? YearBaseMonth { get; set; }
 
-		// ----------------------------------------------------------------------
-		public YearMonth? FiscalYearBaseMonth { get; set; }
+        // ----------------------------------------------------------------------
+        public YearMonth? FiscalYearBaseMonth { get; set; }
 
 		// ----------------------------------------------------------------------
-		public DayOfWeek? FiscalFirstDayOfYear { get; set; }
+		public DayOfWeek? FiscalFirstDayOfYear  { get; set; }
 
 		// ----------------------------------------------------------------------
-		public FiscalYearAlignment? FiscalYearAlignment { get; set; }
+		public FiscalYearAlignment? FiscalYearAlignment  { get; set; }
 
 		// ----------------------------------------------------------------------
-		public FiscalQuarterGrouping? FiscalQuarterGrouping { get; set; }
+		public FiscalQuarterGrouping? FiscalQuarterGrouping  { get; set; }
 
 		// ----------------------------------------------------------------------
 		public YearWeekType? YearWeekType { get; set; }

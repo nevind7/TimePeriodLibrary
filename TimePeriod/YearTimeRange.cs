@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -16,66 +17,46 @@ namespace Itenso.TimePeriod
 	{
 
 		// ----------------------------------------------------------------------
-		protected YearTimeRange( int startYear, int yearCount, ITimeCalendar calendar ) :
-			base( GetPeriodOf( calendar, startYear, yearCount ), calendar )
+		protected YearTimeRange( int year, int yearCount, ITimeCalendar calendar ) :
+			base( GetPeriodOf( calendar, year, yearCount ), calendar )
 		{
-			this.startYear = startYear;
+			this.year = year;
 			this.yearCount = yearCount;
 			endYear = End.Year;
 		} // YearTimeRange
 
 		// ----------------------------------------------------------------------
-		public int YearCount
-		{
-			get { return yearCount; }
-		} // YearCount
+		public int YearCount => yearCount; // YearCount
 
 		// ----------------------------------------------------------------------
-		public override int BaseYear
-		{
-			get { return startYear; }
-		} // BaseYear
+		public override int BaseYear => year; // BaseYear
 
 		// ----------------------------------------------------------------------
-		public int StartYear
-		{
-			get { return Calendar.GetYear( startYear, (int)YearBaseMonth ); }
-		} // StartYear
+		public int StartYear => Calendar.GetYear( year, (int)YearBaseMonth ); // StartYear
 
 		// ----------------------------------------------------------------------
-		public int EndYear
-		{
-			get { return Calendar.GetYear( endYear, (int)YearBaseMonth ); }
-		} // EndYear
+		public int EndYear => Calendar.GetYear( endYear, (int)YearBaseMonth ); // EndYear
 
 		// ----------------------------------------------------------------------
-		public string StartYearName
-		{
-			get { return Calendar.GetYearName( StartYear ); }
-		} // StartYearName
+		public string StartYearName => Calendar.GetYearName( StartYear ); // StartYearName
 
 		// ----------------------------------------------------------------------
-		public string EndYearName
-		{
-			get { return Calendar.GetYearName( StartYear + YearCount - 1 ); }
-		} // EndYearName
+		public string EndYearName => Calendar.GetYearName( StartYear + YearCount - 1 ); // EndYearName
 
 		// ----------------------------------------------------------------------
-		public ITimePeriodCollection GetHalfyears()
+		public ITimePeriodCollection GetHalfYears()
 		{
-			TimePeriodCollection halfyears = new TimePeriodCollection();
+			TimePeriodCollection halfYears = new TimePeriodCollection();
 			for ( int i = 0; i < yearCount; i++ )
 			{
-				for ( int halfyear = 0; halfyear < TimeSpec.HalfyearsPerYear; halfyear++ )
+				for ( int halfYear = 0; halfYear < TimeSpec.HalfYearsPerYear; halfYear++ )
 				{
-					int year;
-					YearHalfyear yearHalfyear;
-					TimeTool.AddHalfyear( startYear, YearHalfyear.First, ( i * TimeSpec.HalfyearsPerYear ) + halfyear, out year, out yearHalfyear );
-					halfyears.Add( new Halfyear( year, yearHalfyear, Calendar ) );
+                    TimeTool.AddHalfYear( this.year, YearHalfYear.First, ( i * TimeSpec.HalfYearsPerYear ) + halfYear, out var year, out var yearHalfYear );
+					halfYears.Add( new HalfYear( year, yearHalfYear, Calendar ) );
 				}
 			}
-			return halfyears;
-		} // GetHalfyears
+			return halfYears;
+		} // GetHalfYears
 
 		// ----------------------------------------------------------------------
 		public ITimePeriodCollection GetQuarters()
@@ -85,9 +66,7 @@ namespace Itenso.TimePeriod
 			{
 				for ( int quarter = 0; quarter < TimeSpec.QuartersPerYear; quarter++ )
 				{
-					int year;
-					YearQuarter yearQuarter;
-					TimeTool.AddQuarter( startYear, YearQuarter.First, ( i * TimeSpec.QuartersPerYear ) + quarter, out year, out yearQuarter );
+                    TimeTool.AddQuarter( this.year, YearQuarter.First, ( i * TimeSpec.QuartersPerYear ) + quarter, out var year, out var yearQuarter );
 					quarters.Add( new Quarter( year, yearQuarter, Calendar ) );
 				}
 			}
@@ -102,9 +81,7 @@ namespace Itenso.TimePeriod
 			{
 				for ( int month = 0; month < TimeSpec.MonthsPerYear; month++ )
 				{
-					int year;
-					YearMonth yearMonth;
-					TimeTool.AddMonth( startYear, YearBaseMonth, ( i * TimeSpec.MonthsPerYear ) + month, out year, out yearMonth );
+                    TimeTool.AddMonth( this.year, YearBaseMonth, ( i * TimeSpec.MonthsPerYear ) + month, out var year, out var yearMonth );
 					months.Add( new Month( year, yearMonth, Calendar ) );
 				}
 			}
@@ -121,7 +98,7 @@ namespace Itenso.TimePeriod
 		private bool HasSameData( YearTimeRange comp )
 		{
 			return
-				startYear == comp.startYear &&
+				year == comp.year &&
 				endYear == comp.endYear &&
 				yearCount == comp.yearCount;
 		} // HasSameData
@@ -129,7 +106,7 @@ namespace Itenso.TimePeriod
 		// ----------------------------------------------------------------------
 		protected override int ComputeHashCode()
 		{
-			return HashTool.ComputeHashCode( base.ComputeHashCode(), startYear, startYear, yearCount );
+			return HashTool.ComputeHashCode( base.ComputeHashCode(), year, year, yearCount );
 		} // ComputeHashCode
 
 		// ----------------------------------------------------------------------
@@ -140,11 +117,11 @@ namespace Itenso.TimePeriod
 			switch ( calendar.YearType )
 			{
 				case YearType.FiscalYear:
-					startOfYear = FiscalCalendarTool.GetStartOfYear( year, calendar.YearBaseMonth,
+                    startOfYear = FiscalCalendarTool.GetStartOfYear( year, calendar.YearBaseMonth,
 						calendar.FiscalFirstDayOfYear, calendar.FiscalYearAlignment );
 					break;
 				default:
-					startOfYear = new DateTime( year, (int)calendar.YearBaseMonth, 1 );
+                    startOfYear = new DateTime( year, (int)calendar.YearBaseMonth, 1 );
 					break;
 			}
 			return startOfYear;
@@ -165,7 +142,7 @@ namespace Itenso.TimePeriod
 
 		// ----------------------------------------------------------------------
 		// members
-		private readonly int startYear;
+		private readonly int year;
 		private readonly int yearCount;
 		private readonly int endYear; // cache
 

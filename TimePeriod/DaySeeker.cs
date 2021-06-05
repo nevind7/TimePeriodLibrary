@@ -7,7 +7,7 @@
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -28,10 +28,7 @@ namespace Itenso.TimePeriod
 		} // DaySeeker
 
 		// ----------------------------------------------------------------------
-		public ITimePeriodCollection Periods
-		{
-			get { return periods; }
-		} // Periods
+		public ITimePeriodCollection Periods => periods; // Periods
 
 		// ----------------------------------------------------------------------
 		public Day FindDay( Day start, int offset )

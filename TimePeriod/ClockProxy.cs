@@ -7,7 +7,7 @@
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -19,31 +19,27 @@ namespace Itenso.TimePeriod
 		{
 			get
 			{
-				if ( clock == null )
-				{
-					lock ( mutex )
-					{
-						if ( clock == null )
-						{
-							clock = new SystemClock();
-						}
-					}
-				}
-				return clock;
+                if (_clock != null) return _clock;
+
+                lock ( Mutex )
+                {
+                    _clock ??= new SystemClock();
+                }
+                return _clock;
 			}
 			set
 			{
-				lock ( mutex )
+				lock ( Mutex )
 				{
-					clock = value;
+					_clock = value;
 				}
 			}
 		} // Clock
 
 		// ----------------------------------------------------------------------
 		// members
-		private static readonly object mutex = new object();
-		private static volatile IClock clock;
+		private static readonly object Mutex = new object();
+		private static volatile IClock _clock;
 
 	} // class ClockProxy
 

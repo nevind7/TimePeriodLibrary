@@ -6,10 +6,11 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Collections.Generic;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -17,16 +18,10 @@ namespace Itenso.TimePeriod
 	{
 
 		// ----------------------------------------------------------------------
-		public ITimePeriodCollection IncludePeriods
-		{
-			get { return includePeriods; }
-		} // IncludePeriods
+		public ITimePeriodCollection IncludePeriods => includePeriods; // IncludePeriods
 
 		// ----------------------------------------------------------------------
-		public ITimePeriodCollection ExcludePeriods
-		{
-			get { return excludePeriods; }
-		} // ExcludePeriods
+		public ITimePeriodCollection ExcludePeriods => excludePeriods; // ExcludePeriods
 
 		// ----------------------------------------------------------------------
 		public virtual DateTime? Subtract( DateTime start, TimeSpan offset, SeekBoundaryMode seekBoundaryMode = SeekBoundaryMode.Next )
@@ -117,20 +112,20 @@ namespace Itenso.TimePeriod
 			}
 
 			// find the starting search period
-			ITimePeriod startPeriod = null;
+			ITimePeriod period = null;
 			DateTime seekMoment = start;
 			switch ( seekDirection )
 			{
 				case SeekDirection.Forward:
-					startPeriod = FindNextPeriod( start, availablePeriods, out seekMoment );
+					period = FindNextPeriod( start, availablePeriods, out seekMoment );
 					break;
 				case SeekDirection.Backward:
-					startPeriod = FindPreviousPeriod( start, availablePeriods, out seekMoment );
+					period = FindPreviousPeriod( start, availablePeriods, out seekMoment );
 					break;
 			}
 
 			// no starting period available
-			if ( startPeriod == null )
+			if ( period == null )
 			{
 				return null;
 			}
@@ -146,7 +141,7 @@ namespace Itenso.TimePeriod
 			switch ( seekDirection )
 			{
 				case SeekDirection.Forward:
-					for ( int i = availablePeriods.IndexOf( startPeriod ); i < availablePeriods.Count; i++ )
+					for ( int i = availablePeriods.IndexOf( period ); i < availablePeriods.Count; i++ )
 					{
 						ITimePeriod gap = availablePeriods[ i ];
 						TimeSpan gapRemining = gap.End - seekMoment;
@@ -178,7 +173,7 @@ namespace Itenso.TimePeriod
 					}
 					break;
 				case SeekDirection.Backward:
-					for ( int i = availablePeriods.IndexOf( startPeriod ); i >= 0; i-- )
+					for ( int i = availablePeriods.IndexOf( period ); i >= 0; i-- )
 					{
 						ITimePeriod gap = availablePeriods[ i ];
 						TimeSpan gapRemining = seekMoment - gap.Start;

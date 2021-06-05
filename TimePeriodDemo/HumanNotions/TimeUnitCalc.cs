@@ -6,10 +6,11 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
-using System;
-using Itenso.TimePeriod;
 
-namespace Itenso.TimePeriodDemo.HumanNotions
+using System;
+using TimePeriod;
+
+namespace TimePeriodDemo.HumanNotions
 {
 
 	// ------------------------------------------------------------------------
@@ -47,8 +48,8 @@ namespace Itenso.TimePeriodDemo.HumanNotions
 					return new Month( baseMoment, calendar ).AddMonths( ToInt( offsetCount ) ).Start;
 				case TimeUnit.Quarter:
 					return new Quarter( baseMoment, calendar ).AddQuarters( ToInt( offsetCount ) ).Start;
-				case TimeUnit.Halfyear:
-					return new Halfyear( baseMoment, calendar ).AddHalfyears( ToInt( offsetCount ) ).Start;
+				case TimeUnit.HalfYear:
+					return new HalfYear( baseMoment, calendar ).AddHalfYears( ToInt( offsetCount ) ).Start;
 				case TimeUnit.Year:
 					return new Year( baseMoment, calendar ).AddYears( ToInt( offsetCount ) ).Start;
 				default:
@@ -93,8 +94,8 @@ namespace Itenso.TimePeriodDemo.HumanNotions
 					return periodDuration == 1 ? new Month( start, calendar ) as ITimePeriod : new Months( start, startMonth, ToInt( periodDuration ), calendar );
 				case TimeUnit.Quarter:
 					return periodDuration == 1 ? new Quarter( start, calendar ) as ITimePeriod : new Quarters( start, YearQuarter.First, ToInt( periodDuration ), calendar );
-				case TimeUnit.Halfyear:
-					return periodDuration == 1 ? new Halfyear( start, calendar ) as ITimePeriod : new Halfyears( start, YearHalfyear.First, ToInt( periodDuration ), calendar );
+				case TimeUnit.HalfYear:
+					return periodDuration == 1 ? new HalfYear( start, calendar ) as ITimePeriod : new HalfYears( start, YearHalfYear.First, ToInt( periodDuration ), calendar );
 				case TimeUnit.Year:
 					return periodDuration == 1 ? new Year( start, calendar ) as ITimePeriod : new Years( start, ToInt( periodDuration ), calendar );
 				default:

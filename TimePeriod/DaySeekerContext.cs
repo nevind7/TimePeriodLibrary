@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -16,13 +17,13 @@ namespace Itenso.TimePeriod
 	{
 
 		// ----------------------------------------------------------------------
-		public DaySeekerContext( Day startDay, int dayCount )
+		public DaySeekerContext( Day day, int dayCount )
 		{
-			if ( startDay == null )
+			if ( day == null )
 			{
-				throw new ArgumentNullException( "startDay" );
+				throw new ArgumentNullException( "day" );
 			}
-			StartDay = startDay;
+			StartDay = day;
 			DayCount = Math.Abs( dayCount );
 			RemaingDays = DayCount;
 		} // DaySeekerContext
@@ -40,10 +41,7 @@ namespace Itenso.TimePeriod
 		public Day FoundDay { get; private set; }
 
 		// ----------------------------------------------------------------------
-		public bool IsFinished
-		{
-			get { return RemaingDays == 0; }
-		} // IsFinished
+		public bool IsFinished => RemaingDays == 0; // IsFinished
 
 		// ----------------------------------------------------------------------
 		public void ProcessDay( Day day )

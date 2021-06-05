@@ -6,9 +6,10 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -37,28 +38,16 @@ namespace Itenso.TimePeriod
 		} // CalendarVisitor
 
 		// ----------------------------------------------------------------------
-		public TFilter Filter
-		{
-			get { return filter; }
-		} // Filter
+		public TFilter Filter => filter; // Filter
 
 		// ----------------------------------------------------------------------
-		public ITimePeriod Limits
-		{
-			get { return limits; }
-		} // Limits
+		public ITimePeriod Limits => limits; // Limits
 
 		// ----------------------------------------------------------------------
-		public SeekDirection SeekDirection
-		{
-			get { return seekDirection; }
-		} // SeekDirection
+		public SeekDirection SeekDirection => seekDirection; // SeekDirection
 
 		// ----------------------------------------------------------------------
-		public ITimeCalendar Calendar
-		{
-			get { return calendar; }
-		} // Calendar
+		public ITimeCalendar Calendar => calendar; // Calendar
 
 		// ----------------------------------------------------------------------
 		protected void StartPeriodVisit( TContext context = null )

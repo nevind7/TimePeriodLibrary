@@ -6,10 +6,11 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
-using System;
-using Itenso.TimePeriod;
 
-namespace Itenso.TimePeriodTests
+using System;
+using TimePeriod;
+
+namespace TimePeriodTests.Core
 {
 
 	// ------------------------------------------------------------------------

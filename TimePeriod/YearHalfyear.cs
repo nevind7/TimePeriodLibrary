@@ -1,5 +1,5 @@
 // -- FILE ------------------------------------------------------------------
-// name       : YearHalfyear.cs
+// name       : YearHalfYear.cs
 // project    : Itenso Time Period
 // created    : Jani Giannoudis - 2011.02.18
 // language   : C# 4.0
@@ -7,15 +7,15 @@
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
-	public enum YearHalfyear
+	public enum YearHalfYear
 	{
 		First = 1,
 		Second = 2,
-	} // enum YearHalfyear
+	} // enum YearHalfYear
 
 } // namespace Itenso.TimePeriod
 // -- EOF -------------------------------------------------------------------

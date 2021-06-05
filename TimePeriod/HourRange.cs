@@ -7,7 +7,7 @@
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
 
-namespace Itenso.TimePeriod
+namespace TimePeriod
 {
 
 	// ------------------------------------------------------------------------
@@ -21,8 +21,8 @@ namespace Itenso.TimePeriod
 		} // HourRange
 
 		// ----------------------------------------------------------------------
-		public HourRange( int startHour, int endHour ) :
-			this( new Time( startHour ), new Time( endHour ) )
+		public HourRange( int hour, int endHour ) :
+			this( new Time( hour ), new Time( endHour ) )
 		{
 		} // HourRange
 
@@ -42,22 +42,13 @@ namespace Itenso.TimePeriod
 		} // HourRange
 
 		// ----------------------------------------------------------------------
-		public Time Start
-		{
-			get { return start; }
-		} // Start
+		public Time Start => start; // Start
 
 		// ----------------------------------------------------------------------
-		public Time End
-		{
-			get { return end; }
-		} // End
+		public Time End => end; // End
 
 		// ----------------------------------------------------------------------
-		public bool IsMoment
-		{
-			get { return start.Equals( end ); }
-		} // IsMoment
+		public bool IsMoment => start.Equals( end ); // IsMoment
 
 		// ----------------------------------------------------------------------
 		public override string ToString()

@@ -6,12 +6,13 @@
 // environment: .NET 2.0
 // copyright  : (c) 2011-2012 by Itenso GmbH, Switzerland
 // --------------------------------------------------------------------------
+
 using System;
 using System.Collections.Generic;
-using Itenso.TimePeriod;
+using TimePeriod;
 using Xunit;
 
-namespace Itenso.TimePeriodTests
+namespace TimePeriodTests.Core
 {
 
 	// ------------------------------------------------------------------------
@@ -26,8 +27,8 @@ namespace Itenso.TimePeriodTests
 		{
 			DateTimeSet dateTimeSet = new DateTimeSet();
 
-			Assert.Equal(0, dateTimeSet.Count);
-			Assert.Null(dateTimeSet.Min);
+            Assert.Empty(dateTimeSet);
+            Assert.Null(dateTimeSet.Min);
 			Assert.Null(dateTimeSet.Max);
 			Assert.Null(dateTimeSet.Duration);
 			Assert.True( dateTimeSet.IsEmpty );
@@ -220,25 +221,28 @@ namespace Itenso.TimePeriodTests
 		public void CountTest()
 		{
 			DateTimeSet dateTimeSet = new DateTimeSet();
-			Assert.Equal(0, dateTimeSet.Count);
+
+			Assert.Empty(dateTimeSet);
 
 			dateTimeSet.Add( DateTime.MinValue );
-			Assert.Equal(1, dateTimeSet.Count);
+
+			Assert.True(dateTimeSet.Count == 1);
+		
 
 			dateTimeSet.Add( DateTime.MinValue );
-			Assert.Equal(1, dateTimeSet.Count);
+            Assert.True(dateTimeSet.Count == 1);
 
 			dateTimeSet.Add( DateTime.MaxValue );
 			Assert.Equal(2, dateTimeSet.Count);
 
 			dateTimeSet.Add( DateTime.MaxValue );
-			Assert.Equal(2, dateTimeSet.Count);
+            Assert.True(dateTimeSet.Count == 2);
 
 			dateTimeSet.Remove( DateTime.MinValue );
-			Assert.Equal(1, dateTimeSet.Count);
+            Assert.True(dateTimeSet.Count == 1);
 
 			dateTimeSet.Clear();
-			Assert.Equal(0, dateTimeSet.Count);
+            Assert.Empty(dateTimeSet);
 		} // CountTest
 
         // ----------------------------------------------------------------------
@@ -328,7 +332,8 @@ namespace Itenso.TimePeriodTests
 			DateTime nextCalendarYear = currentCalendarYear.AddYears( 1 );
 
 			DateTimeSet dateTimeSet = new DateTimeSet();
-			Assert.Equal(0, dateTimeSet.Count);
+            Assert.Empty(dateTimeSet);
+		
 
 			dateTimeSet.Add( previousCalendarYear );
 			Assert.Equal(1, dateTimeSet.Count);
